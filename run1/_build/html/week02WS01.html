@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>EOSC 211: Steps in Problem Solving &#8212; Eoas 211 test build</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EOSC 211: Some Review plus Built-In Functions, Arrays Preview" href="week02WS02.html" />
+    <link rel="prev" title="EOSC 211: Intro Activity: Making Observations" href="week01WS01.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Eoas 211 test build</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Class2_miniquiz1_withans.html">Name:</a>
+  </li>
+  <li class="">
+    <a href="week01WS01.html">Week01ws01</a>
+  </li>
+  <li class="active">
+    <a href="">Week02ws01</a>
+  </li>
+  <li class="">
+    <a href="week02WS02.html">Week02ws02</a>
+  </li>
+  <li class="">
+    <a href="week03_miniquiz1.html">Week03 Miniquiz1</a>
+  </li>
+  <li class="">
+    <a href="week08-worksheet1.html">Exercise 1: Write a function called sqrtsum that takes as input two arbitrary real numbers, x1 and x2 and returns two parameters: the sum of x1 and x2 and the square root of the sum of x1 and x2 (use the built-in matlab function sqrt). Include help lines that specify what the function does, and what the input and output arguments are.</a>
+  </li>
+  <li class="">
+    <a href="week09preQuiz.html">Week09prequiz</a>
+  </li>
+  <li class="">
+    <a href="week11WS01.html">Week11ws01</a>
+  </li>
+  <li class="">
+    <a href="week11WS4A3.html">Week11ws4a3</a>
+  </li>
+  <li class="">
+    <a href="week12WS02.html">Week12ws02</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/week02WS01.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="eosc-211-steps-in-problem-solving">
+<h1>EOSC 211: Steps in Problem Solving<a class="headerlink" href="#eosc-211-steps-in-problem-solving" title="Permalink to this headline">¶</a></h1>
+<p><strong>Name 1:</strong></p>
+<p><strong>Name 2:</strong></p>
+<p>GOAL: practice the steps in problem solving using earthquake data.</p>
+<ol>
+<li><blockquote>
+<div><p><strong>Write down the 3 steps in algorithm design mentioned in the text
+book OR write down some steps you think will be common to problem
+solving with MATLAB (you might have more than 3 steps):</strong></p>
+</div></blockquote>
+</li>
+</ol>
+<p>1.
+_________________________________________________________________________________________</p>
+<p>2.
+__________________________________________________________________________________________</p>
+<p>3.
+__________________________________________________________________________________________</p>
+<p>4.
+__________________________________________________________________________________________</p>
+<p>5.
+__________________________________________________________________________________________</p>
+<p><strong>We want to find the largest earthquake in the Pacific Northwest region
+in the past year. The data sheet gives all earthquakes in this area that
+have a magnitude of at least 4.0.</strong></p>
+<p><strong>B. Fill in the following table</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Describe in words</strong></p></td>
+<td><p><strong>Give value</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>input</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>output</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>C. Below, document the procedure you went through to get to your
+answer for the value of the output above.</strong></p>
+<p><strong>HINT: you need to think about what your brain actually does when it
+finds the largest # in a list</strong></p>
+<p>_________________________________________________________________________________________</p>
+<p>__________________________________________________________________________________________</p>
+<p>__________________________________________________________________________________________</p>
+<p>____________________________________________________________________________________________</p>
+<p>____________________________________________________________________________________________</p>
+<ol class="simple">
+<li><p><strong>In the following code snippet circle and identify</strong></p>
+<ol class="simple">
+<li><p><strong>Variable names</strong></p></li>
+<li><p><strong>Operators</strong></p></li>
+<li><p><strong>Reserved words</strong></p></li>
+<li><p><strong>Special characters</strong></p></li>
+</ol>
+</li>
+</ol>
+<p>**<br />
+**</p>
+<p><strong>Earthquakes Canada Online Bulletin - 20170830.0000 20180831.2242</strong></p>
+<p>Date Time(UT) Lat Lon Depth Mag Region and Comment</p>
+<p>2018/08/21 13:10:05 50.656 -130.475 10.0g 4.9Mw 215 km W of Pt. Hardy</p>
+<p>2018/08/01 04:13:48 50.252 -130.228 10.0g 4.5Mw 205 km W of Pt. Hardy</p>
+<p>2018/07/02 04:08:13 51.242 -130.827 10.0g 4.0Mw 212 km WSW of Bella
+Bella</p>
+<p>2018/07/02 04:08:13 51.278 -130.762 10.0g 4.0Mw 206 km WSW of Bella
+Bella</p>
+<p>2018/07/02 04:08:13 51.278 -130.762 10.0g 4.1Mw 206 km WSW of Bella
+Bella</p>
+<p>2018/05/10 06:36:15 48.663 -129.387 10.0g 4.0Mw 259 km W of Tofino</p>
+<p>2018/04/24 17:41:16 50.503 -130.153 10.0g 4.3Mw 194 km W of Pt. Hardy</p>
+<p>2018/04/03 04:21:13 49.016 -129.374 10.0g 4.4Mw 234 km SW of Pt. Hardy</p>
+<p>2018/03/16 02:56:23 48.984 -129.655 10.0g 4.6Mw 249 km SW of Pt. Hardy</p>
+<p>2018/03/16 02:56:23 48.984 -129.655 10.0g 4.0Mw 249 km SW of Pt. Hardy</p>
+<p>2018/03/06 09:38:24 49.521 -127.586 10.0g 4.1Mw 108 km W of Gold R.</p>
+<p>2018/03/01 18:35:34 50.555 -130.386 10.0g 4.6Mw 210 km W of Pt. Hardy</p>
+<p>2018/01/28 08:52:01 51.113 -130.495 10.0g 4.1Mw 200 km WSW of Bella
+Bella</p>
+<p>2018/01/23 10:39:19 48.815 -129.336 10.0g 4.4Mw 251 km SW of Pt. Hardy</p>
+<p>2018/01/15 05:38:43 50.516 -130.121 10.0g 4.0Mw 192 km W of Pt. Hardy</p>
+<p>2018/01/14 21:41:24 50.433 -130.282 10.0g 4.3Mw 204 km W of Pt. Hardy</p>
+<p>2018/01/14 20:36:08 50.472 -130.265 10.0g 4.0Mw 202 km W of Pt. Hardy</p>
+<p>2018/01/14 20:25:35 50.444 -130.257 10.0g 4.5Mw 202 km W of Pt. Hardy</p>
+<p>2018/01/14 19:10:52 50.500 -130.270 10.0g 4.7Mw 202 km W of Pt. Hardy</p>
+<p>2018/01/14 18:54:01 50.504 -130.288 10.0g 4.8Mw 204 km W of Pt. Hardy</p>
+<p>2018/01/10 18:40:07 50.732 -130.534 10.0g 4.5Mw 219 km W of Pt. Hardy</p>
+<p>2018/01/10 18:40:07 50.732 -130.534 10.0g 4.0Mw 219 km W of Pt. Hardy</p>
+<p>2017/12/17 04:11:08 50.049 -130.073 10.0g 4.7Mw 201 km WSW of Pt. Hardy</p>
+<p>2017/12/17 04:11:08 50.049 -130.073 10.0g 4.0Mw 201 km WSW of Pt. Hardy</p>
+<p>2017/12/05 22:14:14 51.368 -130.758 10.0g 4.4Mw 201 km WSW of Bella
+Bella</p>
+<p>2017/12/04 03:51:41 50.424 -130.314 10.0g 4.5Mw 207 km W of Pt. Hardy</p>
+<p>2017/11/21 09:47:05 49.157 -130.015 10.0g 4.9Mw 253 km WSW of Pt. Hardy</p>
+<p>2017/11/21 09:47:05 49.157 -130.015 10.0g 4.3Mw 253 km WSW of Pt. Hardy</p>
+<p>2017/11/13 18:37:28 49.206 -129.898 10.0g 4.5Mw 243 km WSW of Pt. Hardy</p>
+<p>2017/11/13 18:37:28 49.206 -129.898 10.0g 4.0Mw 243 km WSW of Pt. Hardy</p>
+<p>2017/10/11 09:26:05 48.163 -128.280 10.0g 4.5Mw 205 km WSW of Tofino</p>
+<p>2017/09/28 07:48:02 50.643 -130.519 10.0g 4.4Mw 218 km W of Pt. Hardy</p>
+<p>http://www.earthquakescanada.nrcan.gc.ca/</p>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="week01WS01.html" title="previous page">EOSC 211: Intro Activity: Making Observations</a>
+    <a class='right-next' id="next-link" href="week02WS02.html" title="next page">EOSC 211: Some Review plus Built-In Functions, Arrays Preview</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Re-compiled by Andrew Loeppky<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

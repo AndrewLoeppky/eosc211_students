@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>EOSC 211: Some Numerical Integration - Assignment 2 background &#8212; Eoas 211 test build</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="week12WS01.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="week11WS03.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Eoas 211 test build</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Class2_miniquiz1_withans.html">Name:</a>
+  </li>
+  <li class="">
+    <a href="week01WS01.html">Week01ws01</a>
+  </li>
+  <li class="">
+    <a href="week02WS01.html">Week02ws01</a>
+  </li>
+  <li class="">
+    <a href="week02WS02.html">Week02ws02</a>
+  </li>
+  <li class="">
+    <a href="week03_miniquiz1.html">Week03 Miniquiz1</a>
+  </li>
+  <li class="">
+    <a href="week08-worksheet1.html">Exercise 1: Write a function called sqrtsum that takes as input two arbitrary real numbers, x1 and x2 and returns two parameters: the sum of x1 and x2 and the square root of the sum of x1 and x2 (use the built-in matlab function sqrt). Include help lines that specify what the function does, and what the input and output arguments are.</a>
+  </li>
+  <li class="">
+    <a href="week09preQuiz.html">Week09prequiz</a>
+  </li>
+  <li class="">
+    <a href="week11WS01.html">Week11ws01</a>
+  </li>
+  <li class="active">
+    <a href="">Week11ws4a3</a>
+  </li>
+  <li class="">
+    <a href="week12WS02.html">Week12ws02</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/week11WS4A3.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="eosc-211-some-numerical-integration-assignment-2-background">
+<h1>EOSC 211: Some Numerical Integration - Assignment 2 background<a class="headerlink" href="#eosc-211-some-numerical-integration-assignment-2-background" title="Permalink to this headline">¶</a></h1>
+<p><strong>Movies</strong></p>
+<p>Sketch how you think the spacecraft’s flight path and speeds in the two
+other trajectories will compare with the one shown.</p>
+<p><strong>Sketching out the Problem:</strong></p>
+<p><strong>1.</strong> sketch the direction of the force and acceleration on the
+spacecraft in A.</p>
+<p>2. sketch the spacecraft’s position, velocity and acceleration at some
+time t = ∆t later in B.</p>
+<p><strong>Calculations</strong>:</p>
+<p>We will use the initial conditions from Part 5 of the assignment:</p>
+<p>s<sub>x0</sub> = -3050 km</p>
+<p>s<sub>y0</sub> = -3 * R<sub>merc</sub></p>
+<p>v<sub>y0</sub> = 7 km/s in the positive y-direction</p>
+<p>v<sub>x0</sub> = 0</p>
+<p>The values for the mass and radius of Mercury and the gravitational
+constant, G, are</p>
+<p>M<sub>merc</sub> = 3.3 x10<sup>23</sup> kg</p>
+<p>R<sub>merc</sub> = 2440 km</p>
+<p>G = 6.67 x10<sup>-11</sup> m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup></p>
+<p><strong>Step 1:</strong> Fill in the initial conditions – ie the x-y coordinates of
+speed and position of the spacecraft at time t=0 in cols 5-8 of row 1 of
+the table. Calculate, s the distance of the spacecraft from the planet,
+and s<sup>2</sup>.</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>t (s)</strong></th>
+<th><strong>∆v<sub>x</sub> (m/s)</strong></th>
+<th><strong>∆v<sub>y</sub> (m/s)</strong></th>
+<th><strong>∆s<sub>x</sub> (m)</strong></th>
+<th><strong>∆s<sub>y</sub> (m)</strong></th>
+<th><strong>v<sub>x</sub> (m/s)</strong></th>
+<th><strong>v<sub>y</sub> (m/s)</strong></th>
+<th><p><strong>s<sub>x</sub></strong></p>
+<p><strong>(m)</strong></p></th>
+<th><p><strong>s<sub>y</sub></strong></p>
+<p><strong>(m)</strong></p></th>
+<th><strong>s<sup>2</sup> (m)</strong></th>
+<th><strong>a (m/s<sup>2</sup>)</strong></th>
+<th><strong>a<sub>x</sub> (m/s<sup>2</sup>)</strong></th>
+<th><strong>a<sub>y</sub> (m/s<sup>2</sup>)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>0</strong></td>
+<td><strong>XXX</strong></td>
+<td><strong>XXX</strong></td>
+<td><strong>XXX</strong></td>
+<td><strong>XXX</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>60</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>120</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2:</strong> Calculate the magnitude of the acceleration, a, on the
+spacecraft at time, t=0 due to the planet and add it to the table above.
+Resolve the acceleration into its x- and y- coordinates and fill these
+in (a<sub>x</sub> and a<sub>y</sub>).</p>
+<p><strong>Step 3:</strong> If we assume the acceleration is constant over a time
+interval ∆t, then after the time ∆t there is a change in velocity due to
+this acceleration. This is in the direction of the acceleration vector
+so the easiest thing is to work in terms of the x- and y- components of
+the change in velocity.</p>
+<blockquote>
+<div><p>Write down the equations for the x- and y- components of the <em>change
+in velocity</em> in terms of the x- and y- components of acceleration and
+the time interval ∆t.</p>
+</div></blockquote>
+<p>∆v<sub>x</sub> = ___________ ∆v<sub>y</sub> =
+___________</p>
+<blockquote>
+<div><p>Similarly there is a change in position, which depends both on the
+velocity at the beginning of the time interval and on the
+acceleration:</p>
+<p>∆s<sub>x</sub> = v<sub>x</sub> ∆t + ½ a<sub>x</sub> ∆t<sup>2</sup>
+∆s<sub>y</sub> = v<sub>y</sub> ∆t + ½ a<sub>y</sub> ∆t<sup>2</sup></p>
+<p>Fill in these changes in velocity and position (occurring after 60
+seconds) in row 2, columns 1-4 of the table.</p>
+</div></blockquote>
+<p><strong>Step 4:</strong> The new velocity after a time ∆t is the initial velocity
+plus the change in velocity.</p>
+<blockquote>
+<div><p>So in our table above we can calculate the x- and y-components of
+velocity at t=60 seconds using</p>
+</div></blockquote>
+<p>v<sub>x</sub><sup>t=60</sup> = v<sub>x</sub><sup>t=0</sup> +
+∆v<sub>x</sub> v<sub>y</sub><sup>t=60</sup> =
+v<sub>y</sub><sup>t=0</sup> + ∆v<sub>y</sub></p>
+<blockquote>
+<div><p>and the x- and y- components of position at t= 60 seconds using</p>
+<p>s<sub>x</sub><sup>t=60</sup> = s<sub>x</sub><sup>t=0</sup> +
+∆s<sub>x</sub> s<sub>y</sub><sup>t=60</sup> =
+s<sub>y</sub><sup>t=0</sup> + ∆s<sub>y</sub></p>
+<p>Calculate the new v<sub>x</sub>, v<sub>y</sub>, s<sub>x</sub>,
+s<sub>y</sub> and fill in columns 5-8 of the second row of the table.</p>
+</div></blockquote>
+<p><strong>Step 5:</strong> You can now see that you can essentially repeat steps 2-4
+for each successive 60 seconds of the spacecraft’s trajectory using
+Steps 2-4 above. To calculate the entire spacecraft trajectory you would
+repeat steps 2-4 until you have reached a time t = t<sub>final</sub>
+(given as 40 minutes in part 5 of the assignment). <strong>Hint:</strong> If you do
+this by hand (correctly!) for the first 3 rows given you can of course
+check your MATLAB code using this table….</p>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="week11WS03.html" title="previous page">&lt;no title&gt;</a>
+    <a class='right-next' id="next-link" href="week12WS01.html" title="next page">&lt;no title&gt;</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Re-compiled by Andrew Loeppky<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

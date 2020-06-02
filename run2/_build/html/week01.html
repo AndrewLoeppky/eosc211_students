@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>EOSC 211: Computer Methods in Earth, Ocean and Atmospheric Sciences &#8212; EOAS 211</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EOSC 211" href="week01WS01.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">EOAS 211</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="active">
+    <a href="#">EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences</a>
+  </li>
+  <li class="">
+    <a href="week01WS01.html">Worksheet 1</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/week01.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#week-1-introduction" class="nav-link">Week 1: Introduction</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#who-we-are-and-what-we-do" class="nav-link">Who We Are and What We Do</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-1" class="nav-link">Course Logistics 1</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-2" class="nav-link">Course Logistics 2</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-3" class="nav-link">Course Logistics 3</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-4" class="nav-link">Course Logistics 4</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-5" class="nav-link">Course Logistics 5</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#course-logistics-6" class="nav-link">Course Logistics 6</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#why-matlab" class="nav-link">Why MATLAB?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id1" class="nav-link">Why MATLAB?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#examples" class="nav-link">Examples</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id2" class="nav-link">Examples</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id3" class="nav-link">Examples</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id4" class="nav-link">Examples</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id5" class="nav-link">Examples</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#id6" class="nav-link">Why MATLAB?</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#worksheet" class="nav-link">Worksheet</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#intro-activity-making-observations" class="nav-link">Intro Activity: Making Observations</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#question-1" class="nav-link">Question 1</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#a-make-3-observations-about-each-of-the-temperature-and-co-sub-2-sub-records" class="nav-link">A. Make 3 observations about each of the temperature and CO<sub>2</sub> records</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#b-write-down-one-question-you-have-about-each-record-try-to-pick-a-different-question-for-each-one" class="nav-link">B. Write down one question you have about each record. (Try to pick a different question for each one)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#c-estimate-from-the-graphs-by-how-much-temperature-and-co-sub-2-sub-have-between-1960-and-the-present" class="nav-link">C. Estimate (from the graphs) by how much temperature and CO<sub>2</sub> have between 1960 and the present.</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h4">
+            <a href="#d-imagine-you-have-a-file-that-contains-the-data-needed-to-make-the" class="nav-link">D. Imagine you have a file that contains the data needed to make the</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#steps-in-solving-a-problem" class="nav-link">5 Steps in Solving a problem</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#to-do-for-next-week" class="nav-link">To DO for next week:</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- #region slideshow={"slide_type": "slide"} -->
+<div class="section" id="eosc-211-computer-methods-in-earth-ocean-and-atmospheric-sciences">
+<h1>EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences<a class="headerlink" href="#eosc-211-computer-methods-in-earth-ocean-and-atmospheric-sciences" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="week-1-introduction">
+<h2>Week 1: Introduction<a class="headerlink" href="#week-1-introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>Today’s Class:</strong> Introductions <br>
+<strong>Logistics:</strong> syllabus, text, computer accounts, grading, workload, notes</p>
+<p><strong>Why MATLAB?</strong></p>
+<ul class="simple">
+<li><p>What can we do with it?</p></li>
+<li><p>In-class exercise</p></li>
+<li><p>Problem solving</p></li>
+</ul>
+<p><strong>To Do for next time</strong></p>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "subslide"} -->
+<div class="section" id="who-we-are-and-what-we-do">
+<h3>Who We Are and What We Do<a class="headerlink" href="#who-we-are-and-what-we-do" title="Permalink to this headline">¶</a></h3>
+<p><strong>Instructors:</strong> Catherine Johnson and Rich Pawlowicz <br>
+<strong>TA’s:</strong> Georgia Peterson, Sam Stevens, Geena Littel</p>
+<img src="media\week01-slide_1-000.png">
+<img src="media\week01-slide_1-001.png">
+<img src="media\week01-slide_1-002.png">
+<img src="media\week01-slide_1-003.png">
+<img src="media\week01-slide_1-004.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+</div>
+<div class="section" id="course-logistics-1">
+<h2>Course Logistics 1<a class="headerlink" href="#course-logistics-1" title="Permalink to this headline">¶</a></h2>
+<p>…See course syllabus for details</p>
+<p><strong>Canvas</strong></p>
+<ul class="simple">
+<li><p>We will use Canvas for disseminating notes, worksheets, labs etc and for you to hand stuff in.</p></li>
+</ul>
+<p><strong>Class is built around labs:</strong></p>
+<ul class="simple">
+<li><p>“Lectures” are mostly paper worksheets to prepare for labs (RP or CJ)</p></li>
+<li><p>Tuesday class introduces concepts, Thursday summarizes…</p></li>
+<li><p>“Labs” are computer work, modeled to be “pieces” of a real problems.  At least one instructor usually present plus TAs.</p></li>
+</ul>
+<p><strong>Assignments:</strong></p>
+<ul class="simple">
+<li><p>Like labs but more complex – like real problems.</p></li>
+<li><p>Mid-term + final are like in-class worksheets</p></li>
+</ul>
+<!-- #endregion -->
+</div>
+<div class="section" id="course-logistics-2">
+<h2>Course Logistics 2<a class="headerlink" href="#course-logistics-2" title="Permalink to this headline">¶</a></h2>
+<img src="media\week01-slide_00-002.png">
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="course-logistics-3">
+<h2>Course Logistics 3<a class="headerlink" href="#course-logistics-3" title="Permalink to this headline">¶</a></h2>
+<p>…See course syllabus for details</p>
+<p><strong>Group Work: Class/Exams</strong></p>
+<ul class="simple">
+<li><p>We will assign you a group (4-5 people/group)</p></li>
+<li><p>We will use groups for in-class work, also a group component to exams</p></li>
+</ul>
+<p><strong>“Pair Programming” in Labs:</strong></p>
+<ul class="simple">
+<li><p>Just like it sounds, work in pairs, enforced in first few labs, later up to you</p></li>
+<li><p>Assignments will be done in pairs (or max groups of 3)</p></li>
+</ul>
+<p><strong>Collaboration, Copying and Plagiarism Policy</strong> <br>
+“For labs we encourage collaboration using a pair-programming method. However, you are expected to TRUTHFULLY REPORT: the name of your partner(s), and the level of collaboration. Using someone else’s code and claiming it as your own is plagiarism and will be treated as such.”</p>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="course-logistics-4">
+<h2>Course Logistics 4<a class="headerlink" href="#course-logistics-4" title="Permalink to this headline">¶</a></h2>
+<p>…See course syllabus for details</p>
+<p><strong>Final Assessment</strong></p>
+<ul class="simple">
+<li><p>Labs 30%</p></li>
+<li><p>Assignments 25%</p></li>
+<li><p>Midterm 15%</p></li>
+<li><p>Final 25%</p></li>
+<li><p>Mini-quizzes 5%</p></li>
+<li><p><em><strong>If you fail individual parts of midterm / final combined you fail the course.</strong></em></p></li>
+</ul>
+<p><strong>Labs</strong></p>
+<ul class="simple">
+<li><p>9, but week 2 not graded and final mark is best 7 of remaining 8</p></li>
+<li><p>Graded out of 10 – usually one of 10/8/5/0 mark</p></li>
+<li><p>Due ELECTRONICALLY 4pm Fridays, they take more time then the 2-hr lab section</p></li>
+</ul>
+<p><strong>Assignments</strong></p>
+<ul class="simple">
+<li><p>2 of them 2 weeks each,</p></li>
+<li><p>Letter grade</p></li>
+<li><p>Due ON PAPER 4pm Wednesdays (except Part 1 of A1 which is due on Mon 10/22).</p></li>
+</ul>
+<p><strong>Exams</strong></p>
+<ul class="simple">
+<li><p>Mid-term (in class) and Final (during exams)</p></li>
+<li><p>80% individual, 20% group</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="course-logistics-5">
+<h2>Course Logistics 5<a class="headerlink" href="#course-logistics-5" title="Permalink to this headline">¶</a></h2>
+<p>…See course syllabus for details</p>
+<p><strong>Getting access to MATLAB</strong></p>
+<ul class="simple">
+<li><p>Need either an EOS account $25 for year <br>
+…OR… <br></p></li>
+<li><p>Install MATLAB on your laptop and bring it to the lab (free for UBC students this year) <br></p></li>
+</ul>
+<p><strong>Textbook</strong> (required) <br></p>
+<ul class="simple">
+<li><p>TEXT: <em>MATLAB: A Practical Introduction to Programming and problem Solving.</em>  At bookstore.</p></li>
+<li><p>NB: The old text is “Problem Solving using MATLAB”  (a custom text, no longer in print)</p></li>
+</ul>
+<img src="media\week01-slide_6-005.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="course-logistics-6">
+<h2>Course Logistics 6<a class="headerlink" href="#course-logistics-6" title="Permalink to this headline">¶</a></h2>
+<p><strong>Wait list</strong></p>
+<ul class="simple">
+<li><p>Moved everyone from waitlist into course last week.</p></li>
+<li><p>Course is now FULL:  waitlist is blocked and if you’re not in the course already you will <strong>NOT</strong> get in.</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="why-matlab">
+<h2>Why MATLAB?<a class="headerlink" href="#why-matlab" title="Permalink to this headline">¶</a></h2>
+<img src="media\week01-slide_9-006.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="id1">
+<h2>Why MATLAB?<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><strong>What will you be able to do at the end of the course?</strong> <br></p>
+<ul class="simple">
+<li><p>Write computer programs to model and analyze data in the earth sciences <br></p></li>
+<li><p>But Now to More Fun Stuff…..</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>plotting time series, geographically, histograms, contour plots</p></li>
+<li><p>extract data from given geographical region</p></li>
+<li><p>smooth data; deal with data gaps; compute variability in data</p></li>
+<li><p>compute a simple model and see how well it fits your data</p></li>
+</ul>
+<img src="media\week01-slide_11-008.png">
+<img src="media\week01-slide_11-009.png">
+<img src="media\week01-slide_11-010.png">
+<img src="media\week01-slide_11-011.png">
+<img src="media\week01-slide_11-012.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="id2">
+<h2>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Here’s an example of a data set where physics predicts that the quantity on the y axis will increase as the quantity on the x-axis increases.</p>
+<img src="media\week01-slide_00-001.png">
+<p>…hmmm… well kinda… but my points are hard to see – I could improve my plot <br><br>
+What is all the scatter?</p>
+<!-- #endregion -->
+</div>
+<div class="section" id="id3">
+<h2>Examples<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>I suspect that another quantity that I also measure might be playing a role.  I can color-code my points by this quantity:</p>
+<img src="media\week01-slide_00-003.png">
+Now we can see that indeed this quantity is important.
+When it is high (reddish points) the quantity on the y-axis is systematically lower and vice versa
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="id4">
+<h2>Examples<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>A complicated figure comparing 3 different data sources measuring currents at different palces and times in the Strait of Georgia…</p>
+<img src="media\week01-slide_14-015.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="id5">
+<h2>Examples<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>…or plot on a map to see spatial trends!</p>
+<img src="media\week01-slide_15-016.png">
+<img src="media\week01-slide_15-017.png">
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="id6">
+<h2>Why MATLAB?<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p><strong>What will you be able to do at the end of the course?</strong></p>
+<ul class="simple">
+<li><p>Write computer programs to model and analyze data in the earth sciences</p></li>
+</ul>
+<p><strong>What we have to practice to get to this…</strong></p>
+<ul class="simple">
+<li><p>Breaking down a problem into a set of logical steps (an algorithm)</p></li>
+<li><p>Writing and debugging MATLAB programs to implement your algorithm</p></li>
+<li><p>Modifying existing code to make it more readable /efficient / well-documented</p></li>
+<li><p>Creating scientifically informative and appealing plots</p></li>
+<li><p>But Now to More Fun Stuff…..</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="worksheet">
+<h2>Worksheet<a class="headerlink" href="#worksheet" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="intro-activity-making-observations">
+<h2>Intro Activity: Making Observations<a class="headerlink" href="#intro-activity-making-observations" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p><strong>Name 1:</strong></p>
+<p><strong>Name 2:</strong></p>
+<p><strong>Name 3:</strong></p>
+<p>GOALS: (1) Make observations from CO<sub>2</sub> and temperature records
+to (1) decide how CO<sub>2</sub> and temperature have been, and are,
+changing, (2) practice and example of “doing calculations by hand” to
+provide test data for coding, (3) practice very rudimentary “algorithm
+design”.</p>
+<div class="section" id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Temp and C0_2" src="week01WS01_figs/media/image1.png" /></p>
+<div class="section" id="a-make-3-observations-about-each-of-the-temperature-and-co-sub-2-sub-records">
+<h4>A. Make 3 observations about each of the temperature and CO<sub>2</sub> records<a class="headerlink" href="#a-make-3-observations-about-each-of-the-temperature-and-co-sub-2-sub-records" title="Permalink to this headline">¶</a></h4>
+<p>Temp-1.
+_________________________________________________________________________________________</p>
+<p>Temp-2.
+_________________________________________________________________________________________</p>
+<p>Temp-3.
+_________________________________________________________________________________________</p>
+<p>CO2-1.
+_________________________________________________________________________________________</p>
+<p>CO2-2.
+_________________________________________________________________________________________</p>
+<p>CO2-3.
+_________________________________________________________________________________________</p>
+</div>
+<div class="section" id="b-write-down-one-question-you-have-about-each-record-try-to-pick-a-different-question-for-each-one">
+<h4>B. Write down one question you have about each record. (Try to pick a different question for each one)<a class="headerlink" href="#b-write-down-one-question-you-have-about-each-record-try-to-pick-a-different-question-for-each-one" title="Permalink to this headline">¶</a></h4>
+<p>i.
+_________________________________________________________________________________________</p>
+<p>ii.
+__________________________________________________________________________________________</p>
+</div>
+<div class="section" id="c-estimate-from-the-graphs-by-how-much-temperature-and-co-sub-2-sub-have-between-1960-and-the-present">
+<h4>C. Estimate (from the graphs) by how much temperature and CO<sub>2</sub> have between 1960 and the present.<a class="headerlink" href="#c-estimate-from-the-graphs-by-how-much-temperature-and-co-sub-2-sub-have-between-1960-and-the-present" title="Permalink to this headline">¶</a></h4>
+<p>Temperature:_________________________________________________________________________________</p>
+<p>CO2:_______________________________________________________________________________________</p>
+</div>
+<div class="section" id="d-imagine-you-have-a-file-that-contains-the-data-needed-to-make-the">
+<h4>D. Imagine you have a file that contains the data needed to make the<a class="headerlink" href="#d-imagine-you-have-a-file-that-contains-the-data-needed-to-make-the" title="Permalink to this headline">¶</a></h4>
+<p>plot in 4 columns with year, month, temperature, and CO<sub>2</sub>
+(i.e. an average value per month of CO<sub>2</sub> and temperature) in
+each column and you wanted to write code to do the calculation in C.
+What would your code need to do? Try to break this down into very
+explicit steps (any number of steps)**</p>
+<p>Step
+1:_________________________________________________________________________________________</p>
+<p>Step
+2:_________________________________________________________________________________________</p>
+<p>Step
+3:_________________________________________________________________________________________</p>
+<p>Step
+4:_________________________________________________________________________________________</p>
+<p>Step
+5:_________________________________________________________________________________________</p>
+<p>Step
+6:_________________________________________________________________________________________</p>
+<p><strong>D. Based on the data in the CO<sub>2</sub> plot, for how long do you
+think you need to observe CO<sub>2</sub> to decide whether it is
+increasing? Write down how you decided this.</strong></p>
+<p>How
+long?_______________________________________________________________________________________</p>
+<p>Reason?________________________________________________________________________________________</p>
+<p><strong>E. Based on the data in the temperature plot, for how long do you
+think you need to observe temperature to decide whether it is
+increasing? Write down how you decided this.</strong></p>
+<p>How
+long?_______________________________________________________________________________________</p>
+<p>Reason?_________________________________________________________________________________________</p>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+</div>
+</div>
+<div class="section" id="steps-in-solving-a-problem">
+<h2>5 Steps in Solving a problem<a class="headerlink" href="#steps-in-solving-a-problem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>State the problem clearly</p></li>
+<li><p>Describe inputs and outputs</p></li>
+<li><p>Work the problem by hand for a simple set of data</p></li>
+<li><p>Develop a MATLAB solution</p></li>
+<li><p>Test with a variety of data</p></li>
+</ul>
+<!-- #endregion -->
+<!-- #region slideshow={"slide_type": "slide"} -->
+</div>
+<div class="section" id="to-do-for-next-week">
+<h2>To DO for next week:<a class="headerlink" href="#to-do-for-next-week" title="Permalink to this headline">¶</a></h2>
+<p><strong>BEFORE first lab</strong> <br>
+Get a computer account - $25:  go to front desk in Earth Sciences Building, Room 2020, 9:00am-11:30 or 2:00-4:00pm</p>
+<ul class="simple">
+<li><p>See Ian or Alicia</p></li>
+<li><p>Exact cash only</p></li>
+</ul>
+<p>OR</p>
+<p>Install MATLAB on your laptop (free for UBC students)</p>
+<p><strong>BEFORE TUES CLASS:</strong></p>
+<ul class="simple">
+<li><p>Week02 reading</p></li>
+<li><p>Pg 3-40, 75-80, 89-101 (parts of Chaps 1-3), and skim 557-564 (Appendix 1).</p></li>
+</ul>
+<!-- #endregion -->
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='right-next' id="next-link" href="week01WS01.html" title="next page">EOSC 211</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By UBC<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
