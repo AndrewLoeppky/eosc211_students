@@ -38,7 +38,7 @@ jobs:
     - name: Build the book
       shell: bash -l {0}
       run: |
-        jupyter-book build thinkmd
+        jupyter-book build run2
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
@@ -46,4 +46,4 @@ jobs:
       if: matrix.os == 'ubuntu-latest' && github.event_name == 'push'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./thinkmd/_build/html
+        publish_dir: ./run2/_build/html
