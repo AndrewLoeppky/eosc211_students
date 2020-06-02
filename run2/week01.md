@@ -34,11 +34,11 @@ jupyter:
 **Instructors:** Catherine Johnson and Rich Pawlowicz <br>
 **TA's:** Georgia Peterson, Sam Stevens, Geena Littel
 
-<img src="media\week01-slide_1-000.png">
-<img src="media\week01-slide_1-001.png">
-<img src="media\week01-slide_1-002.png">
-<img src="media\week01-slide_1-003.png">
-<img src="media\week01-slide_1-004.png">
+<img src="_static/media/week01-slide_1-000.png"/>
+<img src="_static/media/week01-slide_1-001.png"/>
+<img src="_static/media/week01-slide_1-002.png"/>
+<img src="_static/media/week01-slide_1-003.png"/>
+<img src="_static/media/week01-slide_1-004.png"/>
 
 
 <!-- #endregion -->
@@ -64,7 +64,7 @@ jupyter:
 
 ## Course Logistics 2
 
-<img src="media\week01-slide_00-002.png">
+<img src="_static/media/week01-slide_00-002.png">
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Course Logistics 3
@@ -127,7 +127,7 @@ jupyter:
 * TEXT: *MATLAB: A Practical Introduction to Programming and problem Solving.*  At bookstore.
 * NB: The old text is “Problem Solving using MATLAB”  (a custom text, no longer in print)
 
-<img src="media\week01-slide_6-005.png">
+<img src="_static/media/week01-slide_6-005.png">
 
 
 <!-- #endregion -->
@@ -144,7 +144,7 @@ jupyter:
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Why MATLAB?
 
-<img src="media\week01-slide_9-006.png">
+<img src="_static/media/week01-slide_9-006.png">
 
 
 <!-- #endregion -->
@@ -166,15 +166,15 @@ jupyter:
 * smooth data; deal with data gaps; compute variability in data
 * compute a simple model and see how well it fits your data
 
-<img src="media\week01-slide_11-008.png">
+<img src="_static/media/week01-slide_11-008.png">
 
-<img src="media\week01-slide_11-009.png">
+<img src="_static/media/week01-slide_11-009.png">
 
-<img src="media\week01-slide_11-010.png">
+<img src="_static/media/week01-slide_11-010.png">
 
-<img src="media\week01-slide_11-011.png">
+<img src="_static/media/week01-slide_11-011.png">
 
-<img src="media\week01-slide_11-012.png">
+<img src="_static/media/week01-slide_11-012.png">
 
 
 <!-- #endregion -->
@@ -184,7 +184,7 @@ jupyter:
 
 Here’s an example of a data set where physics predicts that the quantity on the y axis will increase as the quantity on the x-axis increases.
 
-<img src="media\week01-slide_00-001.png">
+<img src="_static/media/week01-slide_00-001.png">
 
 …hmmm… well kinda… but my points are hard to see – I could improve my plot <br><br>
 What is all the scatter?
@@ -195,7 +195,7 @@ What is all the scatter?
 
 I suspect that another quantity that I also measure might be playing a role.  I can color-code my points by this quantity:
 
-<img src="media\week01-slide_00-003.png">
+<img src="_static/media/week01-slide_00-003.png">
 Now we can see that indeed this quantity is important.
 When it is high (reddish points) the quantity on the y-axis is systematically lower and vice versa
 
@@ -205,7 +205,7 @@ When it is high (reddish points) the quantity on the y-axis is systematically lo
 
 A complicated figure comparing 3 different data sources measuring currents at different palces and times in the Strait of Georgia…
 
-<img src="media\week01-slide_14-015.png">
+<img src="_static/media/week01-slide_14-015.png">
 
 <!-- #endregion -->
 
@@ -214,10 +214,10 @@ A complicated figure comparing 3 different data sources measuring currents at di
 
 …or plot on a map to see spatial trends!
 
-<img src="media\week01-slide_15-016.png">
+<img src="_static/media/week01-slide_15-016.png">
 
 
-<img src="media\week01-slide_15-017.png">
+<img src="_static/media/week01-slide_15-017.png">
 
 <!-- #endregion -->
 
@@ -259,7 +259,7 @@ design”.
 
 ### Question 1
 
-![Temp and C0_2](week01WS01_figs/media/image1.png)
+![Temp and C0_2](week01WS01_figs/_static/media/image1.png)
 
 #### A. Make 3 observations about each of the temperature and CO<sub>2</sub> records
 
