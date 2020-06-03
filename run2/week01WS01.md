@@ -19,7 +19,7 @@ design”.
 
 ### Question 1
 
-![Temp and C0_2](week01WS01_figs/media/image1.png)
+![Temp and C0_2](_static/week01WS01_figs/media/image1.png)
 
 #### A. Make 3 observations about each of the temperature and CO<sub>2</sub> records
 
