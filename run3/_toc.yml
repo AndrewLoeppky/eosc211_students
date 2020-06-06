@@ -1,7 +1,8 @@
-file: title_211
-title: Title
-sections:
-  - file: week01
-    title: Week 1
-  - file: week01WS01
-    title: Worksheet 1
+- file: title_211
+
+- header: Week 1
+- file: week01
+- file: week01WS01
+
+- header: Week 2
+- file: lipsum

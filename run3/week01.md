@@ -13,9 +13,9 @@ jupyter:
 ---
 
 <!-- #region slideshow={"slide_type": "slide"} -->
-# EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences
+# W1D1: Introduction
 
-## Week 1: Introduction
+## EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences
 **Today’s Class:** Introductions <br>
 **Logistics:** syllabus, text, computer accounts, grading, workload, notes
 

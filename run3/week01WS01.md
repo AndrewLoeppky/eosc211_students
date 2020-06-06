@@ -1,5 +1,5 @@
 
-# EOSC 211
+# W1D1: Worksheet
 
 ## Intro Activity: Making Observations
 
