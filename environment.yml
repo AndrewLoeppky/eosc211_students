@@ -1,4 +1,4 @@
-name: buildit
+name: e211
 channels:
   - eoas_ubc
   - conda-forge
@@ -9,9 +9,12 @@ dependencies:
   - click
   - sphinx=2.4.4
   - jupyter
+  - jupytext
+  - pillow
   - pip
   - pip:
     - git+https://github.com/executablebooks/jupyter-book
+    - python-pptx
     
 
 

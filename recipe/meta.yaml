@@ -1,0 +1,54 @@
+{% set version = "0.0.1" %}
+
+package:
+  name: e211tools
+  version: {{ version }}
+
+source:
+  path: ../
+
+build:
+  number: 3
+  
+  entry_points:
+    - image_extract = e211_lib.image_extract:main
+    - build_notebook = e211_lib.build_notebook:main
+
+    
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+
+  build:
+    - python
+    - click
+    - numpy
+  
+  host:
+    - python
+    - numpy
+
+  run:
+    - python
+    - psutil
+    - numpy
+    - click
+
+test:
+  imports:
+    - pyutils
+  commands:
+    - killprocs --help
+    - crossref --help
+
+
+about:
+  home: https://github.com/phaustin/pythonlibs
+  license: LICENSE.txt
+  license_family: BSD
+
+  summary: 'general utilities'
+
+extra:
+  recipe-maintainers:
+    - phaustin
