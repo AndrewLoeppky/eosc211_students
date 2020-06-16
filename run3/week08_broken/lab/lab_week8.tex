@@ -1,0 +1,158 @@
+ \documentclass[letterpaper,12pt]{article}
+\usepackage{graphicx,amsmath,fancyhdr,times,mcode}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in + 0in
+\topmargin -.5in %top margin is 1in -0.5in
+
+\textwidth 6.375in %width of text
+\textheight 9in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\lhead{EOSC 211-2018}
+\rhead{FUNCTION LAB -- \thepage} 
+\chead{Week 8 - Algorithms-II (Functions)}
+\lfoot{} 
+\cfoot{} 
+\rfoot{}
+
+\newcounter{lnum}
+\newenvironment{abbrevlist}%
+  {\begin{list}{$\bullet$}{\setlength{\leftmargin}{2em}%
+               \setlength{\itemindent}{0em}%
+               \setlength{\itemsep}{0pt}%
+               \setlength{\parsep}{0pt}%
+               \setlength{\topsep}{2pt}%
+               \usecounter{lnum} } }{\end{list}}
+
+
+  
+\begin{document}
+
+\section*{Goals}
+\begin{abbrevlist}
+\item Turn your running median script into a function to compute a running median and implement various checks
+\item  CODE:  Function definition and help lines
+\item  CODE: subfunctions
+\item  CODE: function calls from a main script
+\item  CODE: Useful MATLAB functions:  \mcode{error},   \mcode{rem}, \mcode{size}
+\end{abbrevlist}
+
+Note:  Do NOT use the built-in MATLAB functions for computing running means and running medians in this lab.
+
+%\section{Turning your Running Median Script into a Function}
+\section*{The Lab}
+
+%\subsection {The Running Median Script from Lab 6}
+From the week 6 lab you should have a script to compute a running median and a running mean.  
+One data set you used was contained in the file \mcode{aircraft_gps.mat}.  You'll use that file again here.
+If your code didn't work you can use one of the posted solutions for that lab
+from the web site.
+If you use a posted solution convince yourself it works by plotting the
+raw data as well as the running mean and running median (x-axis should be the variable \mcode{gps.mtime} which 
+you can display in hrs, mins using  \mcode{datetick}).
+
+%\begin{verbatim}
+%% Sample script to calculate runnning mean and running median
+%% Inputs:  gps.vel, winlen_mean, winlen_median
+%% Outputs: z (running mean), zm (running median)
+%% window length must be odd, loop sets window length to be smaller near ends of array 
+%
+%winlen_mean=7;    
+%winlen_med=7;
+%N=length(gps.vel);
+%for i=1:N,
+%    w1=min([i-1,N-i,(winlen_mean-1)/2]);  % also week 5 worksheet for min of 3 #s
+%    z(i)=mean(gps.vel(i-w1:i+w1));	% running mean
+%    w1m=min([i-1,N-i,(winlen_med-1)/2]);  
+%    zm(i)=median(gps.vel(i-w1m:i+w1m));	%running median
+%end
+%\end{verbatim}
+
+To make this code easier to use repeatedly, and to check for user input errors, we will a) turn
+this code into a FUNCTION, and b) add some code that performs INPUT CHECKS to test for inappropriate inputs, embedded in the function itself.
+
+\begin{enumerate}
+\item{Function:  \mcode{calcmedian.m}}
+
+Turn your \verb+runmean+ script into a function called \mcode{calcmedian} that takes ONLY two input arguments (\mcode{invec} and \mcode{winlen}, IN THAT ORDER), computes
+ONLY the {\bf running median}, and returns ONLY \mcode{outvec}, a vector containing the
+running median.  Provide comment lines to explain how you dealt with the ends of your array.  Make sure your function contains the H1 line,
+indicating the function usage, and the input and output arguments.
+
+\item{Script:  \mcode{testmedian.m}}
+
+Write a short script called \mcode{testmedian} to (1) load the GPS data file, (2) call the running median function using 
+input data \mcode{gps.vel} and a window length of 7, and (3) plot in the same figure the raw velocity data \mcode{gps.vel} and your running 
+median (This script should be a lot like \mcode{runtest} from
+the week 6 lab).  Check that the running median is working correctly
+by examining your plot.
+
+It is fun (and realistic) to use the aircraft GPS data to test your algorithm.  However, one problem with this is that rather subtle problems  
+can get missed by a quick visual check because the data is somewhat noisy already.  You can (and should, if possible) also always test algorithms  
+with test data that you make up yourself.  Here's an example of a test data set that we used to grade your week 6 lab script.  Try using it for debugging:
+
+%\newpage
+
+\begin{lstlisting}
+y=[-1:.025:1];    % parabolic shape shows issues with window 'centering', 
+                  % also shows scaling problems
+invec=-y.^2;      % Predictable shape at ends makes problems in 
+                  % end-handling easier to see
+invec(1)=0;       % make end different (helps w/ end effects)
+invec(40)=1;      % Single spike filtered out by median filter
+invec([55:60])=1; % ...but longer step is not (for small window lengths)
+                  % single spike and step also have 'nice' properties for 
+                  % ...running mean
+winlen=11;         
+t=1:length(y);     
+\end{lstlisting}
+
+\item{Subfunction: \mcode{checkinputs}}
+
+Write a subfunction called \mcode{checkinputs} that is called by \mcode{calcmedian} and does some INPUT CHECKS before starting 
+with the calculations. Input checks are various tests on the inputs to see if they will cause problems in the later calculations. 
+The code for \mcode{checkinputs}
+should be physically written in the same file as \mcode{calcmedian} (see example of subfunction in your textbook).  The subfunction should print
+a message indicating the nature of the problem and should stop the program if:
+\begin{abbrevlist}
+\item \mcode{invec} is not a column or row vector.  %Your error message should also print out the dimensions of \verb+invec+. 
+\item \mcode{invec} is shorter than \mcode{winlen+1}.  % Your error message should also print out the values that were input for \verb+winlen+ and the length of \verb+invec+.
+\item \mcode{winlen} is even.  % Your error message should also give the value of \verb+winlen+ used.
+\item \mcode{winlen} is less than 3.  % Your error message should also give the value of \verb+winlen+ used.
+\end{abbrevlist}
+{\it Hint:} The built-in MATLAB functions \mcode{size} and \mcode{rem} might be useful in logical tests.
+
+The built-in MATLAB function \mcode{error} is key for these kinds of checks, because it can be used to print an informative error
+message AND stop the program. Type \mcode{help error} to understand why.
+REMEMBER to test your code by trying out ``wrong'' scenarios -- e.g., check that you get the correct error message 
+if you use an even \# for \mcode{winlen} in a call to \mcode{calcmedian}.
+
+%\item{Function: \mcode{calcmean.m}}
+%
+%You can modify your \verb+calcmedian+ function to compute a running mean, using the built-in MATLAB function \mcode{mean}.   You don't need to 
+%hand this in as part of this lab but it will be useful for Assignment \# 2.
+
+\end{enumerate}
+\section*{To Hand In}
+
+Submit your function \mcode{calcmedian.m} via Connect by 4pm on Friday.  I will run it using a script that \
+loads a data file and I will check that (1) the running median is implemented properly (I will check \
+this by plotting the raw and running median data), (2) your function returns the 
+appropriate error messages if I attempt to run it with the wrong input (e.g., if I attempt 
+to use an even number for \mcode{winlen}).  
+
+
+ As usual comment your code and add the following info AS A COMMENT at the bottom of the function header comment:
+\begin{lstlisting}
+%  partner.name=  'YYYYYY';
+%  Time_spent=   XX   hours
+\end{lstlisting}
+ 
+
+
+\end{document}
+
+
+
