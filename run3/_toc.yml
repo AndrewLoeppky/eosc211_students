@@ -1,8 +1,10 @@
 - file: title_211
 
 - header: Week 1
-- file: week01
-- file: week01WS01
+- file: week01\week01
+- file: week01\week01WS01
 
 - header: Week 2
-- file: lipsum
+- file: week02\week02_Class1_SyntaxOverview_preclass
+- file: week02\week02WS01
+- file: week02\week02WS02

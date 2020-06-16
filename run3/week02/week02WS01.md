@@ -1,4 +1,5 @@
-## EOSC 211: Steps in Problem Solving
+<!-- #region -->
+# EOSC 211: Steps in Problem Solving
 
 **Name 1:**
 
@@ -6,9 +7,8 @@
 
 GOAL: practice the steps in problem solving using earthquake data.
 
-1.  > **Write down the 3 steps in algorithm design mentioned in the text
-    > book OR write down some steps you think will be common to problem
-    > solving with MATLAB (you might have more than 3 steps):**
+## Question 1:  
+**A. Write down the 3 steps in algorithm design mentioned in the text book OR write down some steps you think will be common to problem solving with MATLAB (you might have more than 3 steps):**
 
 1\.
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
@@ -32,7 +32,7 @@ have a magnitude of at least 4.0.**
 **B. Fill in the following table**
 
 |            |                       |                |
-| ---------- | --------------------- | -------------- |
+|------------|-----------------------|----------------|
 |            | **Describe in words** | **Give value** |
 | **input**  |                       |                |
 | **output** |                       |                |
@@ -40,8 +40,8 @@ have a magnitude of at least 4.0.**
 **C. Below, document the procedure you went through to get to your
 answer for the value of the output above.**
 
-**HINT: you need to think about what your brain actually does when it
-finds the largest \# in a list**
+*HINT: you need to think about what your brain actually does when it
+finds the largest \# in a list*
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
@@ -62,9 +62,17 @@ finds the largest \# in a list**
     3.  **Reserved words**
     
     4.  **Special characters**
+    
+```matlab
+mag1 =4.9;
+mag2 =5.3;
+if (mag1 > mag2) 
+	max_mag= mag1;
+else
+	max_mag = mag2;
+end
+```
 
-**  
-**
 
 **Earthquakes Canada Online Bulletin - 20170830.0000 20180831.2242**
 
@@ -140,3 +148,4 @@ Bella
 2017/09/28 07:48:02 50.643 -130.519 10.0g 4.4Mw 218 km W of Pt. Hardy
 
 http://www.earthquakescanada.nrcan.gc.ca/
+<!-- #endregion -->
