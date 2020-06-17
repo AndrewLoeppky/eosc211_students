@@ -64,7 +64,7 @@ jupyter:
 
 ## Course Logistics 2
 
-<img src="_static/media/week01-slide_00-002.png">
+<img src="media/week01-slide_00-002.png">
 
 <!-- #region slideshow={"slide_type": "slide"} -->
 ## Course Logistics 3

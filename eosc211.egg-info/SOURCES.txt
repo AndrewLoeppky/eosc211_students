@@ -1,0 +1,9 @@
+setup.py
+e211_lib/build_notebook.py
+e211_lib/image_extract.py
+eosc211.egg-info/PKG-INFO
+eosc211.egg-info/SOURCES.txt
+eosc211.egg-info/dependency_links.txt
+eosc211.egg-info/entry_points.txt
+eosc211.egg-info/requires.txt
+eosc211.egg-info/top_level.txt
