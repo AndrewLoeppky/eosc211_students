@@ -1,0 +1,115 @@
+warning: LF will be replaced by CRLF in run3/week02/week02WS01.md.
+The file will have its original line endings in your working directory
+[1mdiff --git a/run3/week02/week02WS01.md b/run3/week02/week02WS01.md[m
+[1mindex a010763..c50f43b 100644[m
+[1m--- a/run3/week02/week02WS01.md[m
+[1m+++ b/run3/week02/week02WS01.md[m
+[36m@@ -1,5 +1,4 @@[m
+[31m-<!-- #region -->[m
+[31m-# EOSC 211: Steps in Problem Solving[m
+[32m+[m[32m# Worksheet: Steps in Problem Solving[m
+ [m
+ **Name 1:**[m
+ [m
+[1mdiff --git a/run3/week02/week02WS02.md b/run3/week02/week02WS02.md[m
+[1mindex de11721..28a487f 100644[m
+[1m--- a/run3/week02/week02WS02.md[m
+[1m+++ b/run3/week02/week02WS02.md[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-# EOSC 211: Some Review plus Built-In Functions, Arrays Preview[m
+[32m+[m[32m# Worksheet: Some Review plus Built-In Functions, Arrays Preview[m
+ [m
+ **Name 1:**[m
+ [m
+[36m@@ -24,10 +24,10 @@[m [marea = 4*pi*radius*radius[m
+ ```[m
+ [m
+ [m
+[31m-**OUTPUT IS[m
+[32m+[m[32mOUTPUT IS[m
+ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_[m
+ [m
+[31m-### B) Identify in the code snippet:**[m
+[32m+[m[32m### B) Identify in the code snippet:[m
+ [m
+ Variable names \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_[m
+ [m
+[1mdiff --git a/run3/week08_broken/Print/lab_week8.pdf b/run3/week08_broken/Print/lab_week8.pdf[m
+[1mdeleted file mode 100644[m
+[1mindex 31590f5..0000000[m
+[1m--- a/run3/week08_broken/Print/lab_week8.pdf[m
+[1m+++ /dev/null[m
+[36m@@ -1,106 +0,0 @@[m
+[31m-EOSC 211-2018  Week 8 - Algorithms-II (Functions)  FUNCTION LAB – 1[m
+[31m-[m
+[31m-Goals[m
+[31m-[m
+[31m-   • Turn your running median script into a function to compute a running median and imple-[m
+[31m-      ment various checks[m
+[31m-[m
+[31m-   • CODE: Function deﬁnition and help lines[m
+[31m-   • CODE: subfunctions[m
+[31m-   • CODE: function calls from a main script[m
+[31m-   • CODE: Useful MATLAB functions: error, rem, size[m
+[31m-[m
+[31m-Note: Do NOT use the built-in MATLAB functions for computing running means and running[m
+[31m-medians in this lab.[m
+[31m-[m
+[31m-The Lab[m
+[31m-[m
+[31m-From the week 6 lab you should have a script to compute a running median and a running mean.[m
+[31m-One data set you used was contained in the ﬁle aircraft_gps.mat. You’ll use that ﬁle again[m
+[31m-here. If your code didn’t work you can use one of the posted solutions for that lab from the web[m
+[31m-site. If you use a posted solution convince yourself it works by plotting the raw data as well as[m
+[31m-the running mean and running median (x-axis should be the variable gps.mtime which you can[m
+[31m-display in hrs, mins using datetick).[m
+[31m-[m
+[31m-To make this code easier to use repeatedly, and to check for user input errors, we will a) turn[m
+[31m-this code into a FUNCTION, and b) add some code that performs INPUT CHECKS to test for[m
+[31m-inappropriate inputs, embedded in the function itself.[m
+[31m-[m
+[31m-   1. Function: calcmedian.m[m
+[31m-       Turn your runmean script into a function called calcmedian that takes ONLY two input[m
+[31m-       arguments (invec and winlen, IN THAT ORDER), computes ONLY the running me-[m
+[31m-       dian, and returns ONLY outvec, a vector containing the running median. Provide com-[m
+[31m-       ment lines to explain how you dealt with the ends of your array. Make sure your function[m
+[31m-       contains the H1 line, indicating the function usage, and the input and output arguments.[m
+[31m-[m
+[31m-   2. Script: testmedian.m[m
+[31m-       Write a short script called testmedian to (1) load the GPS data ﬁle, (2) call the running[m
+[31m-       median function using input data gps.vel and a window length of 7, and (3) plot in the[m
+[31m-       same ﬁgure the raw velocity data gps.vel and your running median (This script should[m
+[31m-       be a lot like runtest from the week 6 lab). Check that the running median is working[m
+[31m-       correctly by examining your plot.[m
+[31m-       It is fun (and realistic) to use the aircraft GPS data to test your algorithm. However, one[m
+[31m-       problem with this is that rather subtle problems can get missed by a quick visual check[m
+[31m-       because the data is somewhat noisy already. You can (and should, if possible) also always[m
+[31m-       test algorithms with test data that you make up yourself. Here’s an example of a test data[m
+[31m-       set that we used to grade your original running median script. Try using it for debugging:[m
+[31m-EOSC 211-2018   Week 8 - Algorithms-II (Functions)  FUNCTION LAB – 2[m
+[31m-[m
+[31m-y=[-1:.025:1]; % parabolic shape shows issues with window 'centering',[m
+[31m-[m
+[31m-                % also shows scaling problems[m
+[31m-[m
+[31m-invec=-y.ˆ2;    % Predictable shape at ends makes problems in[m
+[31m-[m
+[31m-                % end-handling easier to see[m
+[31m-[m
+[31m-invec(1)=0;     % make end different (helps w/ end effects)[m
+[31m-[m
+[31m-invec(40)=1;    % Single spike filtered out by median filter[m
+[31m-[m
+[31m-invec([55:60])=1; % ...but longer step is not (for small window lengths)[m
+[31m-[m
+[31m-                % single spike and step also have 'nice' properties for[m
+[31m-[m
+[31m-                % ...running mean[m
+[31m-[m
+[31m-winlen=11;[m
+[31m-[m
+[31m-t=1:length(y);[m
+[31m-[m
+[31m-3. Subfunction: checkinputs[m
+[31m-[m
+[31m-   Wr

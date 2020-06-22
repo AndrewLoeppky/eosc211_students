@@ -1,5 +1,4 @@
-<!-- #region -->
-# EOSC 211: Steps in Problem Solving
+# Worksheet: Steps in Problem Solving
 
 **Name 1:**
 

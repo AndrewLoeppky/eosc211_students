@@ -1,4 +1,4 @@
-# EOSC 211: Some Review plus Built-In Functions, Arrays Preview
+# Worksheet: Some Review plus Built-In Functions, Arrays Preview
 
 **Name 1:**
 
@@ -24,10 +24,10 @@ area = 4*pi*radius*radius
 ```
 
 
-**OUTPUT IS
+OUTPUT IS
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-### B) Identify in the code snippet:**
+### B) Identify in the code snippet:
 
 Variable names \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
