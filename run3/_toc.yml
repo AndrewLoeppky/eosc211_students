@@ -1,15 +1,15 @@
 - file: title_211
-- header: Week 1
+- header: Week01
 - file: week01\week01
 - file: week01\week01WS01
-- header: Week 2
+- header: Week02
 - file: week02\Class2_miniquiz1_withans
 - file: week02\lab_week2
 - file: week02\week02WS01
 - file: week02\week02WS02
 - file: week02\week02_Class1_SyntaxOverview
 - file: week02\week02_Class2_AlgorithmSteps
-- header: Week 3
+- header: Week03
 - file: week03\week03WS01
 - file: week03\week03WS02
 - file: week03\week03_miniquiz1
