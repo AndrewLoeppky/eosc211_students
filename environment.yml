@@ -5,18 +5,30 @@ channels:
   - defaults
 dependencies:
   - python=3.7.*
-  - runjb
   - click
   - sphinx=2.4.4
   - jupyter
+  - git
   - jupytext
-  - pillow
+  - sqlalchemy
+  - pyyaml
+  - docutils>=0.15
+  - setuptools
+  - nbformat
+  - nbconvert
+  - nbclient
+  - runjb
   - pip
   - pip:
-    - git+https://github.com/executablebooks/jupyter-book
-    - python-pptx
-    
-
-
-
-
+      - git+https://github.com/executablebooks/jupyter-cache.git
+      - git+https://github.com/executablebooks/MyST-NB.git
+      - git+https://github.com/phaustin/jupyter-book@posix_path
+      - git+https://github.com/jupyter/jupyter-sphinx.git
+      - click_log
+      - click_completion
+      - jupyter-sphinx
+      - myst-parser~=0.8
+      - sphinx_togglebutton
+      - sphinx-copybutton
+      - sphinxcontrib-bibtex
+      - sphinx_book_theme~=0.0
