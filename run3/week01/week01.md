@@ -5,7 +5,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.5.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -34,11 +34,11 @@ jupyter:
 **Instructors:** Catherine Johnson and Rich Pawlowicz <br>
 **TA's:** Georgia Peterson, Sam Stevens, Geena Littel
 
-<img src="_static/media/week01-slide_1-000.png"/>
-<img src="_static/media/week01-slide_1-001.png"/>
-<img src="_static/media/week01-slide_1-002.png"/>
-<img src="_static/media/week01-slide_1-003.png"/>
-<img src="_static/media/week01-slide_1-004.png"/>
+<img src="media/week01-slide_1-000.png"/>
+<img src="media/week01-slide_1-001.png"/>
+<img src="media/week01-slide_1-002.png"/>
+<img src="media/week01-slide_1-003.png"/>
+<img src="media/week01-slide_1-004.png"/>
 
 
 <!-- #endregion -->

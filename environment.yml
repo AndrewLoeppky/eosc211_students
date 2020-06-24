@@ -18,6 +18,7 @@ dependencies:
   - nbconvert
   - nbclient
   - runjb
+  - pillow
   - pip
   - pip:
       - git+https://github.com/executablebooks/jupyter-cache.git
