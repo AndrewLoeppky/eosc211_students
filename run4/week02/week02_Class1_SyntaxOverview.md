@@ -14,9 +14,9 @@ jupyter:
 ---
 
 
-# Week 2 Day 1
+# W2D1: Elements of MATLAB
 
-## Concepts for Today’s Class:
+## Concepts for Today’s Class
 * Steps in problem solving
 * MATLAB syntax: underlying structure
 * Syntax versus semantics
@@ -38,17 +38,12 @@ Bring text
     
 United Launch Alliance Atlas V 411 with NASA OSIRIS-REx mission lifts off from Cape Canaveral, Sept 2016
 
-<img src="media\week02_Class1_SyntaxOverview_postclass-slide_0-000.png">
-
-
+<img src="../_static/media02/week02_Class1_SyntaxOverview_postclass-slide_0-000.png">
 
 ## Good Problem Solving Techniques
 
-<img src="media\week02_Class1_SyntaxOverview_postclass-slide_1-001.png" height="500">
+<img src="../_static/media02/week02_Class1_SyntaxOverview_postclass-slide_1-001.png">
 
-
-
-## Good Problem Solving Techniques 2
 We will adopt the 5-step program  (NOTE: this is more complete than the approach in the text book on page 76)
 
 > 1) State the problem clearly <br>
@@ -57,24 +52,21 @@ We will adopt the 5-step program  (NOTE: this is more complete than the approach
 > 4) Develop a MATLAB code to do (3) <br>
 > 5) Test your code with a variety of data or different cases
 
-*Example:  What was the largest earthquake in the Vancouver / Vancouver Island region in the past year?*
-
-
-
 ## Example
 
-http://www.iris.edu/hq/audience/public/earthquakes
-http://earthquake.usgs.gov/regional/neic/
-http://earthquakescanada.nrcan.gc.ca/index-eng.php
+**What was the largest earthquake in the Vancouver / Vancouver Island region in the past year?**
 
-Goal:  Find the largest earthquake in the Pacific Northwest during 08/30/2017– 08/31/2018. I have only printed out eqs w/ magnitudes larger than 4.0
+> http://www.iris.edu/hq/audience/public/earthquakes <br>
+> http://earthquake.usgs.gov/regional/neic/ <br>
+> http://earthquakescanada.nrcan.gc.ca/index-eng.php
 
-Write down input and output in words
-Give numeric value for the actual output. Write down the procedure you used to get your answer
+**Goal:**  Find the largest earthquake in the Pacific Northwest during 08/30/2017– 08/31/2018. I have only printed out eqs w/ magnitudes larger than 4.0
 
-<img src="media\week02_Class1_SyntaxOverview_postclass-slide_3-002.png">
+* Write down input and output in words
+* Give numeric value for the actual output. 
+* Write down the procedure you used to get your answer
 
-
+<img src="../_static/media02/week02_Class1_SyntaxOverview_postclass-slide_3-002.png">
 
 ## Finding the Largest Earthquake
 
@@ -88,8 +80,6 @@ remember only the largest of the 2
 remember the largest of these two
 6) Repeat steps 4-5, until reach end of list
 7) Tell you my largest magnitude
-
-## Finding the Largest Earthquake (Cont'd)
 
 My procedure or algorithm:
 
@@ -116,12 +106,13 @@ How do we turn this into *matlab* code?
 
 **The structure of MATLAB** <br>
 
-**Lexical Elements:** building blocks <br>
+### Lexical Elements
+Building blocks <br>
 > Programming Language: *names, operators, special characters*<br>
 > Human Language: *words, symbols, punctuation*
 
-
-**Syntax**: a set of rules to combine lexical elements into legitimate constructs
+### Syntax
+A set of rules to combine lexical elements into legitimate constructs
 
 > Programming language: *how to build expressions, statements,
 functions & programs* <br>
@@ -138,12 +129,10 @@ functions & programs* <br>
 ### Operators
 
 **Logical:** e.g. ```&&``` (text p. 20) <br>
-**Arithmetic:** e.g.   ```+, -, *, /```	(text p. 12-13) <br>
-**Relational:** e.g. ```>, >=, <, <=``` (text p. 19) <br>
+**Arithmetic:** e.g.   ```+  -  *  /```	(text p. 12-13) <br>
+**Relational:** e.g. ```>  >=  <  <=``` (text p. 19) <br>
 **Special characters:** keyboard characters with special meaning in MATLAB.
-e.g.```;    {}    ()```
-
-## Lexical Elements II
+e.g.```; {} ()```
 
 How are variables assigned in MATLAB?
 
@@ -160,13 +149,11 @@ What does this do?
 
 The prompt reappears:
 
-```matlab
+```
 >> mag1 = 3.7
 ```
 
-<!-- #region -->
 overwrites ```4.9``` with ```3.7```
-
 
 Note: ```"="``` does not mean = in the mathematical sense.  Instead, it means *“assign the number on the RHS to the variable on the LHS”*.
 We can do math on the RHS, mixing numbers and variables
@@ -179,18 +166,17 @@ Lexical elements are combined using the set of rules known as “syntax”
 
 Important difference between human and programming languages is tolerance to syntax errors versus tolerance to spelling/grammar errors
 
-## Examples of Syntax Errors
+### Examples of Syntax Errors
 
 Usually / often your code will not run if you make a syntax error:
-<!-- #endregion -->
 
-```matlab
+```
 >> x=10;
 ```
 
 defined my variable x and assigned it a value of 10
 
-```matlab
+```
 >> y=cos(x
          ↑
 Error: Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched
@@ -201,7 +187,7 @@ trying to compute cos(x) and assign it to variable y
 ??? y=cos(x <br> 
 Correct: ```y = cos(x)```
 
-```matlab
+```
 >> y=2x
       ↑
 Error: Invalid expression. Check for missing multiplication operator, missing or unbalanced delimiters, or other syntax error. To
@@ -215,7 +201,7 @@ trying to compute “2 times x” and assign it to “y”
 When a program doesn’t work this can happen because: <br>
 SYNTAX is incorrect -- e.g.
 
-```matlab
+```
 >> distance = speed *
 ```
 
@@ -223,16 +209,16 @@ multiplication (```*```) needs numbers or variables on both sides of ```*```
 
 SEMANTICS are incorrect -- e.g.
 
-```matlab
+```
 >> distance = speed / time
 ```
 
 may or may not run but will certainly give you the wrong answer!!
 The program you wrote is not the program you meant to write!
 
-## Example of Semantics Error
+### Example of Semantics Error
 
-```matlab
+```
 mag1 =4.9;
 mag2 =5.3;
 if (mag1 < mag2)
@@ -264,8 +250,6 @@ What is wrong?
 * syntax errors are about bugs in step 4 above
 * semantics errors usually result from skipping step 3
 
-<!-- #region -->
-
 ## Lab Overview
 
 **Learning Goals:**
@@ -275,19 +259,10 @@ What is wrong?
 * Try some simple operations
 * Write MATLAB scripts
 
-<img src="media\week02_Class1_SyntaxOverview_postclass-slide_15-004.png" height="300">
+<img src="../_static/media02/week02_Class1_SyntaxOverview_postclass-slide_15-004.png" height="300">
 
 a) pair programming <br>
 b) need either an account, or your own version of MATLAB <br>
 c) turn in requested file on Canvas (not graded but will use later in term)
 
-
-
-
-
-
-<img src="media\week02_Class1_SyntaxOverview_postclass-slide_15-003.png" height="400">
-
-
-
-<!-- #endregion -->
+<img src="../_static/media02/week02_Class1_SyntaxOverview_postclass-slide_15-003.png" height="400">

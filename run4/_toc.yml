@@ -1,4 +1,5 @@
-file: info_and_announcements
-sections:
-  - file: week01/week01
-  - file: week01/week01WS01
+- file: info_and_announcements
+- file: week01/week01
+- file: week01/week01WS01
+- file: week02/week02_Class1_SyntaxOverview
+- file: week02/week02_Class2_AlgorithmSteps
