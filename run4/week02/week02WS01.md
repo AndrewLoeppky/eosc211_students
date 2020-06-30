@@ -1,4 +1,6 @@
-# Worksheet: Steps in Problem Solving
+# W2D1: Worksheet
+
+## Steps in Problem Solving
 
 **Name 1:**
 
@@ -7,7 +9,8 @@
 GOAL: practice the steps in problem solving using earthquake data.
 
 ## Question 1:  
-**A. Write down the 3 steps in algorithm design mentioned in the text book OR write down some steps you think will be common to problem solving with MATLAB (you might have more than 3 steps):**
+
+### A. Write down the 3 steps in algorithm design mentioned in the text book OR write down some steps you think will be common to problem solving with MATLAB (you might have more than 3 steps):
 
 1\.
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
@@ -28,7 +31,7 @@ GOAL: practice the steps in problem solving using earthquake data.
 in the past year. The data sheet gives all earthquakes in this area that
 have a magnitude of at least 4.0.**
 
-**B. Fill in the following table**
+### B. Fill in the following table
 
 |            |                       |                |
 |------------|-----------------------|----------------|
@@ -36,8 +39,7 @@ have a magnitude of at least 4.0.**
 | **input**  |                       |                |
 | **output** |                       |                |
 
-**C. Below, document the procedure you went through to get to your
-answer for the value of the output above.**
+### C. Below, document the procedure you went through to get to your answer for the value of the output above.
 
 *HINT: you need to think about what your brain actually does when it
 finds the largest \# in a list*
@@ -52,7 +54,7 @@ finds the largest \# in a list*
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-4.  **In the following code snippet circle and identify**
+### D. In the following code snippet circle and identify
     
     1.  **Variable names**
     
@@ -73,7 +75,7 @@ end
 ```
 
 
-**Earthquakes Canada Online Bulletin - 20170830.0000 20180831.2242**
+### Earthquakes Canada Online Bulletin - 20170830.0000 20180831.2242
 
 Date Time(UT) Lat Lon Depth Mag Region and Comment
 
@@ -147,4 +149,4 @@ Bella
 2017/09/28 07:48:02 50.643 -130.519 10.0g 4.4Mw 218 km W of Pt. Hardy
 
 http://www.earthquakescanada.nrcan.gc.ca/
-<!-- #endregion -->
+

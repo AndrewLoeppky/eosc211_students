@@ -1,4 +1,6 @@
-# Worksheet: Some Review plus Built-In Functions, Arrays Preview
+# W2D2: Worksheet
+
+## Some Review plus Built-In Functions, Arrays Preview
 
 **Name 1:**
 
