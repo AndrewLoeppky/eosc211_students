@@ -1,4 +1,4 @@
-# W2D1: Worksheet
+# Worksheet: Steps in Problem Solving
 
 **Name 1:**
 
@@ -31,7 +31,7 @@ have a magnitude of at least 4.0.**
 **B. Fill in the following table**
 
 |            |                       |                |
-| ---------- | --------------------- | -------------- |
+|------------|-----------------------|----------------|
 |            | **Describe in words** | **Give value** |
 | **input**  |                       |                |
 | **output** |                       |                |
