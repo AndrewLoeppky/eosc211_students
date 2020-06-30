@@ -50,12 +50,12 @@ mags =
 
     4.2000
     4.1000
-    4.1000 
-    4.1000 
-    4.3000 
-    4.2000 
-    4.4000 
-    4.1000 
+    4.1000
+    4.1000
+    4.3000
+    4.2000
+    4.4000
+    4.1000
     4.0000
     4.7000
 ```
@@ -68,7 +68,7 @@ i) Access the magnitude in the 3<sup>rd</sup> row
 ii) Define a new variable called ```mags2``` containing the magnitude in the
 last row: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-### F) Built-In Functions: Assume you have variable ```mags``` defined above. What is the output to the screen of the following command? Write down in words the steps involved in getting the output.
+### F) Built-In Functions: Assume you have variable ```mags``` defined above. What is the output to the screen of the following command? Write down in words the steps involved in getting the output
 
 ```matlab
 y3 = max(mags(3:8))
