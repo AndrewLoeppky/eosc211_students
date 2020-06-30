@@ -1,8 +1,8 @@
-# Worksheet 2
+# W3D2: Worksheet
 
 ## Review - Storing Information and Data Structures
 
-### Exercise 1: What are the results of the following:
+### Exercise 1: What are the results of the following
 
 1. ```lats=[1:20];lats=[10:15]```
 
@@ -20,7 +20,7 @@
 
 8. ```ii=lats>12; lats(ii)```
 
-### Exercise 2: What are the results of the following:
+### Exercise 2: What are the results of the following
 
 1. ```lats=[10:20];```
 
@@ -38,7 +38,7 @@
 
 8. ```lat_table(1:4)```
 
-### Exercise 3: Do the following:
+### Exercise 3: Do the following
 
 ```matlab
 >>> mystruc.name='Joe Lunchbucket';
