@@ -1,3 +1,5 @@
+# W8D2: Worksheet
+
 **Exercise 1:** We have two input vectors, x which is distance and tpro
 which is elevation in kilometers (say, along a survey line). Both are
 1x99 arrays (ie a row vector with 99 entries). Use
