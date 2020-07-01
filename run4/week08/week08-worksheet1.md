@@ -6,6 +6,7 @@ Write the help lines:
 
 Write the body of the function:
 
+(w1ex2)=
 ## Exercise 2: Write down the function call from the main script if you want to find the “sqrtsum” of 255 and 73.5
 
 **Exercise 3:** Now implement a check within the function that causes

@@ -9,10 +9,7 @@ jupyter:
 ---
 
 
-# Slide 0
-```
-
-Week 8:  Procedural Abstraction
+# W8D2: Procedural Abstraction
 Writing and Using functions
 Today’s Class:
 Midterms
