@@ -2,12 +2,10 @@
 
 ## Interpolation 
 
-**Group \#: \_\_\_\_\_\_\_ Name:
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**
+**Group \#: \_\_\_\_\_\_\_ <br>
+Name:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_**
 
-**Interpolation:**
-
-![](week11WS01_figs/media/image1.png)
+<img src='../_static/media11/week11_WS01-001.png'>
 
 The figure above contains estimates, f<sub>i</sub>, of a function f(x)
 taken at data points x<sub>i</sub>. The values of x<sub>i</sub>,
@@ -16,16 +14,16 @@ f<sub>i</sub> are given in Table 1 below.
 Table 1:
 
 | x<sub>i</sub> | 0.3   | 1.1   | 3.5   | 3.9   | 5.8   | 8.0   |
-| ------------- | ----- | ----- | ----- | ----- | ----- | ----- |
+|---------------|-------|-------|-------|-------|-------|-------|
 | f<sub>i</sub> | \-2.5 | \-0.6 | \-1.2 | \-1.8 | \-4.6 | \-3.6 |
 
 1.  **Using the graph only** estimate the values of f(x) at evenly
     spaced points x=1,2,3,…8. Plot the points on the graph and enter the
     estimated values of f(x) from the graph in table 2 below
 
-| x<sub>i</sub> | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
-| ------------- | --- | --- | --- | --- | --- | --- | --- | --- |
-| f<sub>i</sub> |     |     |     |     |     |     |     |     |
+| x<sub>i</sub> | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---------------|---|---|---|---|---|---|---|---|
+| f<sub>i</sub> |   |   |   |   |   |   |   |   |
 
 2.  Now we will use math and find an “exact” value of f(x) at the point
     x=7 by linearly interpolating between the 2 nearest points.
