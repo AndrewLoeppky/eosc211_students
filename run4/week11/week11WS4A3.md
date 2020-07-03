@@ -2,39 +2,39 @@
 
 ## EOSC 211: Some Numerical Integration - Assignment 2 background
 
-**Movies**
-
 Sketch how you think the spacecraft’s flight path and speeds in the two
 other trajectories will compare with the one shown.
 
-**Sketching out the Problem:**
+### Sketching out the Problem
 
-**1.** sketch the direction of the force and acceleration on the
+<img src="../_static/media11/week11_WS4A3-001.png">
+
+**1.** Sketch the direction of the force and acceleration on the
 spacecraft in A.
 
-2\. sketch the spacecraft’s position, velocity and acceleration at some
+**2.** Sketch the spacecraft’s position, velocity and acceleration at some
 time t = ∆t later in B.
 
-**Calculations**:
+### Calculations
 
 We will use the initial conditions from Part 5 of the assignment:
 
-s<sub>x0</sub> = -3050 km
-
-s<sub>y0</sub> = -3 \* R<sub>merc</sub>
-
-v<sub>y0</sub> = 7 km/s in the positive y-direction
-
-v<sub>x0</sub> = 0
+> s<sub>x0</sub> = -3050 km
+>
+> s<sub>y0</sub> = -3 \* R<sub>merc</sub>
+>
+> v<sub>y0</sub> = 7 km/s in the positive y-direction
+>
+> v<sub>x0</sub> = 0
 
 The values for the mass and radius of Mercury and the gravitational
 constant, G, are
 
-M<sub>merc</sub> = 3.3 x10<sup>23</sup> kg
-
-R<sub>merc</sub> = 2440 km
-
-G = 6.67 x10<sup>-11</sup> m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>
+> M<sub>merc</sub> = 3.3 x10<sup>23</sup> kg
+>
+> R<sub>merc</sub> = 2440 km
+>
+> G = 6.67 x10<sup>-11</sup> m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>
 
 **Step 1:** Fill in the initial conditions – ie the x-y coordinates of
 speed and position of the spacecraft at time t=0 in cols 5-8 of row 1 of
@@ -133,7 +133,7 @@ in (a<sub>x</sub> and a<sub>y</sub>).
 **Step 3:** If we assume the acceleration is constant over a time
 interval ∆t, then after the time ∆t there is a change in velocity due to
 this acceleration. This is in the direction of the acceleration vector
-so the easiest thing is to work in terms of the x- and y- components of
+so the easiest thing is to work in terms of the x and y components of
 the change in velocity.
 
 > Write down the equations for the x- and y- components of the *change
