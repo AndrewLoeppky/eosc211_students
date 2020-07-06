@@ -1,18 +1,23 @@
 - file: info_and_announcements
+- header: Week 1
 - file: week01/week01
 - file: week01/week01WS01
 - file: week02/week02_Class1_SyntaxOverview
+- header: Week 2
 - file: week02/week02WS01
 - file: week02/week02_Class2_AlgorithmSteps
 - file: week02/week02WS02
+- header: Week 3
 - file: week03/week03_slides1
 - file: week03/week03WS01
 - file: week03/week03_slides2
 - file: week03/week03WS02
+- header: Week 8
 - file: week08/week08_functions1
 - file: week08/week08-worksheet1
 - file: week08/week08_functions2
 - file: week08/week08-worksheet2
+- header: Week 11
 - file: week11/week11_interpolation
 - file: week11/week11WS01
 - file: week11/week11WS02
