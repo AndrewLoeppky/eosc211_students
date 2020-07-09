@@ -13,12 +13,9 @@ jupyter:
     name: python3
 ---
 
+# Elements of MATLAB
 
-# Week 2
-
-## Day 1: Elements of MATLAB
-
-### Concepts for Today’s Class
+## Concepts for Today’s Class
 
 * Steps in problem solving
 * MATLAB syntax: underlying structure

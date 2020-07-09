@@ -1,8 +1,6 @@
-# Week 3
+# Storing Information & Data Structures
 
-## Day 1: Storing Information & Data Structures
-
-### Outline
+## Outline
 
 * Simple data structures: arrays, string, doubles/floats, characters
 * Storing data in memory: variable declaration, colon operator
