@@ -1,4 +1,4 @@
-# W2D2: Worksheet
+# Worksheet 2
 
 ## Some Review plus Built-In Functions, Arrays Preview
 

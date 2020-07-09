@@ -1,5 +1,5 @@
 
-# W1D1: Worksheet
+# Worksheet 1
 
 ## Intro Activity: Making Observations
 

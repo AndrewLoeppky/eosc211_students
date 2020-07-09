@@ -1,4 +1,4 @@
-# W8D2: Worksheet
+# Worksheet 2
 
 ## Functions
 

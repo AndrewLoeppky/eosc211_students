@@ -1,4 +1,4 @@
-# W11D1: Worksheet 1
+# Worksheet 1
 
 ## Interpolation 
 

@@ -1,4 +1,4 @@
-# EOSC 211 - Mini Quiz Week 3
+# Mini Quiz
 
 ## Name:
 

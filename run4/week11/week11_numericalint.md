@@ -8,7 +8,7 @@ jupyter:
       jupytext_version: 1.5.1-dev
 ---
 
-# W11D2: Numerical Integration
+# Numerical Integration
 
 ## Spacecraft Flybys of Planets
 

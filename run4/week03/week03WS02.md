@@ -1,4 +1,4 @@
-# W3D2: Worksheet
+# Worksheet 2
 
 ## Review - Storing Information and Data Structures
 

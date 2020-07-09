@@ -1,6 +1,8 @@
-# W3D1: Storing Information & Data Structures
+# Week 3
 
-## Tuesday Class: Outline
+## Day 1: Storing Information & Data Structures
+
+### Outline
 
 * Simple data structures: arrays, string, doubles/floats, characters
 * Storing data in memory: variable declaration, colon operator

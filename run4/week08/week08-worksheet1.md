@@ -1,4 +1,4 @@
-# W8D1: Worksheet
+# Worksheet 1
 
 ## Procedural Abstraction
 

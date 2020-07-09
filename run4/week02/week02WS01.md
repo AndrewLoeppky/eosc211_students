@@ -1,4 +1,4 @@
-# W2D1: Worksheet
+# Worksheet 1
 
 ## Steps in Problem Solving
 

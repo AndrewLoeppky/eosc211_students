@@ -14,9 +14,12 @@ jupyter:
 ---
 
 
-# W2D1: Elements of MATLAB
+# Week 2
 
-## Concepts for Today’s Class
+## Day 1: Elements of MATLAB
+
+### Concepts for Today’s Class
+
 * Steps in problem solving
 * MATLAB syntax: underlying structure
 * Syntax versus semantics

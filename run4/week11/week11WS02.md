@@ -1,4 +1,4 @@
-# W11D1: Worksheet 2
+# Worksheet 2
 
 ## Practice with loops and logical indexing
 

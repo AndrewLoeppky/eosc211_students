@@ -9,7 +9,7 @@ jupyter:
 ---
 
 
-# W8D2: Review - Procedural Abstraction
+# Review - Procedural Abstraction
 
 ## Writing and Using Functions
 

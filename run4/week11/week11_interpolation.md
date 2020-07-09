@@ -9,9 +9,11 @@ jupyter:
 ---
 
 
-# W11D1: Interpolation
+# Week 11
 
-## Week 11:  What and When
+## Day 1: Interpolation
+
+### Week 11:  What and When
 
 * **Today (Tues):** code / background for this week’s lab:  Interpolating data sets.
 * **Thurs:** background and worksheet for assignment 2.  I will post assignment 2 on Tuesday.  It is due Wednesday November 28, 4pm.

@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-# W2D2: Steps In Problem Solving & Some MATLAB Basics
+# Steps In Problem Solving & Some MATLAB Basics
 
 ## Concepts
 

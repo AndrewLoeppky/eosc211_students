@@ -8,9 +8,11 @@ jupyter:
       jupytext_version: 1.5.1-dev
 ---
 
-# W8D1: Procedural Abstraction
+# Week 8
 
-## Writing and Using functions
+## Procedural Abstraction
+
+### Writing and Using functions
 
 Reading:
 >Text book p. 101-113, 193-207, 341-346

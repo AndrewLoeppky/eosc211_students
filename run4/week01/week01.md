@@ -12,9 +12,11 @@ jupyter:
     name: python3
 ---
 
-# W1D1: Introduction
+# Week 1
 
-## EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences
+## Introduction
+
+### EOSC 211:  Computer Methods in Earth, Ocean and Atmospheric Sciences
 
 **Today’s Class:** Introductions <br>
 **Logistics:** syllabus, text, computer accounts, grading, workload, notes

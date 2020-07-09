@@ -1,4 +1,4 @@
-# W11D1: Worksheet 3
+# Worksheet 3
 
 ## MATLAB Practice
 

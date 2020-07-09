@@ -1,4 +1,4 @@
-# W3D2: Review - Storing Information and Data Structures
+# Review - Storing Information and Data Structures
 
 ## Last Class: Regular Indexing
 

@@ -1,4 +1,4 @@
-# W3D1: Worksheet
+# Worksheet 1
 
 ## Storing Information and Data Structures
 
