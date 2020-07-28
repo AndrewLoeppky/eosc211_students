@@ -1,7 +1,0 @@
-# Settings for EOAS211 version 4
-title: EOSC 211
-author: UBC TLEF
-logo: "jblogo.png"
-
-execute:
-  execute_notebooks: cache
