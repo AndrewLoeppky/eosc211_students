@@ -21,7 +21,7 @@ jupyter:
 
 **Learning Objective:** Practice the steps in problem solving using earthquake data.
 
-<img src="./quakemap.png" width='400'>
+![](.\quakemap.png)
 
 
 ### Question 1
