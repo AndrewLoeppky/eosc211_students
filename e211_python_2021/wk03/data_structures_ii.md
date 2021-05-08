@@ -20,7 +20,8 @@ jupyter:
 **Week 3 Day 2**
 
 **Learning Objectives:**  
-1. ?
+1. Get more experience with Numpy arrays
+2. Use built in functions to write efficient, *Pythonic* code
 
 Useful references:
 
@@ -126,4 +127,8 @@ old question 3 from matlab version introduces OO data structure featuring a stud
 A = np.array([[1, 2, 3, 4, 5],[6, 7, 8, 9, 10]])
 B = A[A % 2 == 0]
 B
+```
+
+```python
+
 ```
