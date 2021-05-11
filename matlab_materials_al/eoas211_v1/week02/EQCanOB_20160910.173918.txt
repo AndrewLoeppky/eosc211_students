@@ -1,0 +1,25 @@
+Earthquakes Canada Online Bulletin - 20150910.1736 20160910.1736
+    Date    Time(UT)    Lat     Long  Depth   Mag   Agncy Region and Comment
+    -----------     ----    --------    ---     ----  -----   ---   ----- ------------------
+2016/08/26  07:19:11 51.223 -130.782  10.0g  4.2Mw 210 km WSW of Bella Bella
+2016/08/09  14:39:08 50.084 -130.273  10.0g  4.3Mw 213 km WSW of Pt. Hardy
+2016/05/10  22:10:36 50.437 -130.194  10.0g  4.0Mw 198 km W   of Pt. Hardy
+2016/05/07  05:25:19 47.366 -129.002  10.0g  4.4Mw 302 km WSW of Tofino
+2016/03/18  22:46:53 49.450 -130.102  10.0g  5.5Mw 236 km WSW of Pt. Hardy
+2016/03/18  22:46:53 49.450 -130.102  10.0g  5.0Mw 236 km WSW of Pt. Hardy
+2016/03/05  18:38:31 49.419 -129.644  10.0g  4.4Mw 213 km WSW of Pt. Hardy
+2016/03/05  18:37:58 49.413 -129.662  10.0g  4.4Mw 215 km WSW of Pt. Hardy
+2016/02/04  06:07:31 47.480 -129.133  10.0g  4.2Mw 302 km WSW of Tofino
+2016/01/30  03:30:20 50.741 -130.560  10.0g  4.7Mw 221 km W   of Pt. Hardy
+2016/01/27  21:44:28 47.550 -129.127  10.0g  4.0Mw 296 km WSW of Tofino
+2016/01/19  19:54:40 48.634 -129.013  10.0g  4.7Mw 233 km W   of Tofino
+2016/01/19  19:54:40 48.634 -129.013  10.0g  4.0Mw 233 km W   of Tofino
+2015/12/30  07:39:28 48.615 -123.287  57.5*  4.7Mw 9 km ESE of Sidney
+2015/12/26  03:57:03 50.479 -130.191  10.0g  4.3Mw 197 km W   of Pt. Hardy
+2015/12/16  08:22:30 50.543 -130.351  10.0g  4.5Mw 207 km W   of Pt. Hardy
+2015/10/22  23:07:35 50.506 -130.373  10.0g  5.1Mw 209 km W   of Pt. Hardy
+2015/09/25  08:47:20 50.640 -130.484  10.0g  4.0Mw 216 km W   of Pt. Hardy
+2015/09/24  13:48:56 50.593 -130.481  10.0g  5.8Mw 216 km W   of Pt. Hardy
+2015/09/22  13:24:51 50.227 -130.253  10.0g  4.7Mw 207 km W   of Pt. Hardy
+2015/09/19  21:50:25 49.172 -130.117  10.0g  4.8Mw 257 km WSW of Pt. Hardy
+http://www.earthquakescanada.nrcan.gc.ca/

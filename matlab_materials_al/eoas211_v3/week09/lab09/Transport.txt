@@ -1,0 +1,6 @@
+Mode 	 Distance (km) 	 Time (mins) 	 Number 
+---- 	 ------------ 	 ----------- 	--------
+Bus 	 12.1 	 	 40.7 	 	 51
+Car 	 18.5 	 	 35.0 	 	 17
+Walk 	 0.9 	 	 12.7 	 	 21
+Bike 	 6.0 	 	 27.7 	 	 12

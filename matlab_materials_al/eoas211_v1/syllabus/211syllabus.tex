@@ -1,0 +1,224 @@
+\documentclass[12pt]{article}
+\usepackage{times,fancyhdr,url}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in + 0in
+%\topmargin -0.5in %top margin is 1in -0.5in
+\textwidth 6.375in %width of text
+\textheight 8.5in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+
+\pagestyle{fancy}
+\lhead{EOSC 211-2018}
+\rhead{SYLL-\thepage} 
+\chead{Syllabus}
+\lfoot{} 
+\cfoot{} 
+\rfoot{}
+
+%%%%%%%%%% CHANGE MIDTERM DATE NEAR LINE 241
+
+
+
+\renewcommand{\section}[1]{\vspace{0pt}\subsubsection*{\underline{\large #1}}\vspace{-10pt}}
+\renewcommand{\subsection}[1]{\vspace{0pt}\subsubsection*{#1}\vspace{0pt}}
+
+\newcounter{lnum}
+\newenvironment{abbrevlist}%
+  {\begin{list}{ }{\setlength{\leftmargin}{1em}%
+               \setlength{\itemindent}{3em}%
+               \setlength{\itemsep}{0pt}%
+               \setlength{\parsep}{0pt}%
+               \setlength{\topsep}{2pt}%
+               \usecounter{lnum} } }{\end{list}}
+
+\begin{document}
+
+\section{EOSC 211 - Computer Methods in Earth, Ocean, and Atmospheric Sciences}
+ 
+Mathematical computer-based problem solving in the physical, 
+chemical, and biological sciences. Problems drawn from studies of 
+the earth, the oceans and the atmosphere. 
+
+\section{Schedule}
+
+{\bf Lectures}: ESB 1012, Tuesday/Thursday, 11:00-12:30 \\
+{\bf Labs}: EOS-Main Room 203 and 210. Tue 3-5pm, Wed 12-2pm.
+
+\section{Instructors}
+
+{\bf Instructor}: Rich Pawlowicz (office: ESB 3019, 
+email: rich@eoas.ubc.ca) \\
+{\bf Instructor}:  Catherine Johnson    (office: EOS-South 355, tel: 827-3480, 
+email: cjohnson@eoas.ubc.ca)  
+
+%%\item 
+
+ 
+{\bf TA}: Georgia Peterson (email: gpeterso@eoas.ubc.ca) \\
+{\bf TA}: Samuel Stevens (email: sstevens@eoas.ubc.ca) \\
+{\bf TA}: Geena Littel (email: geenalittel10@gmail.com) \\
+
+NOTE:  The times for TA office hours will be confirmed at the start of week 2.
+
+%%\end{abbrevlist}
+  
+\section{Course Information:  Canvas}
+
+%\url{http://www.eos.ubc.ca/courses/eosc211/eosc211.htm} \newline
+%Username ``{\bf eosc211}'', password ``{\bf oneseven}". 
+
+We will use Canvas to disseminate course information and for submission of labs online.   Go here to access weekly readings, labs, solutions, and class notes.  New material is continually added through the term, so check back \emph{regularly}. 
+
+%Labs are submitted online through \emph{Connect}.
+
+\section{Purpose}
+Modern earth sciences increasingly rely on computers. They are used to 
+automate the gathering of data,
+and can handle much of the drudgery involved in its processing.
+In addition, they can be used to easily and quickly create sophisticated
+visual presentations (graphs and figures) that can be used to explore
+and display relationships. However, as with all tools,  getting best
+results requires an understanding of the tool's strengths and
+limitations, and the techniques for using it. More than anything, this requires lots of \emph{practice}!
+
+\newpage
+\section{Course Level Learning Goals}
+ 
+\begin{enumerate}
+\item Students will write computer programs to model and analyze data in 
+the solid earth, atmospheric, and oceanographic sciences. This requires:
+\item Breaking problems into logical steps  using flowcharts and pseudocode to  specify algorithms: Operation; repetition; decision and input/output steps; computer math
+\item Writing and debugging MATLAB computer programs to correctly implement algorithms: syntax and data structures; debugging strategies
+\item Modifying existing MATLAB computer programs, using the elements of good programming style, to make it more efficient, readable, and documented for future use:
+naming conventions; appropriate syntax; structures; modularization using functions; using built-in functions; code reuse; good documentation practices; vectorization of loop operations
+\item Creating scientifically informative and visually appealing plots 
+(scatterplots, time series, contours, multiple subplots, legends).  
+\end{enumerate}
+ 
+ \section{Pre-requisites}
+
+This course requires a knowledge of math at the level of integral and/or
+differential calculus. Linear algebra is helpful but not necessary.
+
+\section{Costs}
+This course requires access to MATLAB. There are two ways to get this:
+\begin{enumerate}
+\item MATLAB is available  in the EOAS computer labs on payment of the annual lab
+account fee, which includes printing privileges (\$25 - CASH only.  See Ian or 
+Alicia, ESB 2020 Front desk, 9:00 -- 11:30 am or 2:00 -- 4:00 pm, bring student card). 
+ Note, if you
+plan to use lab computers, you must purchase your account access \emph{before} the first lab.
+
+\item MATLAB is also available for free for UBC students to install on their personal computers - see https://it.ubc.ca/services/desktop-print-services/software-licensing/matlab
+(or search for 'UBC MATLAB')  to get instructions.  Many students install MATLAB on their laptops and bring
+these to use in the labs.  Note that we generally discourage the use of laptops in class, and they are FORBIDDEN in 
+the mid-term and final exam. 
+ \end{enumerate} 
+  
+ \newpage
+\section{Textbooks}
+
+{\em Required}: ``MATLAB: A Practical Introduction to Programming and Problem Solving'', Stormy Attaway, 4th edition, Elsevier, ISBN 978-0-12-804525-1, available UBC bookstore.
+
+
+{\em Optional reading}: ``Mastering MATLAB'' by Duane C. Hanselman and 
+Bruce L. Littlefield Prentice Hall, (any edition). This text is
+a very good reference for MATLAB (with far more detail and a wider range
+than the required text), but it assumes some existing knowledge of
+computer programming and linear algebra.
+
+\section{Labs and Assignments}
+
+The Tuesday lecture will be used to introduce concepts relevant to the lab.
+The Thursday lecture will be used partly as a ``lab wrap-up", and partly
+to introduce new material (this may vary from week to week). 
+
+Labs are an integral part of this course and are necessary to learn the course material. They also build on each other, so please don't skip lab sessions! Expect to spend more than the scheduled 2-hours to complete each lab.
+
+Labs are submitted electronically and should compile and run on the instructors computer. They are marked with one of the  following 4 possibilities: 
+
+\begin{abbrevlist}
+\item ``Satisfactory" (100\%)
+\item ``Some problems" (80\%)
+\item ``Major problems" (50\%) - non-running code is in this category
+\item ``Not submitted" (0\%) - not seriously submitted also in this category.
+\end{abbrevlist}
+
+Labs must be submitted before 4:00 pm each Friday. {\bf Late submissions are not possible!}
+
+In addition to labs, there are also two larger assignments that should be done in pairs (if you prefer to work alone or in groups of three you may do so with the permission of the instructor).  You may select your partner(s), they need not be the same as people with whom you have worked during labs.  Assignments
+are due {\bf 4:00 pm on Wednesday afternoons} except Assignment 1, part 1 which is due {\bf 4:00 pm Mon Oct 22} and {\bf one hard copy per pair} must be submitted to the 211 assignment box at the front desk in ESB 2020. Emailed assignments will not 
+be accepted. Assignments are graded as follows:
+\begin{abbrevlist}
+\item[A+] : all done correctly, no errors, nice pictures.
+\item[A] : one small error, pictures OK.
+\item[B] : One large or several small errors, figures reasonable.
+\item[C] : Several large errors, incomplete, figures 
+          misleading/incorrect.
+\item[D] : Many errors, parts of assignment incomplete
+\item[F] : Not handed in, not seriously attempted, other failings.
+\end{abbrevlist}
+
+\section{Exams/Midterms}
+
+There is one in-class midterm (1.5 hours), scheduled for {\bf October 18, 2018}. The final exam will be scheduled by the registrar in the regular exam period.
+
+The midterm and exam are both OPEN BOOK, but NO ELECTRONIC AIDS are allowed. Both are run in a two-part format:
+\begin{abbrevlist}
+\item[PART 1] : Individual exam (80\%)
+\item[PART 2] : Group exam (20\%)
+\end{abbrevlist}
+There is one exception: if you fail the individual part, then your group exam does not count towards your overall mark.
+
+
+\section{Mini-Quizzes}
+
+You are expected to complete the reading for each week before class on Tuesday. On five randomly chosen weeks over the course of the semester you will be given a short (open book) mini-quiz at the beginning of class to test your retention of the reading material. If you have completed the readings, these should be easy.
+
+\section{Class Assessment}
+
+Total marks for the course are divided as follows:
+\begin{abbrevlist}
+\item  {\bf Labs} -- 30\% -- week 2 not marked, best 7 of 8 remaining (4.3\% each)
+\item {\bf Mini-quizzes} -- 5\% -- based on pre-class reading, best 4 of 5 (1.25\% each)
+\item {\bf Assignments} -- 25\% -- two (12.5\% each)
+\item {\bf Midterm} -- 15\%
+\item {\bf Final} -- 25\%
+\end{abbrevlist}
+
+This breakdown applies ONLY if your average individual mark for the midterm
+and final is greater than 50\%. If it is less than 50\% then your average individual exam mark is your course
+mark (ie. you must pass the individual exam portion of the course to pass the course). This is to ensure that 
+you are assigned a fair mark based on your learning.
+
+Additional bonus marks may be possible for an extra software project.
+
+\newpage
+\section{Collaboration, Copying and Plagiarism Policy}
+
+The purpose of the class is to learn a skill, and for many people it is beneficial
+to collaborate with others in order to do so. This is a realistic environment, and past experience shows that working
+with others (a) gets the work done slightly faster, (b) tends to prevent getting ``stuck'',
+(c) makes the experience more enjoyable, and (d) does not degrade learning outcomes, as
+long as all parties are contributing.  
+
+In class, we will assign you to small groups (4--5 people each) with which you will complete worksheets and class exercises. These will also be your groups for the group-portions of exams. Note that if you do not attend lectures/labs, you will have to complete the group portion of the exam on your own!
+
+For labs and assignments, we encourage collaboration using a pair-programming method. However, you are expected to TRUTHFULLY REPORT: (a) the name of 
+your partner(s), and (b) the level of collaboration. Using someone else's code and claiming it as your own is plagiarism and will be treated as such. 
+ 
+\section{Workload}
+
+You are expected to read the text before class in order to be ready for the problems assigned on the worksheets. 
+It is not necessary to read the labs before lab times. You are expected to work outside of scheduled lab and class hours. 
+
+Although some people
+may complete the labs in the time provided (2 hours), typically 3 or 4 hours is required.
+If you need more than 6 please come and see an instructor or a teaching assistant.
+ 
+Assignments typically take about 10--15 hours to complete over two weeks. You can work on assignments during the scheduled lab period if you wish. TAs are available at that time, as well as during office hours.
+
+
+\end{document}
+
+ 

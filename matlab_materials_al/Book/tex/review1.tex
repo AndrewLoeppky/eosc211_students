@@ -1,0 +1,189 @@
+\documentclass[letterpaper]{article}
+\usepackage{graphicx,amsmath,fancyhdr,times,epsfig}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in + 0in
+\topmargin -.5in %top margin is 1in -0.5in
+
+\textwidth 6.375in %width of text
+\textheight 9in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\lhead{EOSC 211}
+\rhead{Week 13} 
+\chead{Review}
+\lfoot{} 
+\cfoot{Page \thepage ~of 6} 
+\rfoot{}
+
+
+\begin{document}
+
+\section {Instructions}
+
+This review sheet is intended to help you prepare for the exam.   The best way to study is to work the examples through by hand, and then check your answers by writing code snippets in MATLAB.
+
+
+\subsection {Dimensions and element-wise versus matrix algebra}
+Given a = \verb+[1 2; 3 -1; 0 1]+, \verb+b = [3: -2: -2]'+,  \verb+c = ones(3)+
+ 
+\noindent What are the dimensions of
+ 
+ \begin{enumerate}
+ \item \verb+a+
+ \item \verb+b+
+ \item \verb+c+
+ \item \verb+b'*a+
+ \item \verb+a.^2+
+ \item \verb+a*a'+
+ \item \verb+a^2+
+ \end{enumerate}
+ 
+ \vspace{1.5in}
+
+ Check by entering \verb+ a, b, c+ \ into MATLAB.
+ 
+\subsection {More math}
+
+Given 
+\begin{verbatim}
+A=[1 5 3 0 1]; 
+B=[0 5 6 0 1];
+C=A./B + 4
+\end{verbatim}
+
+\noindent What is the result contained in C?
+\vspace{1.5in}
+
+\newpage
+\subsection{Function practice}
+
+Write a function \verb+transp+ that will take as input a 2-D array $A$, and return the array $B$ where $B(i,j)$ = $A(j,i)$.  Do not use a built-in MATLAB function.
+
+\vspace{4 in}
+
+
+Add a check to the function code that will exit the function with an error message if $A$ is not a 2-D array.
+
+\vspace{2in}
+
+\newpage
+\subsection {Code-writing practice}
+
+\noindent The Fibonacci sequence goes 0,1,1,2,3,5,... where each number is the
+sum of the previous 2 numbers. How many terms in the sequence are 
+less than 5000? (write code, pseudo-code, or a flowchart)
+
+\vspace{4 in}
+
+\subsection {Precedence}
+
+Given \verb+ a = 3+.  What is
+
+\begin{enumerate}
+\item \verb+ x= [2^a++\verb+a*2++\verb+1, a^sum([2:-1:0,-4])]+ 
+\vspace{1.0in}
+\item \verb+ x= a^3-2^a+
+\vspace{1.0in}
+\end{enumerate}
+
+\newpage 
+\subsection {Writing to a string (also practice with repetition)}
+
+You want to set up a series of $N$ data files with names \verb+file01.dat+,  \verb+file02.dat+,  \verb+fileN.dat+.  Write a code snippet that will generate these file names and write them to an array.  Note that filenames for integers less than 10 need an extra zero -- i.e., make a string \verb+file02.dat+ not \verb+file 2.dat+.  Assume you have less than 99 filenames.  You can check your code by adding a printf statement -- do this to practice more with fprintf.  e.g., I wrote an fprintf statement that produces the following output for N=11
+
+\begin{verbatim}
+Filename 1 is file01.dat
+Filename 2 is file02.dat
+Filename 3 is file03.dat
+Filename 4 is file04.dat
+Filename 5 is file05.dat
+Filename 6 is file06.dat
+Filename 7 is file07.dat
+Filename 8 is file08.dat
+Filename 9 is file09.dat
+Filename 10 is file10.dat
+Filename 11 is file11.dat
+\end{verbatim}
+
+\vspace{2in}
+
+	%n=11;
+	%for i=1:n
+	%    if (i<10)
+	%        fname=sprintf('file0%1d.dat',i);
+	%    else
+	%        fname=sprintf('file%2d.dat',i);
+	%    end
+	%    fprintf('Filename %d is %s\n',i, fname);
+	%end
+
+\subsection {Opening and closing files}
+
+I have a file called \verb+myfile.dat+ and want to open it such that I can write to it.  Which, if any, of these statements works? (Why not, if they don't work).
+
+\begin{enumerate}
+\item \verb+fid1 = fopen(myfile.dat, 'r')+
+\item \verb+fid2 = fopen(myfile.dat)+
+\item \verb+fid3 = fopen(myfile.dat, 'w')+
+\end{enumerate}
+
+Which if, any, could be fixed with one change?  What is the change if so?
+
+\vspace{1in}
+
+%\subsection {Loops -- while versus for}
+%
+%Write a function \verb+mysin+ that computes the value of $y= sin (x)$, using the series expansion below for $sin(x)$, until the value of the current term is less than 10$^{-4}$.  
+%
+%$$ sin(x) = x - {x^3 \over 3!} + {x^5 \over 5!} - {x^7 \over 7!} + {x^9 \over 9!} - .... $$
+%
+%\vspace{3.6in}
+
+
+
+\newpage 
+\subsection {Debugging}
+
+This code is supposed to sum all the values in y, stopping when the sum is more than 12. It should print the last value of the sum (before the sum reached a number greater than 12) to the screen.  There are three problems here, and one possible additional problem for general choices of y -- what are they?
+
+\begin{verbatim}
+x=1:10;  
+y=2*x;
+sum=0;
+while (sum1 + y(i) < 12)
+    sum1=sum1+y(i);
+    i=i+1;
+end
+fprintf('Sum = %3.1f, i=%3d\n',sum1,i-1);
+\end{verbatim}
+
+\vspace{2in}
+
+We want compute the vector \verb+d=(a*b)/c+ using element-wise arithmetic so that length(d)=length(a).  Fix the problems.
+
+\begin{verbatim}
+a=1:3:30;
+b=sin(a);
+c=tan(a);
+d=a*b/c;
+plot(a,d);
+\end{verbatim}
+
+\newpage
+\subsection {Bits 'n' Bobs}
+
+If \verb+r+ is a row vector, length N, write code snippets to
+\begin{enumerate}
+\item count the number of elements in \verb+r+ whose value is above the median value
+\begin{enumerate}
+\item using a loop
+\item using logical indexing
+\end{enumerate}
+\vspace {3.5in}
+\item form an N by 2 matrix whose first column contains the circumference of circles with radii given by \verb+r+, and whose second column  contains the area of circles with radii given by \verb+r+,
+\vspace{1.5in}
+\end{enumerate}
+
+\end{document}

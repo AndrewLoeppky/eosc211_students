@@ -1,0 +1,208 @@
+ \documentclass[letterpaper,12pt]{article}
+\usepackage{graphicx,amsmath,fancyhdr,times,boxedminipage,wrapfig,upquote,mcode,lineno}
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue, pdfborder={0 0 0}]{hyperref}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in + 0in
+%%\topmargin -.5in %top margin is 1in -0.5in
+
+\textwidth 6.375in %width of text
+\textheight 8.5in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\lhead{EOSC 211-2017}
+\rhead{DEBUGGING LAB-\thepage} 
+\chead{Week 10 - Debugging}
+\lfoot{} 
+\cfoot{} 
+\rfoot{}
+
+\newcounter{lnum}
+\newenvironment{abbrevlist}%
+  {\begin{list}{$\bullet$}{\setlength{\leftmargin}{2em}%
+               \setlength{\itemindent}{0em}%
+               \setlength{\itemsep}{0pt}%
+               \setlength{\parsep}{0pt}%
+               \setlength{\topsep}{2pt}%
+               \usecounter{lnum} } }{\end{list}}
+
+
+  
+\begin{document}
+
+%%\linenumbers
+
+%\begin{wrapfigure}[12]{r}{3in}
+%\centering
+%\includegraphics[height=2.5in]{./arrowmap.eps}
+%%\caption{ }
+%\label{f1}
+%\end{wrapfigure}
+
+\section*{Learning Goals}
+%\parbox{3in}{
+\begin{abbrevlist}
+\item To read and understand someone else's code.
+\item To use the 5 methods of finding errors.
+\item To use DEBUGGER to step through code.
+\item To solve a problem useful in the earth sciences.
+\end{abbrevlist}
+%}
+
+%\vspace{.5in}
+
+
+
+\section*{Useful MATLAB info - the Debugger}
+\vspace{-12pt}
+
+The DEBUGGER  is a program that allows you to run code a bit at a time
+so that you can see how variables change and the flow of control occurs (or goes wrong). 
+
+There is a useful tutorial called ``Debug a matlab program'' on \url{www.mathworks.com} which you
+should look at. The important steps in using the debugger are:
+
+\begin{abbrevlist}
+\item SET (one or more) breakpoints. These can be placed at specific lines of code clicking right beside
+the line numbers so a red dot shows. They can also be set to occur only when certain things happen, like a warning, or a divide-by-zero (using the ``Breakpoints" Menu pull-down).
+\item RUN the code. When it reaches a breakpoint execution stops, a red dot in the editor will
+show the line to be executed next, and a special command line
+(\mcode{K>>} appears in the command window. You can now
+investigate the status of variables by 
+\begin{abbrevlist}
+\item typing out their names (or looking in the workspace variable window).
+\item plotting them (using the \mcode{plot()} function).
+\item doing a little math with them.
+\item viewing the values of arrays in the array editor, or by moving the mouse near a variable name in the editor window...
+\item ...or really doing anything that you are used to doing in the command window.
+\item and you can look in the workspace of the calling function using \mcode{K>>dbup} (returning with
+\mcode{K>>dbdown}), or use the Function Call Stack in the Debug menu.
+\end{abbrevlist}
+\item CONTINUE running the code either by running until the next breakpoint (menu or \mcode{K>>dbcont}), or by stepping
+through lines of code one by one (Step or Step In to ``step into'' a function).
+\item Quit debugging mode (menu or \mcode{K>>dbquit})
+\end{abbrevlist}
+
+\newpage
+
+\section*{Background Information:}
+\vspace{-12pt}
+
+I want to make a map of ocean surface currents. Looking around on the web, I found
+an oceanographer who has produced a set of gridded current data, derived from ship drift
+records. You can download his data in large \mcode{.csv} (comma-separated value)
+files. One of them  (a summer, or May/Jun/July average) has been placed on the course web 
+page. I have also started to write code (two functions \mcode{plotarrows.m} and \mcode{mean2d.m}) 
+to make some maps of this data, but the code, available on the class website, has errors.
+It will be YOUR job to fix these errors.
+
+\vspace{-12pt}
+
+\section*{Algorithm description}
+\vspace{-12pt}
+
+First we have to make up matrices holding the data. 
+Download the \mcode{.csv} file and look at it in the Matlab editor (\mcode{edit filename.csv}). It is just a list of 42730 lat/long points, and for each point there is an associated pair $\{u,v\}$ (in columns 4 and 5) of eastward and northward
+velocities (in m/s). Fortunately it seems that these are not at random locations. Instead they
+appear to be at points on a regular grid, spaced at 1 degree increments in
+latitude and longitude (columns 3 and 2). However, the land points are missing (because there is no data there), which is why there are only 42730 points rather than $360\times180 = 64800$ points.
+
+So, the first thing done in \mcode{plotarrows()} (i.e., putting the data into rectangular matrices) is 
+done by calling the subfunction \mcode{move_to_grid()}. Individual longitudes will be along the columns and individual latitudes along the rows 
+of each matrix (like
+the \mcode{topo} data in previous labs). Land locations should contain \mcode{NaN}.
+
+Then, we want to smooth the data a bit. We have dealt with running mean windows in
+1D (for time series). This is generalized to a 2D case, which I am implementing with the function
+\mcode{mean2d()}. For a `window size' of \mcode{N} (again with \mcode{N} odd)  average the points in an \mcode{NxN} square centered on the location of the actual data point (draw a picture
+for yourself to make sure you understand how this works). For example, for a window size of 3,  the 9 points within a $3 \times 3$ square surrounding the data point
+are averaged together. 
+
+The code is supposed to take care of 3 kinds of `edge effects': 
+\begin{abbrevlist} 
+\item We have to wrap in longitude  in the same way that we did in lab 5. 
+\item We do NOT wrap in latitude (if you go too far north or south). 
+The easiest thing to do here is to exclude the `nonexistent' row of points - i.e. if you are on the northern or southern boundary with a window size of 3, use a 6 point (2 rows by 3 cols)
+instead of a 9 point (3 by 3) average. This is a little like the edge effects you worked on in lab 6.
+\item If your window contains land squares, you ALSO want to exclude these from the average.
+That is, if (say) the top left corner of a $3\times 3$ square is on land, you calculate the average over only the other 8 points which are not over land.
+\end{abbrevlist}
+
+Finally, back in \mcode{plotarrows()}, we use \mcode{imagesc()} to make a colour image of the velocity MAGNITUDE
+\begin{equation*}
+M=\sqrt{u^2+v^2}
+\end{equation*}
+and then overplot 
+(\emph{A}) a coastline, and (\emph{B}) a SUBSAMPLED set of the velocity vectors as little
+sticks that begin at the lat/long location of the velocity vector, and then point
+away from it in the direction of the current. The data file \mcode{m_coasts.mat} needed to draw the coastline is also available from the class website.
+
+To implement the subsampling, we use a `decimating factor' to index into an evenly spaced subset of the data. The decimating factor \mcode{decfac} is an input argument to the function \mcode{plotarrows()} and is simultaneously used as the window size for the 2D average. 
+
+\vspace{-12pt}
+
+\section*{The Lab:}
+\vspace{-12pt}
+
+The code in \mcode{plotarrows.m} and \mcode{mean2d.m} attempts to implement the
+algorithm.  But right now it contains a number of
+bugs. Some of these are SYNTAX errors, some are ALGORITHM errors, and some are
+INPUT errors. In this lab you should:
+\begin{enumerate}
+\item Carefully examine the code. Does it match the description of what I
+have said it should do?
+\item Debug the code.
+\item Hand in the debugged code.
+\end{enumerate}
+
+
+\section*{To Hand In:}
+\vspace{-12pt}
+
+Submit your corrected files \mcode{plotarrows.m} and   \mcode{mean2d.m} on Connect by Friday at 4pm.
+{\bf COMMENT YOUR CORRECTIONS!}   I will test them with the following code. It should make 
+the attached plot.
+
+
+\begin{boxedminipage}[h]{6in}
+\small
+\begin{lstlisting}
+% Test the 'debugging lab'  code
+clf;
+subplot(211);
+
+plotarrows('mgsva_MJJ.csv',5,10);
+title('Whole world');
+
+subplot(212);
+
+plotarrows('mgsva_MJJ.csv',1,7);
+axis([-85 -50 20 45]);
+title('Gulf Stream');
+\end{lstlisting}
+\end{boxedminipage}
+
+
+
+Include the following two lines in \mcode{plotarrows.m} as comments, at the bottom of the header comment lines:
+\vspace{-15pt}
+\begin{lstlisting}
+%    partner.name='YYYYYY';
+%    Time_spent= XX;
+\end{lstlisting}
+\vspace{-15pt}
+with the correct information substituted. Remember to rerun your code after adding the partner information to make sure this doesn't break your code!
+ 
+ \vspace{2in}
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=6.5in]{arrowmap}
+\end{center}
+\end{figure}
+
+
+\end{document}
+
+
+

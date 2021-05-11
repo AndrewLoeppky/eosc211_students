@@ -1,0 +1,152 @@
+ \documentclass[letterpaper]{article}
+\usepackage{graphicx,amsmath,fancyhdr,times,mcode}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in } 0in
+\topmargin -.5in %top margin is 1in -0.5in
+
+\textwidth 6.375in %width of text
+\textheight 9in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\lhead{EOSC 211-2018}
+\rhead{INTERPOLATION LAB -- \thepage} 
+\chead{Week 11 - Interpolation}
+\lfoot{} 
+\cfoot{} 
+\rfoot{}
+
+\newcounter{lnum}
+\newenvironment{abbrevlist}%
+  {\begin{list}{$\bullet$}{\setlength{\leftmargin}{2em}%
+               \setlength{\itemindent}{0em}%
+               \setlength{\itemsep}{0pt}%
+               \setlength{\parsep}{0pt}%
+               \setlength{\topsep}{2pt}%
+               \usecounter{lnum} } }{\end{list}}
+
+  
+\begin{document}
+
+
+%********************************
+\section {Learning Goals}
+%********************************
+	\begin {abbrevlist}
+		\item To understand and use different interpolation algorithms 
+		\item To gain more familiarity with with loops and vectorization
+		\item To use MATLAB built-in functions  (including \mcode{interp2})
+		\item To gain more experience in handling complex data sets
+		\item To learn how to scavenge code from other code
+	\end {abbrevlist}
+
+\section{Introduction}
+
+During coastal upwelling, dense deep water is brought up over the shelf-break onto
+the shallow shelf. In theory, we then see horizontal gradients of density - at the same
+depth, water is heavier inshore. Heavier water is usually more saline, so we also see 
+saltier water inshore. In this lab we are going to examine some salinity data from sections south-west of Vancouver
+Island. Ultimately, we want to answer the question: Is water more saline on the shelf at this time?
+There are two steps to this process:
+\begin{abbrevlist}
+\item Interpolate data along oceanographic sections to a common distance from the shelf edge.
+\item Compare the mean profiles at a distance of 0 and 20 km from the shelf edge to see
+if they are statistically different.
+\end{abbrevlist}
+
+%********************************
+\section {The lab}
+%********************************
+
+\subsection{Preliminaries}
+
+Download the  folder \mcode{lab11}.  You may have to double click on it to unzip it. 
+
+Run the script \mcode{main_script.m} (this script was shown in class in preparation for this lab).  It calls several functions including \mcode{makeScatterPlot.m}.  These are all in the folder that you've downloaded and unzipped.  Make sure you can follow the main script.  You should also be able to follow all the code in the functions, although, as in many real problems it is not necessary to know the  details of how each function works but you must know how to use them properly.
+
+The script plots the original salinity-depth casts (profiles), which were taken along a series of tracks back and forth across
+the shelf edge,  at their distance from the shelf break (the 200~m contour line).  You can see that each track has data taken over a distinct distance range, different from that of other tracks, and has data gaps at various distances.   The script will produce a file called \mcode{lab11_data.mat} that contains the data needed for your part of this lab.
+
+{\it Note:} The function \mcode{makeScatterPlot} draws the points in the last figure with a point size of \mcode{8}.  See the \mcode{scatter} command in the function and type \mcode{help scatter} to see how it it works.  \mcode{scatter} is a built-in MATLAB function.  You may need to change the point size (to make the points large enough to see easily but not so large that they overplot each other), depending on your version of MATLAB.
+
+Now, write a script \mcode{lab11_init.m} which begins by loading the file \mcode{lab11_data.mat}.  Check that all is well by cutting and pasting code from \mcode{main_script.m} to reproduce the final figure made in that script.   This should be \mcode{figure(1)} in your \mcode{lab11_init.m} script.    There is no need to draw the map as in the original script. 
+Note that you can use much of the code structure from \mcode{main_script} for parts 3 and 4 of the lab. 
+Make sure the x-axis of the bottom two sub-panels is always labeled.  
+
+%********************************
+\subsection {Interpolation (2D interpolation)}
+%********************************
+
+Interpolate the salinity-depth-distance data from each track (use a loop) onto depth profiles that are evenly spaced in distance from X = -20 km to X = +40 km in 0.5 km increments.  The depth data are already evenly spaced.  
+Use \mcode{interp2} and type \mcode{help interp2} or \mcode{doc interp2} to see how it works.  It is very similar to \mcode{interp1} which was demo'ed in class.  Your code will be cleanest if you use the built-in function \mcode{meshgrid} (we saw this earlier in the course) to set up new \mcode{X} and \mcode{Y} matrices for your interpolated data.
+This is useful because you'll need (dist,depth) pairs for every measurement when plotting your results.  Investigate the results of using different interpolation methods as follows:
+
+\begin{enumerate}
+
+\item Use \mcode{nearest neighbor} interpolation.  Plot your interpolated data in Figure 2 using \mcode{makeScatterPlot}.  Figure 2 should have  a similar layout to Figure 1.  You'll see that the MATLAB scatter function colors points with \mcode{NaN}.  See if you can figure out how to plot only the points that are NOT \mcode{NaN}.  {\it Hint:} \mcode{isnan} from assignment 2 is helpful.
+
+\item Change the interpolation method to \mcode{linear}.    See \mcode{help interp2}.   
+
+\item  Repeat one more time, changing the interpolation method to \mcode{spline}.  (MATLAB will produce a warning for each track that NaNs are being ignored: don't worry about this.). 
+You should see that in this case the spline option results in clearly erroneous extrapolations at distances where there are no observations for a given track.  
+
+\end{enumerate}
+
+%********************************
+\subsection {Taking a depth profile at a common distance from the shelf edge for all tracks}
+%********************************
+
+Now we will obtain an interpolated salinity versus depth profile at a single perpendicular distance, X = 0 km, from the 200 m contour.  Set up a variable \mcode{sal0_pro} that has 10 columns, with each column containing the interpolated salinities for a given track.  Use the \mcode{linear} option in \mcode{interp2} to obtain the salinity-depth profile at X = 0 km for each track.  
+
+Now repeat, getting the depth profiles at a distance of 20~km from the shelf break. Put in \mcode{sal20_pro}.
+
+Set up Figure 3 with three subplots.  Plot the interpolated salinities on the x-axis and depth on the y-axis for all 0-km profiles in the left subplot. Plot the 20-km profiles in the middle plot. You can plot the  profiles for all the tracks using either a loop or a single plot command.  
+%{\it Hint:} remember the example of plotting multiple columns in a 2D array from week 10.  This requires replicating the array depths into a matrix using \mcode{zz = repmat(depths, 1, 10)}.  
+Provide informative labels / title.  Note that \mcode{axis ij} will plot 0 m depth at the top of the y-axis and have depths increasing downwards which makes a nice-looking plot.
+
+Now compute the mean salinity and the standard deviation in salinity as a function of depth at each distance.  
+Plot the mean 0-km salinity on the x-axis and depth on the y-axis in the right subplot as a thick black solid line and plot the mean $\pm$ 1 standard deviation as thin solid lines on either side of your black curve.
+Plot the mean 20-km salinity as a thick red line and plot the mean $\pm$ 1 standard deviation as thin red dashed lines on either side of your black curve.
+
+You can use the \mcode{mean} and \mcode{std} functions, or even better the \mcode{nanmean} and \mcode{nanstd} functions.  Be sure to read the \mcode{nanstd} carefully -- if you use the option where you specify the dimension of the input array to which the \mcode{std} should be applied, you should set the \mcode{flag} argument to ``0''.
+
+The question you should be able to answer from this plot is - given the scatter in the data, are the mean
+profiles from the two locations different by more than the standard deviation in the data? Write a brief message to the screen using \mcode{fprintf} that says whether the two profiles are different or not.
+
+\newpage
+
+\section{To Hand In}
+
+A script called exactly \verb:lab11.m: that loads \mcode{lab11_data.mat} and produces only:
+\begin{enumerate}
+\item Figure 2 above, (i.e., the section plot from Section 3.3, using linear interpolation), and
+\item Figure 3 above (i.e., the profiles with mean and standard deviation, from Section 3.3).
+\end{enumerate}
+
+You can assume we have working versions of all other functions needed for this lab...and remember to add
+\begin{lstlisting}
+% partner.name='YYYYYY';
+% Time_spent= XX ;
+\end{lstlisting}
+
+\vspace{.3in}
+
+
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=3.5in]{./mapfig}
+\end{center}
+\end{figure}
+
+ 
+\begin{figure}[h] 
+\begin{center}
+\includegraphics[width=3.5in]{./finalfig}
+\end{center}
+\end{figure}
+
+\end{document}
+
+
+

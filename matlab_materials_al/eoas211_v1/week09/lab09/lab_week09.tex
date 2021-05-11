@@ -1,0 +1,255 @@
+ \documentclass[letterpaper]{article}
+\usepackage{graphicx,amsmath,fancyhdr,times}
+\usepackage{upquote,mcode}
+\oddsidemargin -0in %left margin on odd-numbered pages is 1in + 0in
+\topmargin -.5in %top margin is 1in -0.5in
+
+\textwidth 6.375in %width of text
+\textheight 9in % size of page
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{10pt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\lhead{EOSC 211-2018}
+\rhead{FPRINTF LAB-\thepage} 
+\chead{Week 09 - Formatting Output and Opening \slash\ Closing Files }
+\lfoot{} 
+\cfoot{} 
+\rfoot{}
+
+\usepackage{color}
+
+\newcounter{lnum}
+\newenvironment{abbrevlist}%
+  {\begin{list}{$\bullet$}{\setlength{\leftmargin}{2em}%
+               \setlength{\itemindent}{0em}%
+               \setlength{\itemsep}{0pt}%
+               \setlength{\parsep}{0pt}%
+               \setlength{\topsep}{2pt}%
+               \usecounter{lnum} } }{\end{list}}
+  
+\begin{document}
+
+\section{Goals}
+\begin{abbrevlist}
+\item CODE: Output numbers and text using formatted printf 
+\item CODE: Open and close files for writing
+\item Practice with logical indexing, loops
+\end{abbrevlist}
+
+\section{Background}
+
+If you have computed a number and want to display this on a plot you have to convert it into
+a string, i.e. we have to convert between the two forms:
+\begin{lstlisting}
+  x_number=4.367          
+  x_string='4.367'
+\end{lstlisting}
+The first is a floating point number (suitable for plotting or mathematical computation), 
+and the latter is a 5-char string array (suitable for display using \mcode{title} or \mcode{text}
+commands, or which can be written to a file). For quick tasks MATLAB includes commands \mcode{num2str}, \mcode{str2num}, \mcode{int2str}
+and some others which can convert from numbers (floating point or integer) to strings and
+vice versa but for best results one should learn how to use the \mcode{printf/scanf} family
+of functions. 
+
+% %{\bf NOTE:} If you copy and paste MATLAB text from the lab PDF file into a MATLAB script or command window the single quotes will not be formatted correctly.  You will need to manually correct them.
+
+Up to this point we've used \mcode{disp()} to display values to the screen. 
+As you will see, \mcode{fprintf()} can be used for the same purpose, but it is more powerful because it is able to 
+format the output and combine different types of variables in a nicer way. It can also be used to output (or ``print'') to a file instead of the command window.
+An important use of \mcode{fprintf}  is in program debugging. Adding
+\mcode{fprintf} statements at crucial places in the program allows you to display the
+values of variables in a clean and elegant way instead of filling up the screen with numbers
+by simply removing the \mcode{;} from the end of a line.
+
+We begin with \mcode{fprintf}, which outputs strings  to the screen. \mcode{sprintf} works basically
+the same way but writes the string to a Matlab variable;  \mcode{sscanf} and \mcode{fscanf} 
+read from strings or files. 
+
+Here is a typical example:
+\begin{lstlisting}
+>>fprintf('\nthis number %d and this one %.4f and these characters: %s\n\n',...
+          4,3.6,'qwerty')
+ 
+this number 4 and this one 3.6000 and these characters: qwerty
+\end{lstlisting}
+
+\mcode{fprintf} and \mcode{sprintf} take as arguments a string containing a mix of characters 
+and format specifiers,
+followed by a series of values or variables (here their values are explicitly shown). Format
+specifiers begin with a '\%', and end with a conversion character. There are lots of
+conversion characters but the ones you will use most are \mcode{d} for integers, \mcode{e}, \mcode{f}, and \mcode{g} 
+for floating
+point numbers, and \mcode{s} for string data. Between the `\%' and the conversion character there are various optional
+parameters, but most of the time you only need to use either a width (an integer giving the
+number of characters to use), and/or
+a precision after a decimal point. If you don't specify
+these then MATLAB will try to do something sensible.
+
+%\footnote{If you have previous 
+%C programming experience this will seem very familiar; in fact MATLAB formatting
+%follows the C standard as far as is possible while remaining consistent with other MATLAB features.}.
+
+The \mcode{\\n} symbol represents a special 'non-printing' character - the CARRIAGE RETURN. It
+is non-printing because it isn't a letter or number, but it is used to say that the line 
+has ended and the next characters
+will be on a new line.
+
+Hint:  Type \mcode{help fprintf} or \mcode{doc fprintf} (and read it!!).
+
+\section{The Lab}
+
+
+Create a script (called \mcode{lab9print.m}) and use it for parts 1--3 of this lab.  
+Save your \mcode{lab9print.m} file as a future reference tool to look up how formatted output works
+and how to add labels to figures.
+
+\begin{enumerate}
+\item Try various formats.  Enter into your \mcode{lab09print.m} script the lines
+\begin{lstlisting}
+fprintf('1234567890\n');  % This will label the columns
+fprintf('%8.0f\n',100*pi);
+\end{lstlisting}
+and then make multiple copies of the second line, 
+\begin{abbrevlist}
+\item first changing \mcode{0} in \mcode{8.0} to one of 1,3,10 (4 cases)
+\item and then repeating these 4 cases with \mcode{f} changed to \mcode{e}.
+\item then repeat the above, removing the `8' -- e.g., \mcode{fprintf('\%0.0f\\n',100*pi);} (another 8 cases)
+\end{abbrevlist}
+Run the script.  The number $\pi$ will be printed out in 16 different
+ways, one way for each \mcode{fprintf} line. The way in which the number is
+printed  (number of decimal places, number of digits in total,
+whether or not scientific notation is used) depends on the
+format specifiers. Look for at the output and check that you understand how the format specifiers work.
+You may want to use \mcode{clc} to clear the screen in between your different runs.
+ Take some of the \mcode{\\n} out and see why you need them here!  
+ 
+Now try using \mcode{\%g} instead of \mcode{\%f}.
+ 
+\item Check that you get the same result if you use the following more general syntax to print to the screen:
+
+\begin{lstlisting}
+fid=1;  % 1 is the FID for "standard output"
+fprintf(fid, '1234567890\n');  % This will label the columns
+fprintf(fid, '%8.0f\n',100*pi);
+\end{lstlisting}
+
+and check that setting \mcode{fid} to 2 also prints the output to the screen, but in red:
+
+\begin{lstlisting}
+fid=2;  % 2 is the FID for "standard error"
+fprintf(fid, '1234567890\n');  % This will label the columns
+fprintf(fid, '%8.0f\n',100*pi);
+\end{lstlisting}
+
+These are useful because you can always check the formatting of stuff you want to print to a file  ({\it e.g.,},  later in this lab \mcode{fid} will be the file identifier of the file to which we will print) by setting \mcode{fid=1} or \mcode{fid=2} and printing your output to the screen instead first.
+
+
+\item Format specifiers are vectorized which means that the format string will be used repeatedly
+if the variables following are arrays. Try this:
+\begin{lstlisting}
+fprintf(1,'%10.2f\n',exp(1:10));
+\end{lstlisting}
+and this:
+\begin{lstlisting}
+fprintf(1,'%10.2f %10.2f\n',exp(1:10));
+\end{lstlisting}
+and this:
+\begin{lstlisting}
+fprintf(1,'%10.2f %10.2f\n', exp(1:10), sin(1:10))
+\end{lstlisting}
+
+\item Until now we have been writing things out to the screen. You can write things out to
+a string which can be displayed in a figure by using \mcode{sprintf}. For example:
+\begin{lstlisting}
+n=3;
+x=cumsum(randn(50,n));
+plot(x);
+ylim([-20 20]);
+str=sprintf('we are showing %d lines',n);
+text(1,10,str);
+\end{lstlisting}
+
+Try this code, and make sure you understand how it works. Type \mcode{help cumsum} to see what this function does.
+Look at
+\mcode{x} and \mcode{str} to see what values are they contain.
+
+\item Download the file \mcode{commute.mat} from the class web site.  This contains the commuting data you uploaded in week 2.  It is in MATLAB binary format.   Write a new script \mcode{lab09.m} and load the file.
+You should see 3 variables in your workspace: \mcode{km} which contains commute distance in km, \mcode{mins} which contains the corresponding commute time in mins, and \mcode{md} which is a character array containing the corresponding mode of commuting.  The variable \mcode{md} uses the character B for bus, C for car, W for walk and R for bike.
+
+Plot time (y-axis) versus distance (x-axis) using the following symbols and colors for each mode
+of transportation:  bus -- blue squares, bike -- magenta diamonds, walk -- red circles, car -- green triangles.     Include legend, title, axis labels.  Make sure your points are ONLY plotted as symbols --- don't attempt to connect them with lines unless you want to look at a confusing mess!
+
+{\it Hint:} Use the array \mcode{md} to set up logical indexing to the arrays \mcode{km} and \mcode{mins} for different modes of transport. 
+
+%You'll see that one unfortunate person has a 4-hour commute, and so most of the figure is devoted to white space because that commute time is an outlier.  Set the time axis of your plot to only go to 120 mins.  
+
+Now, for each mode of transportation, calculate the mean distance, the mean time, and the mean speed. The mean speed is the mean of all the individual speeds, NOT the mean distance divided by the mean time. Draw a thick line
+from \mcode{(0,0)} to \mcode{(mean distance, mean time)} for each
+mode and label the endpoints \mcode{speed = XX.X kmh}.
+
+%Now use a loop to label the points on your graph corresponding to the first 3 points in the \mcode{km} and  \mcode{mins} arrays with a label of the form \mcode{(3.2,15.0)} where \mcode{3.2} is the distance for the point being labelled and \mcode{15.0} is the time.  You should explicitly format your numbers with a precision of 1 decimal place -- i.e. a distance of 5.234 should be labeled as 5.2.  Try to avoid having your labels obscure other data points (sometimes adding \mcode{'<-------'} to the string helps by offsetting the text).  Make sure the x and y axes on your figure have easily legible labels (you may want to increase the font size).
+
+\item Finally, output these statistics to a file in a nice format.
+In order to write data to a file, we first have to open it. The function \mcode{fopen} opens
+a file and returns a file identifier, which can then be used as the first argument to \mcode{fprintf}
+to write to that file.  
+After you've finished writing, you must close the file. For example:
+\begin{lstlisting}
+fid=fopen('temp.txt','w');  % opens a file called 'temp.txt' for writing
+fprintf(fid,'write this line\n');
+fclose(fid); % close file after you are finished writing everything.
+\end{lstlisting}
+
+We are now using the file identifier to ``print'' to the file specified by \mcode{fid}. Add to your script
+ \mcode{lab9.m} some code that will use the data loaded from \mcode{commute.mat} and create a 
+file called \mcode{commute.txt} that contains 5 columns as follows.  
+\begin{abbrevlist}
+\item column 1 -- transportation mode
+\item column 2 -- number of people using that mode
+\item column 3 -- average commute time using that mode
+\item column 4 -- average distance using that mode  
+\item column 5 -- average speed using that mode
+\end{abbrevlist}
+The output should have 4 rows of information, one for each transportation mode, and should have column headings to indicate what is in that column and the units if any.  The final output should be in a nice (i.e., pleasing to look at) human-readable format.  The precision of real numbers (speeds, times, distances) should be 1 decimal place, and integers (number of people) should be displayed as integers (i.e.   5 people should {\it not} be displayed as 5.0, but a speed of 5.0 should be displayed as 5.0).
+
+{\it Hints:} 
+\begin{abbrevlist}
+ \item A correct  choice of the field width is key to getting the columns aligned - make it large! Avoid using the \mcode{\\t} tab spacing, since tabs are set at different widths on different editors. 
+ \item Replacing fid for the output file with \mcode{fid=1}  is helpful for testing your output by writing it to the screen instead of the file.
+\end{abbrevlist}
+
+%The following piece of code (using logical indexing) will calculate these quantities for those who bike:
+%\begin{lstlisting}
+%ibike=md=='R';
+%nbike=sum(ibike);
+%meanbiketim=mean(mins(ibike))
+%meanbikedis=mean(km(ibike))
+%\end{lstlisting}
+%You can easily modify it to work for the other cases (bus,car,walk).
+
+
+\end{enumerate}
+
+
+
+\section{To Hand In}
+
+% was lab09 in previous years...
+
+Submit via CANVAS s script \mcode{lab9.m} that 
+\begin{abbrevlist}
+\item loads \mcode{commmute.mat}
+\item produces the figure in item 5, and
+\item produces the text file in item 6.
+\end{abbrevlist}  
+I will run it, check your figure, and the contents and elegance ({\it i.e.}, nice format) of \mcode{commute.txt}.   From this point in the course onward, we will place more emphasis on nice coding style than we have for previous labs \slash\ assignments. That is, your code should not only work but also be elegantly coded. Make sure you are not spewing output to the screen unnecessarily, that you have commented your code, and written your code as efficiently as possible.
+
+As usual include your partner info in your \mcode{script} as comment lines.
+
+
+\end{document}
+
+
+
