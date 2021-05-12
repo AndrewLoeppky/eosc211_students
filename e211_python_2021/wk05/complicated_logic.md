@@ -68,29 +68,29 @@ print(z)
 **What is the value of z after you execute this script? Add comments to the code**
 
 ```python
-x=4
-y=3
+x = 4
+y = 3
 
-if x % 2 != 0: 
+if x % 2 != 0:
     if x * y == 12:
-        z=3
+        z = 3
 else:
-    z=0
+    z = 0
 ```
 
 ```python
 # andrew's soln
 
 # assign variables
-x=4
-y=3
+x = 4
+y = 3
 
-if x % 2 != 0: # check if x is odd
-    if x * y == 12: 
-        z=3 # assign 3 to z if x is odd and x*y is exactly 12
+if x % 2 != 0:  # check if x is odd
+    if x * y == 12:
+        z = 3  # assign 3 to z if x is odd and x*y is exactly 12
 else:
-    z=0 # for all other possibilities, assign 0 to z
-    
+    z = 0  # for all other possibilities, assign 0 to z
+
 print(z)
 ```
 
@@ -117,12 +117,12 @@ elif -4 < x and x < -1:
 x = -2
 y = 3
 
-if -4 < x < -1: # check if x is between -4 and -1
-    z = x ** 2 / 2 # assign half x squared to variable z
-elif -4 < x and x < -1: # also check if x is between -4 and -1
-    z = -x * y ** 2 # assign negative x times y squared to z
+if -4 < x < -1:  # check if x is between -4 and -1
+    z = x ** 2 / 2  # assign half x squared to variable z
+elif -4 < x and x < -1:  # also check if x is between -4 and -1
+    z = -x * y ** 2  # assign negative x times y squared to z
     if z > 18:
-        z = 0 * z # z is greater than 18, replace the value of z with 0
+        z = 0 * z  # z is greater than 18, replace the value of z with 0
 print(z)
 ```
 
