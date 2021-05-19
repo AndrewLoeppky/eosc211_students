@@ -1,27 +1,24 @@
-############## Old Syllabus ################
+# course syllabus
 
-Course Level Learning Goals
+## Old Syllabus 
+
+### Course Level Learning Goals
 
 1.  Students will write computer programs to model and analyze data in the solid earth, atmospheric,
  and oceanographic sciences. This requires:
 
-2.  Breaking problems into logical steps using flowcharts and pseudocode to specify algorithms: 
-Operation; repetition; decision and input/output steps; computer math
+2.  Breaking problems into logical steps using flowcharts and pseudocode to specify algorithms: Operation; repetition; decision and input/output steps; computer math
 
-3.  Writing and debugging MATLAB code to correctly implement algorithms: syntax and datastructures; 
-debugging strategies
+3.  Writing and debugging MATLAB code to correctly implement algorithms: syntax and datastructures; debugging strategies
 
-4.  Modifying existing MATLAB code,  using the elements of good programming style,  to make  it  more  
-efficient,  readable,  and  documented  for  future  use:  naming  conventions;appropriate syntax;  
-structures;  modularization using functions;  using built-in functions;code reuse; good documentation
- practices; vectorization of loop operations
+4.  Modifying existing MATLAB code,  using the elements of good programming style,  to make  it  more  efficient,  readable,  and  documented  for  future  use:  naming  conventions;appropriate syntax;  structures;  modularization using functions;  using built-in functions;code reuse; good documentation  practices; vectorization of loop operations
 
-5.  Creating scientifically informative and visually appealing plots (scatterplots, time series,contours,
- multiple subplots, legends)
+5.  Creating scientifically informative and visually appealing plots (scatterplots, time series,contours,  multiple subplots, legends)
 
-################ New Syllabus Brainstorming ###################
+##  New Syllabus Brainstorming ###################
 
 HARD SKILLS:
+
 - differentiate between and know the basic operations related to
   string, int, float, boolean, none, list, set, tuple, dictionary
 - manipulate numpy array, pandas dataframe(?)
@@ -33,6 +30,7 @@ HARD SKILLS:
 - develop a workflow that works BEYOND eosc211 -- i do all my hw assignments now in jupyter...
 
 SOFT SKILLS:
+
 - be confident going from earth/ocean/atmosphere -> numerical dataset -> code -> scientific conclusion
 - appreciate computational principles and apply some of them: abstraction, efficiency, modularization
 - understand the relationship between GUIs, high level languages, low level languages, assembly code
