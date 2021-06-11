@@ -1,5 +1,5 @@
 # platform: win-64
-# env_hash: 4284f569de525698a4a3726f54446c2a2679dfbad27c2942d22fe668c89ac915
+# env_hash: ede4ee30f6a6651acd3795e923211bcc2a6615dbded97339d49109b85f7a6b2f
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/win-64/git-2.30.2-h57928b3_1.tar.bz2#93ba948d1accba14e23b550e968f3d63
 https://conda.anaconda.org/conda-forge/win-64/ca-certificates-2021.5.30-h5b45459_0.tar.bz2#cfb6380d41af681ad323403f02755a15
@@ -34,7 +34,7 @@ https://conda.anaconda.org/conda-forge/win-64/python-3.8.10-h7840368_1_cpython.t
 https://conda.anaconda.org/conda-forge/win-64/zeromq-4.3.4-h0e60522_0.tar.bz2#e9004ac5d24937850e9edff978c7e515
 https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.0-h6255e5f_0.tar.bz2#3a997ecef5b2cf97db57a6fcf64e4728
 https://conda.anaconda.org/conda-forge/noarch/async_generator-1.10-py_0.tar.bz2#d56c596e61b1c4952acf0a9920856c12
-https://conda.anaconda.org/conda-forge/noarch/attrs-21.2.0-pyhd8ed1ab_0.tar.bz2#d2e1c7f388ac403df7079b411c37cc50
+https://conda.anaconda.org/conda-forge/noarch/attrs-20.3.0-pyhd3deb0d_0.tar.bz2#5b319abb055eefcfa344bc21378ca23f
 https://conda.anaconda.org/conda-forge/noarch/backcall-0.2.0-pyh9f0ad1d_0.tar.bz2#6006a6d08a3fa99268a2681c7fb55213
 https://conda.anaconda.org/conda-forge/noarch/backports-1.0-py_2.tar.bz2#0da16b293affa6ac31812376f8eb79dd
 https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.4-pyh9f0ad1d_0.tar.bz2#c08b4c1326b880ed44f3ffb04803332f
@@ -76,7 +76,7 @@ https://conda.anaconda.org/conda-forge/win-64/kiwisolver-1.3.1-py38hbd9d945_1.ta
 https://conda.anaconda.org/conda-forge/win-64/lcms2-2.12-h2a16943_0.tar.bz2#fee639c27301c4165b4d1f7e442de8a5
 https://conda.anaconda.org/conda-forge/win-64/libcblas-3.9.0-9_mkl.tar.bz2#e95c6f555997dfaf5397829f9fbed148
 https://conda.anaconda.org/conda-forge/win-64/liblapack-3.9.0-9_mkl.tar.bz2#c7f61dd7beee787b3df5b82e5398173b
-https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-1.1.0-pyhd8ed1ab_0.tar.bz2#84e8dfb1a9e6a824f32fd45b867271ca
+https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-1.0.0-pyhd8ed1ab_0.tar.bz2#84f9ac62d02c227bee4388d8fd64a488
 https://conda.anaconda.org/conda-forge/win-64/markupsafe-2.0.1-py38h294d835_0.tar.bz2#5cd73c62b2e84ef72d32f5c1a824f633
 https://conda.anaconda.org/conda-forge/win-64/mistune-0.8.4-py38h294d835_1003.tar.bz2#e3517b07057bbb0c0c75e011711a4378
 https://conda.anaconda.org/conda-forge/win-64/openjpeg-2.4.0-hb211442_1.tar.bz2#0991d2e943e5ba7ec9b7b32eec14e2e3

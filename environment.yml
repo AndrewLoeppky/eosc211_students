@@ -8,6 +8,7 @@ dependencies:
   - click
   - jupyter
   - git
+  - markdown-it-py<1.1
   - jupytext
   - pillow
   - pip
