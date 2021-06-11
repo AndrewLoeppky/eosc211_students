@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.3
+    jupytext_version: 1.11.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -181,23 +181,106 @@ help(loadmat)
 
 ```{code-cell} ipython3
 # get data
-bathyfile = loadmat("Bathyfile.mat")
+#bathyfile = loadmat("Bathyfile.mat")
 
 # format data into something we can use
 # loadmat outputs a dictionary of np arrays. This code extracts the dictionary values to variables
-lon = bathyfile["bath"][0][0][0].flatten() # extract latitude array
-lat = bathyfile["bath"][0][0][1].flatten() # extract longitude array
-height = bathyfile["bath"][0][0][2]
-height = height[::-1] # flip it over as with q1
+#lon = bathyfile["bath"][0][0][0].flatten() # extract latitude array
+#lat = bathyfile["bath"][0][0][1].flatten() # extract longitude array
+#height = bathyfile["bath"][0][0][2]
+#height = height[::-1] # flip it over as with q1
 
 # present data
-pcm = plt.pcolormesh(height,cmap='BuGn')
-plt.xticks(np.arange(len(lon))[::200], np.round(lon)[::200])
-plt.yticks(np.arange(len(lat))[::50], np.round(lat)[::50]);
+#pcm = plt.pcolormesh(height,cmap='BuGn')
+#plt.xticks(np.arange(len(lon))[::200], np.round(lon)[::200])
+#plt.yticks(np.arange(len(lat))[::50], np.round(lat)[::50]);
 ```
 
 ```{code-cell} ipython3
 
 ```
 
-## Exercise 3:
+## Exercise 3: 
+
+do the question from the old matlab-lab in python and work backwards from there. The question:
+
+You NEED NOT hand in EVERYTHING you have done. Instead, you must gather together the relevant bits of
+code you have already written and write and hand in a script file called (exactly) lab3.m which will do EXACTLY
+the following (no less and no more):
+
+    (1) load the file Bathyfile.mat
+
+    (2) load the file salt.txt, and extract its data into a structure
+
+    (3) Make a plot with axis labels and a title showing contours of salinity (as a function of longitude and depth).Use contourf
+
+    (4) Overplot on it lines showing bathymetry (heights and depths) as a function of longitude at 48"N, 51.5"N, and 55"N latitudes.
+
+    (5) lab3.m should also contain the following (and exactly the following) lines of working code:
+
+        partner.name='YYYYYY';
+        Time_spent= XX;
+
+where YYYYYY (string) is the person with whom you were paired in the labs (remember to put single quotes
+around the name) and and XX (number) is your estimate of the number of hours spent both in the scheduled lab
+period and outside it to complete this lab.
+
+It is important to follow these instructions because your code will be semi-automatically “run-tested” by a program
+that expects your code to follow these specifications.
+
+Hint: To make sure your script works after adding the partner info - save, quit Matlab, restart Matlab, and type
+lab3 at the command line.
+
+```{code-cell} ipython3
+# get bathymetry data
+bathyfile = loadmat("Bathyfile.mat") 
+# loadmat outputs a dictionary of np arrays. This code extracts the dictionary values to variables
+bath_lon = bathyfile["bath"][0][0][0].flatten() # extract latitude array
+bath_lat = bathyfile["bath"][0][0][1].flatten() # extract longitude array
+bath_height = bathyfile["bath"][0][0][2] # extract height, depth and flip it over
+bath_height = bath_height[::-1]
+bath_lat = bath_lat[::-1] # image is flipped over on the lat axis, fix height and lat variables
+
+# quick plot to visualize our data and make sure the import worked properly (ie not upside down or something...)
+#plt.contourf(bath_lon, bath_lat, bath_height);
+```
+
+```{code-cell} ipython3
+# the question asks for slices at 48"N, 51.5"N and 55"N. do some slicing!
+
+# first find out where these elements are
+np.where(bath_lat==48.0), np.where(bath_lat==51.5), np.where(bath_lat==55.0) # we havent covered this in lecture...
+```
+
+```{code-cell} ipython3
+# create new 1D np arrays to store the slices of constant latitude
+bath480 = bath_height[30]
+bath515 = bath_height[135]
+bath550 = bath_height[240]
+```
+
+```{code-cell} ipython3
+# get the salt data
+salt = np.loadtxt("salt.txt")
+salt_lon = salt[0,1:]
+salt_depth = salt[1:,0]
+salt_conc = salt[1:,1:]
+
+# again, quick and dirty plot as a sanity check. Why is the rhs blank? (its land)
+#plt.contourf(salt_lon, salt_depth, salt_conc)
+```
+
+```{code-cell} ipython3
+# make the final pretty plot
+fig, ax = plt.subplots()
+con=ax.contourf(salt_lon, salt_depth, salt_conc)
+cbar = plt.colorbar(con, label="Salt Concentration (g/kg)")
+ax.plot(bath_lon, bath480, label='48.0"N')
+ax.plot(bath_lon, bath515, label='51.5"N')
+ax.plot(bath_lon, bath550, label='55.0"N')
+ax.legend()
+
+ax.set_title('Bathymetry and Salinity of Seawater in the North Pacific Ocean')
+ax.set_xlabel('longitude (degrees)')
+ax.set_ylabel('height (m)');
+```
