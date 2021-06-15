@@ -17,4 +17,4 @@ setup(
           ]
     },
     keywords='image powerpoint',
-    long_description="""extract powerpoint images""")
+    long_description="""e211 course conversion""")
