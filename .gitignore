@@ -2,3 +2,4 @@ _build
 .ipynb_checkpoints
 README.md
 e211_lib/*pycache*
+/e211_lib/_version.py
