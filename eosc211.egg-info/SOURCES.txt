@@ -1,5 +1,6 @@
 setup.py
 e211_lib/build_notebook.py
+e211_lib/e211.py
 e211_lib/image_extract.py
 eosc211.egg-info/PKG-INFO
 eosc211.egg-info/SOURCES.txt

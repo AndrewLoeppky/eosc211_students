@@ -2,12 +2,12 @@
 
 # Setup script for PyPI; use CMakeFile.txt to build extension modules
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
     name='eosc211',
-    packages=['e211_lib'],
+    packages=find_packages(include=['e211_lib']),
     classifiers=[
         'License :: OSI Approved :: BSD License'
     ],

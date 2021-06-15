@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.2
+      jupytext_version: 1.11.3
   kernelspec:
     display_name: Python 3
     language: python
@@ -61,7 +61,7 @@ It's good practice to import all the packages you'll need (on top of Python's co
 <!-- #endregion -->
 
 ```python
-import e211 # get all the packages from the e211 library (developed specifically for this course)
+from e211_lib import e211 # get all the packages from the e211 library (developed specifically for this course)
 import numpy as np # get all the packages associated with numpy, and assign numpy a nickname 'np'
 import matplotlib.pyplot as plt # get just the package called 'pyplot' from the matplotlib library, nicknamed 'plt'
 ```
@@ -185,7 +185,7 @@ NASA's Earth Observing System Data and Information System (EOSDIS), which can be
 ```python
 ##### import packages ######
 
-import e211
+from e211_lib import e211
 import numpy as np 
 import matplotlib.pyplot as plt
 ```
@@ -407,7 +407,7 @@ min(lat), max(lat)
 Create a scientific figure! You will need to use
 
 ```python
-import e211
+from e211_lib import e211
 ```
 
 ```python
