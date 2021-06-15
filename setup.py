@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-# Setup script for PyPI; use CMakeFile.txt to build extension modules
-
 from setuptools import setup, find_packages
-
+from setuptools_scm import get_version
 
 setup(
     name='eosc211',
+    version=get_version(),
     packages=find_packages(include=['e211_lib']),
     classifiers=[
         'License :: OSI Approved :: BSD License'
@@ -17,6 +16,5 @@ setup(
               'build_notebook = e211_lib.build_notebook:main'
           ]
     },
-    install_requires=['pillow','python-pptx','jupytext'],
     keywords='image powerpoint',
     long_description="""extract powerpoint images""")
