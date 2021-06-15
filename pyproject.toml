@@ -2,5 +2,6 @@
 [build-system]
 requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"]
 
+# make sure this file is in .gitignore
 [tool.setuptools_scm]
 write_to = "e211_lib/_version.py"
