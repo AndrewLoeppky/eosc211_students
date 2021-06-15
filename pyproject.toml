@@ -1,0 +1,5 @@
+# pyproject.toml
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"]
+
+[tool.setuptools_scm]
+write_to = "e211_lib/_version.py"

@@ -1,12 +1,12 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: eosc211
 Version: 0.0.0
 Summary: UNKNOWN
 Home-page: UNKNOWN
-Author: UNKNOWN
-Author-email: UNKNOWN
 License: UNKNOWN
-Description: extract powerpoint images
 Keywords: image powerpoint
 Platform: UNKNOWN
 Classifier: License :: OSI Approved :: BSD License
+
+extract powerpoint images
+

@@ -1,3 +1,4 @@
+pyproject.toml
 setup.py
 e211_lib/build_notebook.py
 e211_lib/e211.py
