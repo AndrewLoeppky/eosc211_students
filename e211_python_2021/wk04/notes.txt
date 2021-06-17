@@ -1,0 +1,22 @@
+lab 4 notes:
+
+much of the focus in the MATLAB version is on the difference between matrix and elementwise math. 
+not really necessary for us. instead, spend the time/energy on choosing good variable names 
+(camel and snake case, etc) and commenting scientific code with units, and organizing our math 
+(write the equation in markdown, tag it, then reference the tag in code)
+
+worksheet-tues-- new:
+mathematical operators + - * / += -= *= /= ** np.sqrt() round() 
+order of operations, ie BEDMAS is followed in python
+more on data types, ints and floats, loose data typing
+--> int(2) / 1.2 -- what is the data type of the output
+type casting ie int(1.1)
+
+worksheet-thurs-- new: 
+choosing good variable names
+short, descriptive
+snake_case vs CamelCase
+_scary_ __very_scary__
+naming things after monty python wherever possible
+
+lab-- new
