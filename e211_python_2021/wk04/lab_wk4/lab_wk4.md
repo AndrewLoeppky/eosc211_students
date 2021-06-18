@@ -22,7 +22,7 @@ jupyter:
 
 1. Do math with python! 
 
-2. Write structured code following input-process-output format\
+2. Write structured code following input-process-output format
 
 3. Develop code with the scaffolding technique (source: HTTLACS?)
 
@@ -34,39 +34,110 @@ jupyter:
 
 ### Themes
 
-computer math + - * / **
-
-logical operators > < == !=
-
-```and``` and ```or```
+computer math + - * / ** -- on scalars and vectors (arrays)
 
 order of operations
+
+plt.subplots() syntax, intro to OO programming?
 <!-- #endregion -->
 
 ```python
-from e211_lib import e211
 import numpy as np
 from matplotlib import pyplot as plt 
 ```
 
+## Part 1: Computer Math and Writing Stylish Code (Tutorial)
+
+
+This is the hydrostatic equation. It relates *atmospheric pressure* to height above sea level. The pressure we measure at the surface is caused by the weight of the atmosphere above being held down by earth's gravity. As we move higher into the atmosphere, there is less air above (less weight pushing down), so the pressure decreases. 
+
+$$
+P = P_0\cdot e^{-(a/T)\cdot z}\tag{Hydrostatic Equation}
+$$
+
+where constants $a=0.0342 K/m$ and $P_0=101325 Pa$, and the other variables are defined in as:
+
+| Symbol  | Variable      | SI Units   |
+|:--------|:--------------|:------------|
+| $P$     | Pressure      | $Pa$   |
+| $T$     | Temperature   | $K$ |
+| $z$     | Height Above Sea Level   | $m$ |
+
+We would like to write code to calculate atmospheric pressure at any given height. In lecture, we practiced using Python's built in mathematical operators `+ = * / **`. Now we will apply these skills to *mathematically describe the state of the atmosphere* and make some informative graphics to communicate our results. As always when tackling a more complex problem, keeping our code organized is incredibly helpful, especially when we need to circle back to either modify or debug our program.
+
+### Tips on Writing Code With Style:
+
+* Be very careful with unit conversion.  Humans usually like to express temperature in Celsius, but the thermodynamic equations require temperatures in Kelvin.  That means that you need to distinguish between two temperatures with names like `Tk` and `Tc`, where `Tk = Tc + 273.15`. Make sure that you convert to Kelvin as soon as you can. Do it only once at the start and (if necessary for output) once at the end.
+
+* Choose good variable names. Don’t use single letters like `T` and `P` for variable names in a script. It makes it very hard to do search and replace with your editor when you want to change them, and the names aren’t very meaningful to others who might read your code. Remember that Python is *case sensitive* so `P` and `p` are two different variables. Also, it is super helpful to note the units of each variable with comments.
+
+* As much as you can, separate your script into 4 parts IN THIS ORDER:
+
+>**1.  INPUTS:**  These  are  variables  whose  values  you  might  want  to  change  if  you  run  the  program multiple times.
+
+>**2.  INTERNAL DEFINITIONS or CONSTANTS:** These are variables that are defined as constants which you will never change, or some simple conversions (e.g. Celcius to Kelvin)
+
+>**3.  CALCULATIONS:** This is where the complicated parts of the procedure go
+
+>**4.  the OUTPUTS:** What you do once the math is finished (e.g. plotting).
+
+* It is useful to separate the parts by white space, and liberally comment your code. Note that not all tasks in 2 and 3 are easily separated, and sometimes plotting happens earlier than the end of the program, but it’s a good idea to always approach problems this way initially.
+
+### Coding the Hydrostatic Equation
+
+```python
+# inputs
+Tc = 20  # deg C
+height = 8849  # m
+
+# internal definitions
+Tk = Tc + 273.15  # K
+hstat_const = 0.0342  # K/m
+P0 = 101325  # Pa
+
+# calculations
+pres = P0 * np.exp(-hstat_const / Tk * height)  # hydrostatic equation
+
+# outputs
+print(pres)
+```
+
+Try playing with the inputs to see if our pressure calculator is working properly. We know that at the surface (ie $z$=0m), the pressure should equal the reference $P_0$ of 101325 Pa. On the summit of Mt Everest (8849m), pressure is roughly a third of that value. Waaay up high, (try setting $z$ to a billion or something) the pressure should drop away to near 0 Pa. Is our calculation working properly?
+
+### Math with Arrays
+
+Now that you have working code for *scalar inputs* (and checked that it calculates the correct values), let's can apply it to a whole range of values by defining our inputs as numpy arrays instead of single variables (we could also use lists, tuples or most any *iterable data type* will work). Solving this equation by hand or with a calculator isn't that hard, but now we can solve it again and again as many times as we want for no extra cost! Let's compute the pressure for a bunch of different heights, then use Matplotlib to make an XY plot of our output variables over the specified range of inputs. 
+
+**Remember:** Multiplying an array `A` by a scalar variable `b` multiplies every element of `A` by `b`. Multiplying an array `A` by another array `B` does the operation *element-wise*; i.e. the first element of `A` gets multiplied by the first element of `B`, the second element of `A` by the second of `B`, etc. This only works if the `A` and `B` are the same size and shape.
+
+```python
+# change the "height" input to an array
+height = np.arange(10000, 0, -100)  # m
+
+# this cell "knows" about the definitions from the previous cell, no need to repeat
+# (unless we want to change something)
+
+# calculations
+pres = P0 * np.exp(-hstat_const / Tk * height)  # hydrostatic equation
+```
+
+For our plot, we will use a slightly different syntax than last week. Why we do this will become apparent shortly.
+
+```python
+# output -- a plot!
+fig, ax = plt.subplots()
+ax.plot(pres, height)
+ax.set_xlabel("Pressure (Pa)")
+ax.set_ylabel("Height (m)")
+ax.set_title("Pressure Variation with Altitude")
+```
+
 ```python
 
 ```
-
-What does this do?
-
-```python
-z = 2
-x = round(np.exp(np.sqrt(z / 3)))
-```
-
-### Demo: Computer Math and Writing Stylish Code
-
-
----demo---
 
 <!-- #region -->
-### Clausius-Clapeyron Equation and the Atmospheric Equation of State
+## Part 2: Clausius-Clapeyron Equation and the Atmospheric Equation of State
 
 Over large spatial scales in the atmosphere (and ocean) we can attempt to predict the winds (or currents) by looking at spatial changes in the DENSITY. In air the density is a function of pressure, temperature, and the amount of water
 vapour present - i.e.  the THERMODYNAMIC STATE*. Moist air is less dense than dry air, because H$_2$O gas is lighter than either N$_2$ or O$_2$ gas (which makes up most of the atmosphere). We often hear water vapour measurements given as a RELATIVE HUMIDITY (RH) which is the the ratio of the vapor pressure relative to the SATURATION LEVEL for a particular temperature.  The saturation level is the maximum amount of water vapour that air can hold in equilibrium (say, inside a closed bottle containing air and water, which you let sit for a long time).  A RH of 100% means it is foggy (saturated) and 0% means you are coughing and generating sparks every time you walk across a carpet! How do we get from RH to density?
@@ -119,31 +190,9 @@ where $R_d = 287J/K/kg$ is  the  ideal  gas  constant  for  dry  air.‡ To  che
 ‡ You may recognize some similarity between this last equation and the IDEAL GAS LAW $P V=nRT$ which is no coincidence - in fact the $0.61r$ is a correction for the non-ideal nature of moist air.
 <!-- #endregion -->
 
-### Implementing the CC Equation in Python
+### Your Task: Implementing the CC Equation in Python
 
-#### Five important points about programming style:
-
-* Be very careful with unit conversion.  Humans usually like to express temperature in Celsius, but the thermodynamic equations require temperatures in Kelvin.  That means that you need to distinguish between two temperatures with names like `Tk` and `Tc`, where `Tk = Tc + 273.15`. Make sure that you convert to Kelvin as soon as you can. Do it only once at the start and (if necessary for output) once at the end.
-
-* Choose good variable names. Don’t use single letters like `T`, `e` and `P` for variable names in a script. It makes it very hard to do search and replace with your editor when you want to change them, and the names aren’t very meaningful to others who might read your code. Also remember that Python is *case sensitive* so `P` and `p` are two different variables.
-
-* Just like the week 3 lab, we will endeavor to keep our code organized and readable. As much as you can, separate your script into 4 parts IN THIS ORDER:
-
->**1.  INPUTS:**  These  are  variables  whose  values  you  might  want  to  change  if  you  run  the  programmultiple times.
-
->**2.  INTERNAL DEFINITIONS or CONSTANTS:** These are variables that are defined as constantswhich you will never change, or some simple conversions (e.g. Celcius to Kelvin)
-
->**3.  CALCULATIONS:** This is where the complicated parts of the procedure go
-
->**4.  the OUTPUTS:** What you do once the math is finished (e.g. plotting).
-
-* It is useful to separate the parts by white space, and liberally comment your code. Note that not all tasks in 2 and 3 are easily separated, and sometimes plotting happens earlier than the end of the program, but it’s a good idea to always approach problems this way initially.
-
-* Finally, keep in mind that this lab is structured in such a way that you END UP solving a complicated problem,by FIRST solving a simple problem and then MODIFYING it.
-
-Now, given all of this:
-
-Write a script which defines variables for all the constants used (i.e. $L$, $R_v$, $T_0$, $e_0$) and then find $e_s$ for a single $T$. Be sure to invent good names for all of these symbols and include their units in the comments, e. g. `Lvap = 2.5e6  # J/kg`. Run this code to find $e_s$ a temperature of $T= 25^oC$.  Compare this number against a CHECK VALUE 3264.0782439825894 Pa. Be careful about operator precedence and make sure you get the RIGHT answer!
+Write a code cell which defines variables for all the constants used (i.e. $L$, $R_v$, $T_0$, $e_0$) and then find $e_s$ for a single $T$. Be sure to invent good names for all of these symbols and include their units in the comments, e. g. `Lvap = 2.5e6  # J/kg`. Run the cell to find $e_s$ at a temperature of $T= 25^oC$.  Compare this number against a CHECK VALUE 3264.0782439825894 Pa. Be careful about operator precedence and make sure you get the RIGHT answer!
 
 ```python
 # your code here
@@ -157,7 +206,7 @@ Tc = 25  # deg C
 
 # internal definitions
 Tk = Tc + 273.15  # K
-e0 = 611  # Pa, 
+e0 = 611  # Pa 
 Lvap = 2.5e6  # J/kg
 T0 = 273  # K
 Rv = 461  # J/kg/K
@@ -196,13 +245,7 @@ rho = pres / (Rd * Tk * (1 + 0.61 * mixrat))
 print(rho)
 ```
 
-**old**
-
-So far we have just dealt with one particular value.  But it would be nicer to plot the relationship.  Matlab can actually generate a whole table of results for almost no extra time.  The general strategy in writing code to do this will be to modify the definitions in the INPUT section to make vectors or MATRICES ofTc,RH,andpress(assuming these are the names of input variables for temperature, relative humidity, and pressure),instead of scalars, and then modify the CALCULATIONS to use the elementwise operators for multiplicationand division.To begin with plot the saturation vapour pressure for a range of temperatures, using a code snippet somethinglike this, with the./and.*operators
-
-**new**
-
-Now that we have a working set of equations for *scalar inputs* (and we checked that they calculate the correct values), we can apply them to a whole range of input values by defining our inputs as numpy arrays instead of single variables (or lists, or most any *iterable data type*). We can then use Matplotlib to plot our output variables over the specified range of inputs. In the cell below, calculate the saturation vapour pressure $e_s$ for temperatures ranging from -40$^o$C to 30$^o$C. Be sure to stick to the format of *input, definitions, calulations, output*. This time, make your output a *scientific figure* showing the whole range of $T$ values.
+In the cell below, calculate the saturation vapour pressure $e_s$ for temperatures ranging from -40$^o$C to 30$^o$C. Be sure to stick to the format of *input, definitions, calulations, output*. This time, make your output a *scientific figure* showing the whole range of $T$ values.
 
 ```python
 # your code here
@@ -231,6 +274,12 @@ ax.set_title("Saturation Vapour Pressure as a Function of Temperature")
 Next, calculate and plot the mixing ratior as a function of temperature for $RH= 100\%$ and $P= 90000Pa$ (about 1 km above the surface).
 
 ```python
+# your code here
+```
+
+```python
+# andrew's soln
+
 # input
 RH = 100  # %
 pres = 90000  # Pa
