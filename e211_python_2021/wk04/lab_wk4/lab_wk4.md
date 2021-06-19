@@ -49,21 +49,28 @@ from matplotlib import pyplot as plt
 ## Part 1: Computer Math and Writing Stylish Code (Tutorial)
 
 
-This is the hydrostatic equation. It relates *atmospheric pressure* to height above sea level. The pressure we measure at the surface is caused by the weight of the atmosphere above being held down by earth's gravity. As we move higher into the atmosphere, there is less air above (less weight pushing down), so the pressure decreases. 
+These are the hydrostatic equations. They relate *atmospheric pressure* and *density* to height above sea level. The pressure and air density we measure at the surface is caused by the weight of the atmosphere above being held down by earth's gravity. As we move higher into the atmosphere, there is less air above (less weight pushing down), so the pressure decreases, as does the density (less pressure = less force squeezing the air molecules together). For air pressure $P$, we can express this as a mathematical function:
 
 $$
-P = P_0\cdot e^{-(a/T)\cdot z}\tag{Hydrostatic Equation}
+P = P_0\cdot e^{-(a_P/T)\cdot z}\tag{Stull 1.9a†}
 $$
 
-where constants $a=0.0342 K/m$ and $P_0=101325 Pa$, and the other variables are defined in as:
+similarly for density $\rho$ (represented by the greek letter *rho*):
+
+$$
+\rho = \rho_0\cdot e^{-(a_\rho/T)\cdot z}\tag{Stull 1.13a†}
+$$
+
+where constants $a_P=0.0342 K/m$, $a_\rho=0.040K/m$, $P_0=101325 Pa$, and $\rho_0=1.225kg/m^3$. Define our variables in a table:
 
 | Symbol  | Variable      | SI Units   |
 |:--------|:--------------|:------------|
 | $P$     | Pressure      | $Pa$   |
+| $\rho$  | Density      | $kg/m^3$   |
 | $T$     | Temperature   | $K$ |
 | $z$     | Height Above Sea Level   | $m$ |
 
-We would like to write code to calculate atmospheric pressure at any given height. In lecture, we practiced using Python's built in mathematical operators `+ = * / **`. Now we will apply these skills to *mathematically describe the state of the atmosphere* and make some informative graphics to communicate our results. As always when tackling a more complex problem, keeping our code organized is incredibly helpful, especially when we need to circle back to either modify or debug our program.
+We would like to write code to calculate atmospheric pressure and density at any given height. In lecture, we practiced using Python's built in mathematical operators `+ = * / **`. Now we will apply these skills to *mathematically describe the state of the atmosphere* and make some informative graphics to communicate our results. As always when tackling a more complex problem, keeping our code organized is incredibly helpful, especially when we need to circle back to either modify or debug our program.
 
 ### Tips on Writing Code With Style:
 
@@ -79,11 +86,11 @@ We would like to write code to calculate atmospheric pressure at any given heigh
 
 >**3.  CALCULATIONS:** This is where the complicated parts of the procedure go
 
->**4.  the OUTPUTS:** What you do once the math is finished (e.g. plotting).
+>**4.  OUTPUTS:** What you do once the math is finished (e.g. plotting).
 
 * It is useful to separate the parts by white space, and liberally comment your code. Note that not all tasks in 2 and 3 are easily separated, and sometimes plotting happens earlier than the end of the program, but it’s a good idea to always approach problems this way initially.
 
-### Coding the Hydrostatic Equation
+### "Coding Up" the Hydrostatic Equations
 
 ```python
 # inputs
@@ -92,17 +99,21 @@ height = 8849  # m
 
 # internal definitions
 Tk = Tc + 273.15  # K
-hstat_const = 0.0342  # K/m
+a_P = 0.0342  # K/m
+a_rho = 0.040  # K/m
 P0 = 101325  # Pa
+rho_0 = 1.225  # kg/m3
 
 # calculations
-pres = P0 * np.exp(-hstat_const / Tk * height)  # hydrostatic equation
+pres = P0 * np.exp(-a_P / Tk * height)  # eq 1.9a
+dens = rho_0 * np.exp(-a_rho / Tk * height)  # eq 1.13a
 
 # outputs
 print(pres)
+print(dens)
 ```
 
-Try playing with the inputs to see if our pressure calculator is working properly. We know that at the surface (ie $z$=0m), the pressure should equal the reference $P_0$ of 101325 Pa. On the summit of Mt Everest (8849m), pressure is roughly a third of that value. Waaay up high, (try setting $z$ to a billion or something) the pressure should drop away to near 0 Pa. Is our calculation working properly?
+Try playing with the inputs to see if our pressure/density calculator is working properly. We know that at the surface (ie $z$=0m), the pressure should equal the reference $P_0$ of 101325 Pa. On the summit of Mt Everest (8849m), pressure is roughly a third of that value. Waaay up high, (try setting $z$ to a billion or something) the pressure should drop away to near 0 Pa. Is our calculation working properly?
 
 ### Math with Arrays
 
@@ -112,29 +123,48 @@ Now that you have working code for *scalar inputs* (and checked that it calculat
 
 ```python
 # change the "height" input to an array
-height = np.arange(10000, 0, -100)  # m
+height = np.arange(10000, 0, -1000)  # m
 
 # this cell "knows" about the definitions from the previous cell, no need to repeat
 # (unless we want to change something)
 
 # calculations
-pres = P0 * np.exp(-hstat_const / Tk * height)  # hydrostatic equation
+pres = P0 * np.exp(-a_P / Tk * height)  # eq 1.9a
+dens = rho_0 * np.exp(-a_rho / Tk * height)  # eq 1.13a
+
+# output
+print(pres)
+print(dens)
 ```
 
-For our plot, we will use a slightly different syntax than last week. Why we do this will become apparent shortly.
+### The plt.subplots() Method
+
+The outputs from the previous cell don't exactly jump off the page. We could show our results much better with, you guessed it: *a scientific figure!* Unlike last week, we have 2 separate but related datasets, and ideally we would like to present them together as one figure. For this we can use a slightly different plotting syntax, which creates one big "figure" object, and "axes" objects which are displayed on the figure. We can create the axes individually, referencing them using *slicing* to mess around with their content, labels, colours etc. just like the plot we created last week. The syntax for creating subplots is as follows:
 
 ```python
-# output -- a plot!
-fig, ax = plt.subplots()
-ax.plot(pres, height)
-ax.set_xlabel("Pressure (Pa)")
-ax.set_ylabel("Height (m)")
-ax.set_title("Pressure Variation with Altitude")
+# create the figure with one row and two columns of plots
+fig, ax = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
+
+# use slicing to assign what to plot where
+ax[0].plot(pres, height)
+ax[1].plot(dens, height, color="red")
+fig.suptitle("Pressure and Density Variation with Altitude", fontsize=16)  # title for the whole figure
+ax[0].set_xlabel("Pressure (Pa)")
+ax[0].set_ylabel("Height (m)")  # because sharey=True, we only need this once
+ax[1].set_xlabel("Density (kg/m3)")
 ```
 
-```python
+Do we check all the boxes?
 
-```
+<div class="alert alert-block alert-info">
+<b>Scientific Figure Checklist:</b> 
+
+- [ ] Title (Short and sweet is best)
+- [ ] Axes labels with units (Don't forget the units!)
+- [ ] Legend (Or anything that helps interpret the information presented)
+- [ ] Does the figure *make sense* just by looking at it? The data should be clear without referencing anything outside the figure
+- [ ] Does it *look good*? (Do the colors clash? does it look crowded/messy?)
+</div>
 
 <!-- #region -->
 ## Part 2: Clausius-Clapeyron Equation and the Atmospheric Equation of State
@@ -245,7 +275,7 @@ rho = pres / (Rd * Tk * (1 + 0.61 * mixrat))
 print(rho)
 ```
 
-In the cell below, calculate the saturation vapour pressure $e_s$ for temperatures ranging from -40$^o$C to 30$^o$C. Be sure to stick to the format of *input, definitions, calulations, output*. This time, make your output a *scientific figure* showing the whole range of $T$ values.
+Calculate the saturation vapour pressure $e_s$ for temperatures ranging from -40$^o$C to 30$^o$C. Be sure to stick to the format of *input, definitions, calulations, output*.
 
 ```python
 # your code here
@@ -264,14 +294,10 @@ Tk = Tc + 273.15  # K
 esat = e0 * np.exp((Lvap / Rv) * (1 / T0 - 1 / Tk))  # eqn 1
 
 # output (a plot!)
-fix, ax = plt.subplots()
-ax.plot(Tc, esat)
-ax.set_xlabel("Temp ($^o$C)")
-ax.set_ylabel("Saturation Vapour Pressure (Pa)")
-ax.set_title("Saturation Vapour Pressure as a Function of Temperature")
+esat
 ```
 
-Next, calculate and plot the mixing ratior as a function of temperature for $RH= 100\%$ and $P= 90000Pa$ (about 1 km above the surface).
+Next, calculate and plot the mixing ratio $r$ as a function of temperature for $RH= 100\%$ and $P= 90000Pa$ (about 1 km above the surface).
 
 ```python
 # your code here
@@ -289,11 +315,29 @@ e_x = esat * RH / 100  # eqn 2
 mixrat = epsilon * e_x / (pres - e_x)  # eqn 3
 
 # output
-fix, ax = plt.subplots()
-ax.plot(Tc, mixrat)
-ax.set_xlabel("Temp ($^o$C)")
-ax.set_ylabel("Mixing Ratio (kg/kg)")
-ax.set_title("Mixing Ratio as a Function of Temperature");
+mixrat
 ```
 
-next question asks to plot multiple lines on a figure using a 2d matrix... better saved until the loops section i think.. make subplots instead? 
+Now, use the `subplots` function to generate a scientific figure as follows:
+
+* Two plots, the top one showing saturation vapour pressure and the bottom showing mixing ratio as functions of temperature
+
+* "Temperature" on the x axis, in units of $^o$C, only labelled once for the whole figure
+
+* Check all the boxes for creating a scientific figure
+
+```python
+# your code here
+```
+
+```python
+# andrew's soln
+fig, ax = plt.subplots(2, figsize=(10, 5), sharex=True)
+fig.suptitle("Saturation Vapour Pressure and Mixing Ratio as Functions of Temperature", fontsize=16)
+ax[0].plot(Tc, esat)
+ax[0].set_ylabel("Saturation Vapour Pressure (Pa)")
+
+ax[1].plot(Tc, mixrat, color="lightgreen")
+ax[1].set_xlabel("Temp ($^o$C)")
+ax[1].set_ylabel("Mixing Ratio (kg/kg)");
+```
