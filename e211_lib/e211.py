@@ -40,3 +40,11 @@ def load_mat(my_data):
     bath = matfile["bath"][0][0][2]
     return bath
 
+# %%
+def load_topo(my_data):
+    """
+    designed to load digital elevation model for lab wk5
+    """
+    matfile = loadmat(my_data)
+    return matfile["topo"]
+
