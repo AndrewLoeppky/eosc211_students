@@ -21,11 +21,13 @@
 #
 # ### Learning Objectives:
 #
-# 1. Write code with user-specified variables
+# 1. Define variables using user input data
 #
-# 2. Use formatted text with f string literals
+# 2. Use formatted text with f string literals to label plots
 #
-# 3. Use conditional statements `if elif else`
+# 3. Change variable datatypes using *type casting*
+#
+# 3. Apply conditional statements `if elif else`
 #
 # second pass: the flow goes like
 # 1) andrew imports the data and uses plt.annotation to label a user specified lat/lon/height on the map
@@ -35,6 +37,17 @@
 # 3) talk about handling edge cases, arr[-1] and more conditionals to avoid "falling off the edge of the map"
 #
 # 4) final product: one code cell that, when run, takes in a user-specified lat/lon pair and outputs a scientific figure with the point labelled lat/lon/height/slope/aspect
+#
+# **TODO** 
+#
+# * change lat lon arrays to np.where, lons to +- 180 deg
+#
+# * do the map edge handling
+
+# %% [markdown]
+# ## Part 1: The plt.annotate Function and Formatted Text
+#
+# preamble
 
 # %%
 from e211_lib import e211 
@@ -42,20 +55,31 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 # %%
-# get the data, hide the import function in e211 library
+# get the data and query the size of the array
 topo = e211.load_topo("lab5_topo.mat")
 topo.shape # rows, columns
 
 # %%
+# do a test plot to visualize data
 plt.contourf(topo)
 
 # %%
 # create lat and lon arrays just like week 3 lab
-lats = np.linspace(-89, 90, topo.shape[0]) # added 0.5 deg to each point for simplicity
-lons = np.linspace(0, 359, topo.shape[1])
+lats = np.linspace(-89.5, 89.5, topo.shape[0]) # start, stop, number of elements
+
+# where is Greenwich, UK on this map? How to we make an array that correctly labels lon from -180 to 180?
+lons = np.linspace(0.5, 359.5, topo.shape[1])
+half_lons = int(len(lons) / 2)
+lons[half_lons:] -= 360 # do you understand what is happening on this line?
+
+# see if our labels correctly match the plot
+plt.contourf(lons, lats, topo)
+
+# %%
+topo[np.where(lats==30.5), np.where(lons==-79.5)]
 
 # %% [markdown]
-# `topo` is indexed from 0 to 359 (L to R), 0 to 179 (B to T). Lons matches the indexing nicely, lats can be correctly interpreted via `y = lats - 90`. the proper way to do this for any size of image would be to use `np.where(lats=usr_input)` but it looks complicated and may be confusing. (`lats` is indexed T to B, opposite `topo`) Arguments passed to `contourf` will accept the actual lon/lat coord but indexing `topo` requires the corrected index. Best approach = ???
+#
 
 # %%
 # take in a lat/lon point as input. old lab uses matlab's graphical input function
