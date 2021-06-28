@@ -27,7 +27,14 @@
 #
 # 3. Use conditional statements `if elif else`
 #
-# first pass: Andrew solves the lab from the old course, but in python
+# second pass: the flow goes like
+# 1) andrew imports the data and uses plt.annotation to label a user specified lat/lon/height on the map
+#
+# 2) student implements the slope equation to calculate variables "slope" and conditionals to figure out a variable "aspect"
+#
+# 3) talk about handling edge cases, arr[-1] and more conditionals to avoid "falling off the edge of the map"
+#
+# 4) final product: one code cell that, when run, takes in a user-specified lat/lon pair and outputs a scientific figure with the point labelled lat/lon/height/slope/aspect
 
 # %%
 from e211_lib import e211 
@@ -52,8 +59,8 @@ lons = np.linspace(0, 359, topo.shape[1])
 
 # %%
 # take in a lat/lon point as input. old lab uses matlab's graphical input function
-usrlat =  int(input("lat: "))
-usrlon =  int(input("lon: "))
+usrlat =  30 #int(input("lat: "))
+usrlon =  100 #int(input("lon: "))
 
 # get the indices of topo that match user specified lat and lon
 ilat, ilon = usrlat - 90, usrlon
@@ -91,8 +98,11 @@ plt.annotate(the_label, (usrlon + 10, usrlat));
 # 1.  Add the code to make this work for points well within the DEM (i.e. away from the edges of the map). Make sure the trigonometric functions you use are for degrees and not radians. You may find the functions `np.deg2rad()` and `np.rad2deg()` helpful
 
 # %%
-slope = np.rad2deg(np.arctan((topo[ilat, ilon + 1] - topo[ilat, ilon - 1]) / (2 * 111e3 * np.cos(np.deg2rad(usrlat)))))
-slope, topo[ilat, ilon] # slight rounding error, matlab answer was -0.187deg
+slope = np.rad2deg(np.arctan((topo[ilat, ilon + 1] 
+                              - topo[ilat, ilon - 1]) 
+                              / (2 * 111e3 
+                              * np.cos(np.deg2rad(usrlat)))))
+slope, topo[ilat, ilon]
 
 # %% [markdown]
 # 2.  Then use the built-in functiondisp(and you MUST use disp) to output to the screen:
@@ -134,3 +144,24 @@ print(out_msg)
 
 # %% [markdown]
 # python has no problems with this, since array[-1] accesses the last element of the array (which is what we want). 
+#
+# modify the plotting function instead?
+
+# %%
+if slope > 0.1:
+    aspect = "west"
+elif slope < -0.1:
+    aspect = "east"
+else:
+    aspect = "flat"
+
+# make the plot (see lab 3)
+img = plt.contourf(lons, lats, topo)
+plt.xlabel("longitude (deg)")
+plt.ylabel("latitude (deg)")
+
+# use the "annotate" function to label the chosen point on the plot
+plt.annotate("X", (usrlon, usrlat), color="red")
+the_label = f"lat: {usrlat}$^o$\nlon: {usrlon}$^o$\nheight: \
+{topo[ilat, ilon]}m\nslope: {round(slope, 3)}$^o$\naspect: {aspect}"
+plt.annotate(the_label, (usrlon + 10, usrlat));
