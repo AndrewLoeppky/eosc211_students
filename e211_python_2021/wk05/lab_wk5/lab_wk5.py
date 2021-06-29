@@ -7,7 +7,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.11.3
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -94,16 +94,28 @@ usrlat =  30.5 #float(input("lat: "))
 usrlon =  100.5 #float(input("lon: "))
 
 # assign new variables for the indexes of user specified lat lon
-ilat = np.where(lats == usrlat)
-ilon = np.where(lons == usrlon)
+
+#pha -- always dangerous to do exact comparison on a float
+ilat = np.where(lats == usrlat)[0][0]
+ilon = np.where(lons == usrlon)[0][0]
+#
+# pha -- here's the correct approach could also break into
+# two steps instead of chaining
+#
+ilat = np.abs(lats-usrlat).argmin()
+ilon = np.abs(lons-usrlon).argmin()
+
 
 # make the (basic) plot
 img = plt.contourf(lons, lats, topo)
 
 # use the "annotate" function to label the chosen point on the plot
 plt.annotate("X", (usrlon, usrlat), color="red")
-the_label = f"lat: {usrlat} deg\nlon: {usrlon} deg\nheight: {topo[ilat, ilon]}m"
-plt.annotate(the_label, (usrlon + 10, usrlat));
+the_label = f"lat: {usrlat} deg\nlon: {usrlon} deg\nheight: {topo[ilat, ilon]} m"
+plt.annotate(the_label, (usrlon + 10, usrlat), color='white');
+topo.shape
+ilat
+ilon
 
 # %% [markdown]
 # ## Part 2:  Calculate the Topography Slope
