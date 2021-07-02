@@ -50,3 +50,12 @@ def load_topo(my_data):
 
 
 # %%
+def load_aircraft(my_data):
+    """
+    designed to load aircraft gps path for lab wk6
+    """
+    matfile = loadmat(my_data)["gps"]
+    vel= matfile["vel"][0][0][0]
+    time = matfile["mtime"][0][0][0] # current format = unix epoch + <days>
+    
+    return vel, time
