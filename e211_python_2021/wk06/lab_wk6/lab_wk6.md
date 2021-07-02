@@ -94,24 +94,40 @@ plt.plot(vel)
 ```
 
 ```python
-### do the running mean ###
 
-winlen = 50  # L from equation 3
+```
+
+2.  Now write an algorithm to determine the running MEDIAN over a window lengthwinlen_med(use the built-in functionmedianto replace the running mean loop). Be careful and explicitly label(with comments) what the inputs and outputs for the running median code should be.  The outputvariable for the running median code should be namedzm. Add this code torunmeanso there aretwo outputs for the whole script:zandzm.Why would you use a running median?  In the case of the temperature data most (or all) of thedata is correct, or at least not wildly and obviously wrong. This is generally untypical of real data,which often show very intermittent “obviously erroneous” measurements for various reasons.  Forexample, the figure on page 1 shows a speed derived from GPS positions measured on a float-planeflying a survey over the Strait of Georgia (this data can be found in the variablegps.velcontainedin the structuregpswhich is stored in the datafileaircraft_gps.mat). Note that the speed tendsto vary smoothly between 30 and 50 m/s, but there are strange spikes in the series (especially inthe middle part of the time series when the plane is turning a lot), related to changes in the pathsof radio-wave propagation when the aircraft changes its orientation and certain parts of the sky areobscured. These are clearly “bad data” because the speed of anything real won’t change by 20 m/sfor only one second!Now,  if  we  were  interested  in  the  speed,  taking  a  running  average  will  not  really  help  matters(go ahead - use your code above to see) because it will tend to pull the smooth curve away fromthe  “correct”  points.   But  a  running  median,  if  the  window  is  long  enough,  can  REJECT  theseOUTLIERS.Test your algorithm withgps.velusingwinlen_med=7. When working properly the spikes willbe removed from the time series.
+
+```python
+# andrew's soln
+# running mean and median
+
+winlen = 7  # L from equation 3
 window_ind = int((winlen - 1) / 2)  # equation 4
 
 # discuss this vs the np.append() approach
 z = np.zeros_like(vel)
+zm = np.zeros_like(vel)
 
-# outer loop skips beginning and end points (they are taken to 0)
-# we could do the sum over fewer points, but its more complicated and this dataset is huge/high res
-for i in range(window_ind, len(vel) - window_ind): 
-    for k in range(i - window_ind, i + window_ind):
+# the crux here is remembering that range(a,b) and/or [a:b] are INCLUSIVE of a and EXCLUSIVE of b
+# not recoginizing this will give you the wrong answer
+for i in range(window_ind, len(vel) - window_ind):
+    for k in range(i - window_ind, i + window_ind + 1):
         z[i] += vel[k] / winlen  # eqn 2
+    z[i] = np.mean(vel[i - window_ind : i + window_ind + 1])  # the vectorized version
+    zm[i] = np.median(vel[i - window_ind : i + window_ind + 1])
 
-plt.plot(z)
 ```
 
-2.  Now write an algorithm to determine the running MEDIAN over a window lengthwinlen_med(use the built-in functionmedianto replace the running mean loop). Be careful and explicitly label(with comments) what the inputs and outputs for the running median code should be.  The outputvariable for the running median code should be namedzm. Add this code torunmeanso there aretwo outputs for the whole script:zandzm.Why would you use a running median?  In the case of the temperature data most (or all) of thedata is correct, or at least not wildly and obviously wrong. This is generally untypical of real data,which often show very intermittent “obviously erroneous” measurements for various reasons.  Forexample, the figure on page 1 shows a speed derived from GPS positions measured on a float-planeflying a survey over the Strait of Georgia (this data can be found in the variablegps.velcontainedin the structuregpswhich is stored in the datafileaircraft_gps.mat). Note that the speed tendsto vary smoothly between 30 and 50 m/s, but there are strange spikes in the series (especially inthe middle part of the time series when the plane is turning a lot), related to changes in the pathsof radio-wave propagation when the aircraft changes its orientation and certain parts of the sky areobscured. These are clearly “bad data” because the speed of anything real won’t change by 20 m/sfor only one second!Now,  if  we  were  interested  in  the  speed,  taking  a  running  average  will  not  really  help  matters(go ahead - use your code above to see) because it will tend to pull the smooth curve away fromthe  “correct”  points.   But  a  running  median,  if  the  window  is  long  enough,  can  REJECT  theseOUTLIERS.Test your algorithm withgps.velusingwinlen_med=7. When working properly the spikes willbe removed from the time series.
+```python
+# output comparing the raw data and two smoothing techniques
+fig, ax = plt.subplots(figsize=(15,5))
+ax.plot(vel, label="raw data")
+ax.plot(z, label="running mean")
+ax.plot(zm, label="running median")
+plt.legend()
+```
 
 ```python
 
