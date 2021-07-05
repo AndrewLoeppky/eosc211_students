@@ -27,13 +27,17 @@ jupyter:
 
 ### Themes
 
-loops
+loops -- enumerate, range(len(whatever))
 
-top down design
-
-testing code/writing code that passes tests -- how to do without functions??
+top down design -- needs to work for arbitrary dataset
 
 doing the math -- running mean/median equations
+
+datetimes - hide for now, parsedates
+
+for week 8 - all functions have return statements, even if its None
+positional arguments (file), kwargs (winlen=7), docstrings, scope. 
+
 
 
 ### Intro
@@ -115,8 +119,10 @@ zm = np.zeros_like(vel)
 for i in range(window_ind, len(vel) - window_ind):
     for k in range(i - window_ind, i + window_ind + 1):
         z[i] += vel[k] / winlen  # eqn 2
+    
     z[i] = np.mean(vel[i - window_ind : i + window_ind + 1])  # the vectorized version
     zm[i] = np.median(vel[i - window_ind : i + window_ind + 1])
+
 
 ```
 
@@ -126,7 +132,7 @@ fig, ax = plt.subplots(figsize=(15,5))
 ax.plot(vel, label="raw data")
 ax.plot(z, label="running mean")
 ax.plot(zm, label="running median")
-plt.legend()
+ax.legend()
 ```
 
 ```python
