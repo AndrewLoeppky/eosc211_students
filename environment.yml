@@ -14,4 +14,7 @@ dependencies:
   - pip
   - scipy
   - matplotlib
+  - dateparser
+  - conda-lock
+  - mamba
 # conda-lock -f environment.yml -p linux-64
