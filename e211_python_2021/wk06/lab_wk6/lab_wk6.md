@@ -39,7 +39,6 @@ for week 8 - all functions have return statements, even if its None
 positional arguments (file), kwargs (winlen=7), docstrings, scope. 
 
 
-
 ### Intro
 
 In the very first lab you plotted a long sequence (a TIME SERIES) of temperatures at Sand Heads.  Remember that the data showed a broad seasonal trend (colder in winter, warmer in summer), but that at veryshort time scales (a day or two) there was a great deal of variability which gave the curve a fuzzy lookwhen you plotted a whole year.  It is often very useful to be able to “SMOOTH” a time series to betterdisplay broad trends by averaging away the short-time variability. A very simple way of smoothing a time series is to use a so-called RUNNING MEAN. Imagine thatNdata points are recorded hourly, and number them 1,2,3,. . .,i−1, i, i+ 1,. . .,Nas they appear in a vector.If we are calculating a 5 point running mean, then the 5th point in the SMOOTHED time series will bethe average of points 3, 4, 5, 6 and 7 from the original time series (from “two-to-the-left” to “two-to-the-right”).  The 6th point in the smoothed time series will be the average of points 4, 5, 6, 7,and 8 from theoriginal time series. The 7th point will be the average of points 5, 6, 7, 8, and 9. And so on, moving overone point each time, with your window RUNNING through the time series, calculating the average of thepoints in the window at each point in the original series (Fig. 2).
@@ -92,9 +91,15 @@ from matplotlib import pyplot as plt
 
 ```python
 # load data
+
+# aircraft velocity time series
 vel = e211.load_aircraft("aircraft_gps.mat")
-# quick visualization
-plt.plot(vel)
+
+
+# sand heads temperature time series
+temp, time = e211.load_temps("sand_heads.mat")
+
+time
 ```
 
 ```python

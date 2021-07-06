@@ -10,6 +10,19 @@ course: eosc 211 - computer methods for earth, ocean and atmospheric scientists
 from PIL import Image
 import numpy as np
 from scipy.io import loadmat
+#import dateparser
+
+# %%
+def load_temps(my_data):
+    """
+    loads temperature timeseries from Sand Heads. 
+    Output is a tuple (temp, time) of np arrays
+    """
+    matfile = loadmat(my_data)
+    temp = matfile["temperature"].flatten()
+    time = 0
+    #time = dateparser.parse(matfile["time"].flatten())
+    return temp, time
 
 
 # %%
