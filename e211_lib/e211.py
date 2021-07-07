@@ -10,7 +10,10 @@ course: eosc 211 - computer methods for earth, ocean and atmospheric scientists
 from PIL import Image
 import numpy as np
 from scipy.io import loadmat
-#import dateparser
+import dateparser
+
+
+# %%
 
 # %%
 def load_temps(my_data):
@@ -20,8 +23,7 @@ def load_temps(my_data):
     """
     matfile = loadmat(my_data)
     temp = matfile["temperature"].flatten()
-    time = 0
-    #time = dateparser.parse(matfile["time"].flatten())
+    time = matfile["time"].flatten()
     return temp, time
 
 
@@ -73,4 +75,4 @@ def load_aircraft(my_data):
     vel = matfile["vel"][0][0][0]
     time = matfile["mtime"][0][0][0]  # current format = unix epoch + <days>
 
-    return vel  # , time
+    return vel, time
