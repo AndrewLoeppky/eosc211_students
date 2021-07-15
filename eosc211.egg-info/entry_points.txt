@@ -1,0 +1,4 @@
+[console_scripts]
+build_notebook = e211_lib.build_notebook:main
+image_extract = e211_lib.image_extract:main
+
