@@ -51,15 +51,20 @@ lats = the_file[:,1]
 lons = the_file[:,2]
 u_vel = the_file[:,3]
 v_vel = the_file[:,4]
-u_dev = the_file[:,5]
-v_dev = the_file[:,6]
+#u_dev = the_file[:,5]
+#v_dev = the_file[:,6]
 
-# pack into a dictionary
-data_dict = {"lats":lats, "lons":lons, "u_vel":u_vel, "v_vel":v_vel, "u_dev":u_dev, "v_dev":v_dev}
+# or
+var_dict = {"lats":the_file[:,1], 
+            "lons":the_file[:,2], 
+            "u_vel":the_file[:,3],
+            "v_vel":the_file[:,4]}
+            #"u_dev":the_file[:,5],
+            #"v_dev":the_file[:,6]}
 ```
 
 ```python
-def move_to_grid(csv_data):
+def move_to_grid(lats, lons, u_vel, v_vel):
     """
     function to create 2D arrays out of FORTRAN formatted csv data
     
@@ -97,30 +102,50 @@ def move_to_grid(csv_data):
     # into the right place (i.e. index (i,j) )
     # in the U/V matrices 
 
-    print(u.shape)
-    for k in range(len(lats)-1):
-        i = int(lons[k] + 78)  # row index
-        j = int(lats[k] + 179)  # column index
+    
+    for k in range(len(lats)):
+        i = int(lons[k]) + 78  # row index
+        j = int(lats[k]) + 179  # column index
         u[i,j] = u_vel[k]
         v[i,j] = v_vel[k]
+        
+    return lon_0, lat_0, u, v
+
+
 ```
 
 ```python
+lons, lats, u, v = move_to_grid(**var_dict)  # the cool way
+#lons, lats, u, v = move_to_grid(lats, lons, u_vel, v_vel)  # the standard way
+                               
 plt.contourf(u)
 ```
 
 ```python
-lons
+# splatting and tutorial snippet
+
+my_list = [3,4]
+my_dict = {"a":5, "b":6}
+
+def print_vars(a, b):
+    print(a)
+    print(b)
+    return None
+
+print("normal function call:")
+print_vars(1,2)  
+print("splat from a list (or tuple)")
+print_vars(*my_list)
+print("double splat from a dictionary")
+print_vars(**my_dict)
 ```
 
 ```python
-# do it the pandas way
-import pandas as pd
+
 ```
 
 ```python
-currents = pd.read_csv("lab9_old/mgsva_MJJ.csv", names=["fortran_artifact", "lon", "lat", "U", "V", "stdev_U", "stdev_V"])
-currents
+
 ```
 
 ```python
