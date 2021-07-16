@@ -135,17 +135,17 @@ def mean2d(in_map, winlen):
         wn = int((winlen - 1) / 2)
         
         # loop through each element in the map and perform the average
+        # no attempts made yet to address edge effects
         for i in range(nrows):
             for j in range(ncols):
-                # don't filter the land elements
-                if np.isnan(in_map[i,j]):
-                    out_map[i,j] = np.nan
-                else:
+                # don't filter the land elements (not working.. why?)
+                if not np.isnan(in_map[i,j]):
                     the_window = out_map[i - wn:i + wn + 1,j - wn:j + wn + 1]
                     # nanmean is a function that takes the mean
                     # while ignoring nan values
                     out_map[i,j] = np.nanmean(the_window) 
-        
+                else:              
+                    out_map[i,j] = np.nan
         return out_map
       
     
@@ -165,10 +165,28 @@ def mean2d(in_map, winlen):
 ```
 
 ```python
-lons, lats, u, v = move_to_grid(**var_dict)  # the honking great way
 #lons, lats, u, v = move_to_grid(lats, lons, u_vel, v_vel)  # the standard way
- 
-plt.contourf(mean2d(u, 19))
+lons, lats, u, v = move_to_grid(**var_dict)  # the honking great way
+
+# calculate magnitude of current velocity
+m = (u ** 2 + v ** 2) ** 0.5
+
+# filter the velocity fields
+filter_width = 11
+u_filt = mean2d(u, filter_width)
+v_filt = mean2d(v, filter_width)
+m_filt = mean2d(m, filter_width)
+
+# grab only the decfac^th element of each array on which to plot arrows
+#arrow_mask = np.
+```
+
+```python
+fig, ax = plt.subplots(figsize = (30,20))
+
+ax.contourf(m_filt)
+ax.quiver(u_filt, v_filt, pivot="middle")
+
 ```
 
 ```python
@@ -191,7 +209,7 @@ print_vars(**my_dict)
 ```
 
 ```python
-
+np.nanmean(np.array([np.nan, np.nan,1]))
 ```
 
 ```python
