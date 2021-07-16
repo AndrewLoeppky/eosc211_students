@@ -47,6 +47,7 @@ from matplotlib import pyplot as plt
 the_file = np.genfromtxt("lab9_old/mgsva_MJJ.csv",delimiter=",")
 
 # extract variables from the csv
+# (explicit + flat is better than implicit + nested)
 lats = the_file[:,1]
 lons = the_file[:,2]
 u_vel = the_file[:,3]
@@ -55,6 +56,7 @@ v_vel = the_file[:,4]
 #v_dev = the_file[:,6]
 
 # or
+# (namespaces are a honking great idea)
 var_dict = {"lats":the_file[:,1], 
             "lons":the_file[:,2], 
             "u_vel":the_file[:,3],
@@ -75,7 +77,8 @@ def move_to_grid(lats, lons, u_vel, v_vel):
     is an artifact from FORTRAN formatting)
     
     out: 
-    2D arrays: coords, u, v, udev, vdev
+    1D arrays: lat_0, lon_0
+    2D arrays: u, v
     """
     # set up grids
     # initializing with NaNs also automatically deals with points where there is
@@ -94,8 +97,8 @@ def move_to_grid(lats, lons, u_vel, v_vel):
     # indices 'j'. Since we have a 1 degree spacing
     # we just have to add the right offset
     # to make this work - for example, for latitudes
-    # latitude of -89 goes to row 1,
-    # latitude of -88 goes to row 2, etc.
+    # latitude of -89 goes to row 0,
+    # latitude of -88 goes to row 1, etc.
     #
     # Then write the
     # corresponding U/V data for that lat/long
@@ -110,19 +113,66 @@ def move_to_grid(lats, lons, u_vel, v_vel):
         v[i,j] = v_vel[k]
         
     return lon_0, lat_0, u, v
+```
 
+```python
+def mean2d(in_map, winlen):
+    """
+    Takes a 2D running mean of an input np array
+    
+    in:  winlen -- window length
+         in_map -- numpy array on which to perform the running mean. 
+        
+    assumes in_map is a world map, and wraps longitude[-1] around to [0] 
+    
+    out: out_map -- the filtered map
+    """
+    # put the actual filtering operation in a subfunction
+    def do_mean(in_map, winlen):
+        # initialize the output array and relevant variables
+        out_map = np.empty_like(in_map)
+        nrows, ncols = in_map.shape
+        wn = int((winlen - 1) / 2)
+        
+        # loop through each element in the map and perform the average
+        for i in range(nrows):
+            for j in range(ncols):
+                # don't filter the land elements
+                if np.isnan(in_map[i,j]):
+                    out_map[i,j] = np.nan
+                else:
+                    the_window = out_map[i - wn:i + wn + 1,j - wn:j + wn + 1]
+                    # nanmean is a function that takes the mean
+                    # while ignoring nan values
+                    out_map[i,j] = np.nanmean(the_window) 
+        
+        return out_map
+      
+    
+    # check for odd winlen
+    winlen = int(winlen)
+    if winlen % 2 == 0:
+        print("input arg winlen must be even")
+        return None
+    # winlen of 1 means "do nothing"    
+    elif winlen == 1:
+        return in_map
+    # do the calculation and return result
+    else:
+        return do_mean(in_map, winlen)
+    
 
 ```
 
 ```python
-lons, lats, u, v = move_to_grid(**var_dict)  # the cool way
+lons, lats, u, v = move_to_grid(**var_dict)  # the honking great way
 #lons, lats, u, v = move_to_grid(lats, lons, u_vel, v_vel)  # the standard way
-                               
-plt.contourf(u)
+ 
+plt.contourf(mean2d(u, 19))
 ```
 
 ```python
-# splatting and tutorial snippet
+# splatting and doublesplatting tutorial snippet
 
 my_list = [3,4]
 my_dict = {"a":5, "b":6}
