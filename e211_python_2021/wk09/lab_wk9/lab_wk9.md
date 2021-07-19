@@ -128,41 +128,87 @@ def mean2d(in_map, winlen):
     out: out_map -- the filtered map
     """
     # put the actual filtering operation in a subfunction
-    def do_mean(in_map, winlen):
+    def do_mean_dep(in_map, winlen):
         # initialize the output array and relevant variables
         out_map = np.empty_like(in_map)
         nrows, ncols = in_map.shape
-        wn = int((winlen - 1) / 2)
+        wn = int((winlen - 1) // 2)
         
         # loop through each element in the map and perform the average
         # no attempts made yet to address edge effects
         for i in range(nrows):
             for j in range(ncols):
+                
+                iv = i + np.arange(-wn, wn)  # indeces for rows to use
+                jv = j + np.arange(-wn, wn)  # inceces for cols
+                
+                # don't include points above or below the map
+                iv[iv < 0] = np.nan  
+                iv[iv > nrows] = np.nan
+                
+                # wrap around points off the right edge of the map
+                jv[jv > ncols] = jv[jv > ncols] - ncols
+                
                 # don't filter the land elements (not working.. why?)
-                if not np.isnan(in_map[i,j]):
-                    the_window = out_map[i - wn:i + wn + 1,j - wn:j + wn + 1]
-                    # nanmean is a function that takes the mean
-                    # while ignoring nan values
-                    out_map[i,j] = np.nanmean(the_window) 
+                if np.isnan(in_map[iv,jv]):
+                    out_map[iv,jv] = np.nan
                 else:              
-                    out_map[i,j] = np.nan
+                    the_window = out_map[iv - wn:iv + wn + 1,jv - wn:jv + wn + 1]
+                    # nanmean is a function that returns the mean
+                    # while ignoring nan values
+                    out_map[iv,jv] = np.nanmean(the_window)
         return out_map
-      
+     
+    def do_mean(in_map, winlen):
+        # initialize output array and internal variables
+        out_map = np.empty_like(in_map)
+        out_map[:] = np.nan
+        nrows, ncols = in_map.shape
+        wn = int((winlen - 1) // 2)
+        
+        # loop through every point (i, j) in the grid:
+        # (ignore edges for now)
+        for i in range(wn, nrows - wn):
+            for j in range(wn, ncols - wn):
+                # don't filter points containing nan (ie land, edge of map)
+                if not np.isfinite(in_map[i,j]):
+                    out_map[i,j] = np.nan
+                else:
+                    # create the window
+                    imin = i - wn
+                    imax = i + wn + 1
+                    jmin = j - wn
+                    jmax = j + wn + 1
+                    
+                    the_window = in_map[imin:imax, jmin:jmax]
+                    the_mean = np.nanmean(the_window)
+                    # use nanmean to take the mean, ignoring nan values
+                    out_map[i,j] = np.nanmean(the_window)
+                    
+        return out_map
+                
     
     # check for odd winlen
     winlen = int(winlen)
     if winlen % 2 == 0:
-        print("input arg winlen must be even")
+        print("input arg 'winlen' must be even")
         return None
     # winlen of 1 means "do nothing"    
     elif winlen == 1:
         return in_map
     # do the calculation and return result
     else:
-        return do_mean(in_map, winlen)
+        out_map = do_mean(in_map, winlen)
+        return out_map
     
 
 ```
+
+Equation for velocity magnitude:
+
+$$
+m = \sqrt{u^2 + v^2}
+$$
 
 ```python
 #lons, lats, u, v = move_to_grid(lats, lons, u_vel, v_vel)  # the standard way
@@ -173,19 +219,27 @@ m = (u ** 2 + v ** 2) ** 0.5
 
 # filter the velocity fields
 filter_width = 11
-u_filt = mean2d(u, filter_width)
-v_filt = mean2d(v, filter_width)
-m_filt = mean2d(m, filter_width)
+#u_filt = mean2d(u, filter_width)
+#v_filt = mean2d(v, filter_width)
+#m_filt = mean2d(m, filter_width)
 
 # grab only the decfac^th element of each array on which to plot arrows
 #arrow_mask = np.
+
+plt.contourf(m)
 ```
 
 ```python
-fig, ax = plt.subplots(figsize = (30,20))
+m_filt = mean2d(m, 11)
+
+fig, ax = plt.subplots()
 
 ax.contourf(m_filt)
-ax.quiver(u_filt, v_filt, pivot="middle")
+#ax.quiver(u_filt, v_filt, pivot="middle")
+
+```
+
+```python
 
 ```
 
@@ -209,7 +263,10 @@ print_vars(**my_dict)
 ```
 
 ```python
-np.nanmean(np.array([np.nan, np.nan,1]))
+x = np.array([[1,2,3,4,5],
+              [3,2,np.nan,3,2]])
+
+np.nanmean(x)
 ```
 
 ```python
