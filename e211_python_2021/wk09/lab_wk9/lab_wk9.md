@@ -37,6 +37,8 @@ or...
 
 Pivot learning goals and use this week to talk about dictionaries?
 
+Current version does roughly what the old matlab code did, using pure functions
+
 ```python
 import numpy as np
 from matplotlib import pyplot as plt
@@ -237,22 +239,19 @@ u_filt = mean2d(u, filter_width)
 v_filt = mean2d(v, filter_width)
 m_filt = mean2d(m, filter_width)
 
-# grab only the decfac^th element of each array on which to plot arrows
-#arrow_mask = np.
-
-plt.contourf(m_filt)
-```
-
-```python
-fig, ax = plt.subplots()
-
-ax.contourf(m_filt)
-ax.quiver(u_filt, v_filt, pivot="middle")
+# apply mask to make nicely spaced arrows
+u_masked = mask_nth(u_filt, filter_width)
+v_masked = mask_nth(v_filt, filter_width)
 
 ```
 
 ```python
-masked_map = mask_nth(m_filt, 10)
+# do the plot
+fig, ax = plt.subplots(figsize=(10,7))
+
+ax.contourf(m_filt,cmap="magma")
+ax.quiver(u_masked, v_masked, pivot="middle", scale=15)
+ax.set_title("The World")
 ```
 
 ```python
@@ -272,18 +271,6 @@ print("splat from a list (or tuple)")
 print_vars(*my_list)
 print("double splat from a dictionary")
 print_vars(**my_dict)
-```
-
-```python
-
-```
-
-```python
-
-```
-
-```python
-
 ```
 
 ```python
