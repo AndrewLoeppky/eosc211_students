@@ -181,7 +181,6 @@ def mean2d(in_map, winlen):
                     jmax = j + wn + 1
                     
                     the_window = in_map[imin:imax, jmin:jmax]
-                    the_mean = np.nanmean(the_window)
                     # use nanmean to take the mean, ignoring nan values
                     out_map[i,j] = np.nanmean(the_window)
                     
@@ -198,10 +197,25 @@ def mean2d(in_map, winlen):
         return in_map
     # do the calculation and return result
     else:
-        out_map = do_mean(in_map, winlen)
-        return out_map
-    
+        return do_mean(in_map, winlen)
+```
 
+```python
+def mask_nth(in_map, n):
+    """
+    returns a 2d array with all values np.nan except points on a grid of n x n spacing
+    
+    in: 
+        in_map: 2d numpy array
+        n: desired spacing of points
+        
+    out:
+        masked_map: 2d numpy array with mask applied
+    """
+    masked_map = np.empty_like(in_map)
+    masked_map[:] = np.nan
+    masked_map[::n,::n] = in_map[::n,::n]
+    return masked_map
 ```
 
 Equation for velocity magnitude:
@@ -219,28 +233,26 @@ m = (u ** 2 + v ** 2) ** 0.5
 
 # filter the velocity fields
 filter_width = 11
-#u_filt = mean2d(u, filter_width)
-#v_filt = mean2d(v, filter_width)
-#m_filt = mean2d(m, filter_width)
+u_filt = mean2d(u, filter_width)
+v_filt = mean2d(v, filter_width)
+m_filt = mean2d(m, filter_width)
 
 # grab only the decfac^th element of each array on which to plot arrows
 #arrow_mask = np.
 
-plt.contourf(m)
+plt.contourf(m_filt)
 ```
 
 ```python
-m_filt = mean2d(m, 11)
-
 fig, ax = plt.subplots()
 
 ax.contourf(m_filt)
-#ax.quiver(u_filt, v_filt, pivot="middle")
+ax.quiver(u_filt, v_filt, pivot="middle")
 
 ```
 
 ```python
-
+masked_map = mask_nth(m_filt, 10)
 ```
 
 ```python
@@ -263,10 +275,7 @@ print_vars(**my_dict)
 ```
 
 ```python
-x = np.array([[1,2,3,4,5],
-              [3,2,np.nan,3,2]])
 
-np.nanmean(x)
 ```
 
 ```python
