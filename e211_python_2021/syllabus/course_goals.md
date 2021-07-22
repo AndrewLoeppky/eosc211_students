@@ -1,3 +1,18 @@
+---
+jupyter:
+  jupytext:
+    formats: ipynb,md
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.3'
+      jupytext_version: 1.11.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # course syllabus
 
 ## Old Syllabus 
@@ -14,6 +29,9 @@
 4.  Modifying existing MATLAB code,  using the elements of good programming style,  to make  it  more  efficient,  readable,  and  documented  for  future  use:  naming  conventions;appropriate syntax;  structures;  modularization using functions;  using built-in functions;code reuse; good documentation  practices; vectorization of loop operations
 
 5.  Creating scientifically informative and visually appealing plots (scatterplots, time series,contours,  multiple subplots, legends)
+
+
+
 
 ##  New Syllabus Brainstorming ###################
 
@@ -44,3 +62,41 @@ BIG PRINCIPLES:
 - Make it look good
 - Keep your hard drive organized just like you would a lab bench
 - namespaces are one honking great idea -- lets do more of those
+
+
+
+
+ week | worksheets | lab
+ ---  |--- |   --- |
+ 1| none | none
+ 2| algorithm design, intro to python, built in functions, data types | intro to jupyterlab (not yet created)
+ 3|intro to numpy arrays, built in functions, slicing *ZOP*| matplotlib, scientific figures, [import, input, process, output], array manipulation
+ 4| DNE | math, code structuring, plt subplots
+ 5| logic, `if elif else` | plt.annotate(), f strings, type casting, user input
+ 6| loops | filtering with running mean/median, implemented with loops (slow)
+ 7| MIDTERM
+ 8| functions | re-do lab 6 with functions
+ 9| debugging and error types (off by one, fencepost) | go through a "large" functional program, using dictionaries, `*args, **kwargs` 
+ 10| dictionaries and f strings | DNE
+ 11| vectorization and speed | interpolation with scipy
+ 12| vectorization practice, file IO (csv) | DNE
+ 13| review, linear algebra | DNE
+ 
+#### things that arent in e211 that should be(?):
+
+* formal discussion of objects
+* pandas
+* xarray
+* geopandas -- for the gis students
+* scipy for linalg, integrations
+* DIY python, how to set up your own workflow
+* shell tutorial
+* timeit module
+* numba?
+* intro to git
+* file IO with python
+* datetime
+
+
+
+
