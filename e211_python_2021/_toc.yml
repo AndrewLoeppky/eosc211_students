@@ -1,6 +1,9 @@
 format: jb-book
-root: syllabus/course_goals.md
+root: announcements.md
 parts:
+  - caption: Week 1
+    chapters:
+      - file: syllabus/course_goals.md
   - caption: Week 2
     chapters:
       - file: wk02/worksheet_steps_in_problem_solving.md
@@ -37,3 +40,14 @@ parts:
       - file: wk09/debugging
       - file: wk09/debugging_2.md
       - file: wk09/lab_wk9/lab_wk9.md
+  - caption: Week 10
+    chapters:
+      - file: wk10/dictionaries_and_f_strings.md
+  - caption: Week 11
+    chapters:
+      - file: wk11/loops_and_vectorization.ipynb
+      - file: wk11/lab_wk11/lab_wk11.md
+  - caption: Week 12
+    chapters:
+      - file: wk12/file_io_practice.md
+      - file: exercises.md
