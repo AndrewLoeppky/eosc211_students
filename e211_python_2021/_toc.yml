@@ -1,0 +1,39 @@
+format: jb-book
+root: syllabus/course_goals.md
+parts:
+  - caption: Week 2
+    chapters:
+      - file: wk02/worksheet_steps_in_problem_solving.md
+      - file: wk02/some_review_plus_built_in_functions_arrays_preview.md
+  - caption: Week 3
+    chapters:
+      - file: wk03/data_structures.md
+      - file: wk03/data_structures_ii.md
+      - file: wk03/lab_wk3
+      - file: wk03/lab_wk3/lab_week3.md
+  - caption: Week 4
+    chapters:
+      - file: wk04/lab_wk4/lab_wk4.md
+  - caption: Week 5
+    chapters:
+      - file: wk05/logic.md
+      - file: wk05/complicated_logic.md
+      - file: wk05/lab_wk5/lab_wk5.md
+  - caption: Week 6
+    chapters:
+      - file: wk06/loops.md
+      - file: wk06/loops_ii.md
+      - file: wk06/lab_wk6/lab_wk6.md
+  - caption: Week 7
+    chapters:
+      - file: wk07/midterm_review.ipynb
+  - caption: Week 8
+    chapters:
+      - file: wk08/functions.md
+      - file: wk08/functions_ii.md
+      - file: wk08/lab_wk8/lab_wk8.md
+  - caption: Week 9
+    chapters:
+      - file: wk09/debugging
+      - file: wk09/debugging_2.md
+      - file: wk09/lab_wk9/lab_wk9.md
