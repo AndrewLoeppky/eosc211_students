@@ -5,10 +5,10 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: '1.2'
-      jupytext_version: 1.5.1
+      format_version: '1.3'
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
@@ -21,7 +21,7 @@ jupyter:
 
 **Learning Objective:** Practice the steps in problem solving using earthquake data.
 
-![](.\quakemap.png)
+<img src=".\quakemap.png" width="500">
 
 
 ### Question 1

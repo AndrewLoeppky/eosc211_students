@@ -6,12 +6,14 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.2
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
+
+# Lab Week 8
 
 for week 8 - all functions have return statements, even if its None
 positional arguments (file), kwargs (winlen=7), docstrings, scope. 

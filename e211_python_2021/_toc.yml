@@ -12,8 +12,7 @@ parts:
     chapters:
       - file: wk03/data_structures.md
       - file: wk03/data_structures_ii.md
-      - file: wk03/lab_wk3
-      - file: wk03/lab_wk3/lab_week3.md
+      - file: wk03/lab_wk3/lab_wk3.md
   - caption: Week 4
     chapters:
       - file: wk04/lab_wk4/lab_wk4.md
@@ -37,7 +36,7 @@ parts:
       - file: wk08/lab_wk8/lab_wk8.md
   - caption: Week 9
     chapters:
-      - file: wk09/debugging
+      - file: wk09/debugging.md
       - file: wk09/debugging_2.md
       - file: wk09/lab_wk9/lab_wk9.md
   - caption: Week 10
@@ -50,4 +49,4 @@ parts:
   - caption: Week 12
     chapters:
       - file: wk12/file_io_practice.md
-      - file: exercises.md
+      - file: wk12/exercises.md

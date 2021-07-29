@@ -6,9 +6,9 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.2
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
@@ -31,6 +31,7 @@ jupyter:
 
 ### Intro
 
+intro
 
 ### Themes
 
@@ -92,6 +93,8 @@ We would like to write code to calculate atmospheric pressure and density at any
 
 ### "Coding Up" the Hydrostatic Equations
 
+Write python code to solve for pressure and density
+
 ```python
 # inputs
 Tc = 20  # deg C
@@ -137,7 +140,7 @@ print(pres)
 print(dens)
 ```
 
-### The plt.subplots() Method
+### The `plt.subplots()` Method
 
 The outputs from the previous cell don't exactly jump off the page. We could show our results much better with, you guessed it: *a scientific figure!* Unlike last week, we have 2 separate but related datasets, and ideally we would like to present them together as one figure. For this we can use a slightly different plotting syntax, which creates one big "figure" object, and "axes" objects which are displayed on the figure. We can create the axes individually, referencing them using *slicing* to mess around with their content, labels, colours etc. just like the plot we created last week. The syntax for creating subplots is as follows:
 
@@ -212,7 +215,7 @@ $$
 where $R_d = 287J/K/kg$ is  the  ideal  gas  constant  for  dry  air.‡ To  check  units,  remember  that  $1\space Pa  =1\space kg/m/s^2$, and $1\space J=1\space kg m^2/s^2$.
 
 ---
----
+
 \* For oceanographers, density is a function of pressure, temperature, and salinity, and for geologists the density of (say) molten rock will depend on pressure, temperature, and its chemical composition. For this lab you just have to know that there *are* equations to figure out!
 
 † See *Meteorology Today for Scientists and Engineers*, R. Stull
