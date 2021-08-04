@@ -3,4 +3,4 @@ root: landing_page.md
 parts:
   - caption: First Part
     chapters:
-      - file: page_1.md
+      - file: page_1.ipynb
