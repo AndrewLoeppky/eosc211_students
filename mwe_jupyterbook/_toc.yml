@@ -1,0 +1,6 @@
+format: jb-book
+root: landing_page.md
+parts:
+  - caption: First Part
+    chapters:
+      - file: page_1.md
