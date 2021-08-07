@@ -10,7 +10,7 @@ course: eosc 211 - computer methods for earth, ocean and atmospheric scientists
 from PIL import Image
 import numpy as np
 from scipy.io import loadmat
-import dateparser
+import datetime
 
 
 # %%
@@ -76,3 +76,24 @@ def load_aircraft(my_data):
     time = matfile["mtime"][0][0][0]  # current format = unix epoch + <days>
 
     return vel, time
+
+
+# %%
+def mdate_to_datetime(mdate):
+    """
+    converts matlab dates to python datetime objects
+
+    matlab's date convention is days since Jan 1/0AD,
+    years and days are 1-indexed (ie jan = 1 not 0)
+    """
+    import datetime
+
+    the_date = datetime.date.fromordinal(int(mdate))
+    the_time = datetime.timedelta(days=(mdate % 1.0))
+
+    the_date = datetime.datetime(
+        the_date.year - 1,
+        the_date.month,
+        the_date.day - 1,
+    )
+    return the_date + the_time
