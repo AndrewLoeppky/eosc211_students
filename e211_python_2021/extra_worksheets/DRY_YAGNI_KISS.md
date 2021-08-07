@@ -58,7 +58,7 @@ z = 11.0 * 3333
 
 #### Method 2: Generalize Your Code 
 
-Method 2 appears to work, but what if we had to perform a larger number of similar calculations for some future problem? We can avoid writing out each varaible `x`, `y`, `z` and **repeating ourselves** by defining a function `multiply()` which takes in input arrays of arbitrary size and returns their product. Again, time how long it takes you to reach the solution.
+Method 1 appears to be working, but what if we had to perform a larger number of similar calculations for some future problem? We can avoid writing out each varaible `x`, `y`, `z` and **repeating ourselves** by defining a function `multiply()` which takes in input arrays of arbitrary size and returns their product. Again, time how long it takes you to reach the solution.
 
 ```python
 # your code here
@@ -130,7 +130,7 @@ do_math(vec1, vec2, "+")
 
 ### Reflection
 
-In your opinion, which of the above methods is the best solution for the given problem? Evaluate all three methods in terms of DRY, YAGNI, and KISS. State which one you thought was the best use of your time as a scientific programmer.
+In your opinion, which of the above methods is the *best* solution for the given problem? Evaluate all three methods in terms of DRY, YAGNI, and KISS. State which one you thought was the best use of your time as a scientific programmer.
 
 
 your answer here
