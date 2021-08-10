@@ -44,15 +44,86 @@ text
 ## get data (put this in the library when complete)
 import numpy as np
 from scipy.io import loadmat
+from e211_lib import e211
+from matplotlib import pyplot as plt
 ```
 
 ```python
-matdata = scipy.io.loadmat("Drifter_dataset.mat")
-matdata["D"]
+## pythonify the dataset. Or make some of this part of the assignment? ##
+
+matdata = loadmat("Drifter_dataset.mat")
+matdata = matdata["D"].flatten()
+
+drifter_id = matdata["id"] # drifter ID 
+design = matdata["design"] # 1-6 which type of drifter
+
+tzone = matdata["tzone"]  # time zone
+mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
+
+lon = matdata["lon"]  # drifter lons
+lat = matdata["lat"] # drifter lats
+
+comment = matdata["comment"]  # metadata
+at_sea = matdata["atSea"]  # status codes for working/landed drifters
+
+ends_on_land = matdata["endsOnLand"].flatten() # change from 1/0 logic to Python booleans
+ends_on_land[ends_on_land == 1] = True
+ends_on_land[ends_on_land == 0] = False
+
+found_on_land = matdata["foundOnLand"].flatten() # use booleans not 1/0
+found_on_land[found_on_land == 1] = True
+found_on_land[found_on_land == 0] = False
+
+launchdate = matdata["launchDate"]  # this is not working
+enddate = matdata["endDate"]  # neither is this
+
+lifetime = matdata["lifeTime"]  # decimal days from launchDate to endDate
+
+refloated = matdata["refloated"] # change to py logical
+refloated[refloated == 1] == True
+refloated[refloated == 0] == False
+
+first_ground_date = matdata["firstGrndDate"] # - float: matlab time for first grounding
+                                             #- matlab time of first of a string of atSea~=1, unless
+                                             # the last point in the record has atSea==1 and
+                                             # endsOnLand==1 in which case it is the time of the last
+                                             # point.
+
+first_lifetime = matdata["firstLifeTime"]    # - float: decimal days from launch to first grounding
+                                             # - 0 if endsOnLand==0 & refloated==0
+    
+vars_dict = {"drifter_id":drifter_id,
+            "design":design,
+            "tzone":tzone,
+            "mtime":mtime,
+            "lon":lon,
+            "lon":lat,
+            "comment":comment,
+            "at_sea":at_sea,
+            #"ends_on_land":ends_on_land,
+            #"found_on_land":found_on_land,
+            "launchdate":launchdate,
+            "enddate":enddate,
+            "lifetime":lifetime,
+            "refloated":refloated,
+            "first_ground_date":first_ground_date,
+            "first_lifetime":first_lifetime}
+
+# save as JSON
 ```
 
 ```python
-matdata["D"].flatten()[0][4]
+vars_dict.keys()
+```
+
+```python
+lon
+
+```
+
+```python
+for lons in drifter_id:
+    print(lons.reshape(0).shape)
 ```
 
 ```python
@@ -64,5 +135,7 @@ matdata["D"].flatten()[0][4]
 ```
 
 ```python
+my_ar = np.array([[[1]]])
 
+my_ar.flatten().shape
 ```
