@@ -4,3 +4,4 @@ parts:
   - caption: First Part
     chapters:
       - file: page_1.ipynb
+      - file: page_2.ipynb
