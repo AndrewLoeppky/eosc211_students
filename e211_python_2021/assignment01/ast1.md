@@ -49,21 +49,30 @@ from matplotlib import pyplot as plt
 ```
 
 ```python
-## pythonify the dataset. Or make some of this part of the assignment? ##
+## pythonify the dataset. (clean it up by hand...) ##
 
+# import the whole dataset
 matdata = loadmat("Drifter_dataset.mat")
 matdata = matdata["D"].flatten()
 
-drifter_id = matdata["id"] # drifter ID 
-design = matdata["design"] # 1-6 which type of drifter
+drifter_id = np.concatenate(matdata["id"]).flatten() # drifter ID 
+design = np.concatenate(matdata["design"]).flatten() # 1-6 which type of drifter
 
-tzone = matdata["tzone"]  # time zone
+tzone = np.concatenate(matdata["tzone"]).flatten() # time zone
 mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
+
+# create a new array datetime
+datetime = np.empty_like(mtime, dtype="O")
+for m in range(len(mtime)):
+    timestamp = np.empty(len(mtime[m]), dtype="O")
+    for n in range(len(mtime[m].flatten())):
+        timestamp[n] = e211.mdate_to_datetime(mtime[m][n,0])
+    datetime[m] = timestamp
 
 lon = matdata["lon"]  # drifter lons
 lat = matdata["lat"] # drifter lats
 
-comment = matdata["comment"]  # metadata
+comment = np.concatenate(matdata["comment"]).flatten()  # metadata
 at_sea = matdata["atSea"]  # status codes for working/landed drifters
 
 ends_on_land = matdata["endsOnLand"].flatten() # change from 1/0 logic to Python booleans
@@ -74,10 +83,10 @@ found_on_land = matdata["foundOnLand"].flatten() # use booleans not 1/0
 found_on_land[found_on_land == 1] = True
 found_on_land[found_on_land == 0] = False
 
-launchdate = matdata["launchDate"]  # this is not working
-enddate = matdata["endDate"]  # neither is this
+launchdate = np.concatenate(matdata["launchDate"]).flatten()
+enddate = np.concatenate(matdata["endDate"]).flatten()  # neither is this
 
-lifetime = matdata["lifeTime"]  # decimal days from launchDate to endDate
+lifetime = np.concatenate(matdata["lifeTime"]).flatten()  # decimal days from launchDate to endDate
 
 refloated = matdata["refloated"] # change to py logical
 refloated[refloated == 1] == True
@@ -92,42 +101,37 @@ first_ground_date = matdata["firstGrndDate"] # - float: matlab time for first gr
 first_lifetime = matdata["firstLifeTime"]    # - float: decimal days from launch to first grounding
                                              # - 0 if endsOnLand==0 & refloated==0
     
-vars_dict = {"drifter_id":drifter_id,
-            "design":design,
-            "tzone":tzone,
-            "mtime":mtime,
-            "lon":lon,
-            "lon":lat,
-            "comment":comment,
-            "at_sea":at_sea,
-            #"ends_on_land":ends_on_land,
-            #"found_on_land":found_on_land,
-            "launchdate":launchdate,
-            "enddate":enddate,
-            "lifetime":lifetime,
-            "refloated":refloated,
-            "first_ground_date":first_ground_date,
-            "first_lifetime":first_lifetime}
-
+vars_dict = {}
+'''{"drifter_id":drifter_id, # 1
+            "design":design, # 1
+            "tzone":tzone, # 1
+            "mtime":mtime, # n
+            "lon":lon, # n
+            "lon":lat, # n
+            "comment":comment, # 1
+            "at_sea":at_sea, # n
+            "ends_on_land":ends_on_land, # 1
+            "found_on_land":found_on_land, # 1
+            "launchdate":launchdate, # 1
+            "enddate":enddate, # 1
+            "lifetime":lifetime, # 1
+            "refloated":refloated, # 1
+            "first_ground_date":first_ground_date, # 1
+            "first_lifetime":first_lifetime} # 1
+'''
 # save as JSON
 ```
 
 ```python
-vars_dict.keys()
-```
+datetime = np.empty_like(mtime, dtype="O")
+for m in range(len(mtime)):
+    #print("*****************************************************************")
+    timestamp = np.empty(len(mtime[m]), dtype="O")
+    for n in range(len(mtime[m].flatten())):
+        timestamp[n] = e211.mdate_to_datetime(mtime[m][n,0])
+    datetime[m] = timestamp    
 
-```python
-lon
-
-```
-
-```python
-for lons in drifter_id:
-    print(lons.reshape(0).shape)
-```
-
-```python
-
+datetime[100]
 ```
 
 ```python
@@ -135,7 +139,21 @@ for lons in drifter_id:
 ```
 
 ```python
-my_ar = np.array([[[1]]])
 
-my_ar.flatten().shape
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
 ```

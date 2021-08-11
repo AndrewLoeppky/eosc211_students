@@ -87,7 +87,7 @@ def mdate_to_datetime(mdate):
     years and days are 1-indexed (ie jan = 1 not 0)
     """
     # account for matlab's 1 indexed values by subtracting 1 year + 1 day
-    # maintains fidelity to matlab datestr() function for all values tested
+    # maintains fidelity to matlab datestr() function for ~20 values tested
     # this should be tested more thorougly (AL 08/08/21)
     the_date = datetime.date.fromordinal(int(mdate) - 366)
     the_time = datetime.timedelta(days=(mdate % 1.0))
