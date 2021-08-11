@@ -1,19 +1,17 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.10.3
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
-<!-- #region -->
 # Lab Week 4
 
 ## EOSC 211
@@ -40,15 +38,15 @@ computer math + - * / ** -- on scalars and vectors (arrays)
 order of operations
 
 plt.subplots() syntax, intro to OO programming?
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from matplotlib import pyplot as plt 
 ```
 
 ## Part 1: Computer Math and Writing Stylish Code (Tutorial)
 
++++
 
 These are the hydrostatic equations. They relate *atmospheric pressure* and *density* to height above sea level. The pressure and air density we measure at the surface is caused by the weight of the atmosphere above being held down by earth's gravity. As we move higher into the atmosphere, there is less air above (less weight pushing down), so the pressure decreases, as does the density (less pressure = less force squeezing the air molecules together). For air pressure $P$, we can express this as a mathematical function:
 
@@ -95,7 +93,7 @@ We would like to write code to calculate atmospheric pressure and density at any
 
 Write python code to solve for pressure and density
 
-```python
+```{code-cell} ipython3
 # inputs
 Tc = 20  # deg C
 height = 8849  # m
@@ -124,7 +122,7 @@ Now that you have working code for *scalar inputs* (and checked that it calculat
 
 **Remember:** Multiplying an array `A` by a scalar variable `b` multiplies every element of `A` by `b`. Multiplying an array `A` by another array `B` does the operation *element-wise*; i.e. the first element of `A` gets multiplied by the first element of `B`, the second element of `A` by the second of `B`, etc. This only works if the `A` and `B` are the same size and shape.
 
-```python
+```{code-cell} ipython3
 # change the "height" input to an array
 height = np.arange(10000, 0, -1000)  # m
 
@@ -144,7 +142,7 @@ print(dens)
 
 The outputs from the previous cell don't exactly jump off the page. We could show our results much better with, you guessed it: *a scientific figure!* Unlike last week, we have 2 separate but related datasets, and ideally we would like to present them together as one figure. For this we can use a slightly different plotting syntax, which creates one big "figure" object, and "axes" objects which are displayed on the figure. We can create the axes individually, referencing them using *slicing* to mess around with their content, labels, colours etc. just like the plot we created last week. The syntax for creating subplots is as follows:
 
-```python
+```{code-cell} ipython3
 # create the figure with one row and two columns of plots
 fig, ax = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
 
@@ -169,7 +167,8 @@ Do we check all the boxes?
 - [ ] Does it *look good*? (Do the colors clash? does it look crowded/messy?)
 </div>
 
-<!-- #region -->
++++
+
 ## Part 2: Clausius-Clapeyron Equation and the Atmospheric Equation of State
 
 Over large spatial scales in the atmosphere (and ocean) we can attempt to predict the winds (or currents) by looking at spatial changes in the DENSITY. In air the density is a function of pressure, temperature, and the amount of water
@@ -221,17 +220,18 @@ where $R_d = 287J/K/kg$ is  the  ideal  gas  constant  for  dry  air.‡ To  che
 † See *Meteorology Today for Scientists and Engineers*, R. Stull
 
 ‡ You may recognize some similarity between this last equation and the IDEAL GAS LAW $P V=nRT$ which is no coincidence - in fact the $0.61r$ is a correction for the non-ideal nature of moist air.
-<!-- #endregion -->
+
++++
 
 ### Your Task: Implementing the CC Equation in Python
 
 Write a code cell which defines variables for all the constants used (i.e. $L$, $R_v$, $T_0$, $e_0$) and then find $e_s$ for a single $T$. Be sure to invent good names for all of these symbols and include their units in the comments, e. g. `Lvap = 2.5e6  # J/kg`. Run the cell to find $e_s$ at a temperature of $T= 25^oC$.  Compare this number against a CHECK VALUE 3264.0782439825894 Pa. Be careful about operator precedence and make sure you get the RIGHT answer!
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 # input
@@ -253,11 +253,11 @@ print(esat)
 
 Now add a cell to  calculate  the  air  density  at $T= 25^oC,RH= 50\%$,  at  surface  pressure  ($P= 102000Pa$).   The  answer  should  be  1.1847106098829943 kg/m$^3$ (or  1.184704073721439  if $\varepsilon≡R_d/R_v$).   Note  that  increasing  the  humidity  (i.e.   adding  more  water  vapour)  decreases  the  density since H$_2$O is displacing heavier N$_2$ and O$_2$ molecules.
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 # input
@@ -280,11 +280,11 @@ print(rho)
 
 Calculate the saturation vapour pressure $e_s$ for temperatures ranging from -40$^o$C to 30$^o$C. Be sure to stick to the format of *input, definitions, calulations, output*.
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 # input
@@ -302,11 +302,11 @@ esat
 
 Next, calculate and plot the mixing ratio $r$ as a function of temperature for $RH= 100\%$ and $P= 90000Pa$ (about 1 km above the surface).
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 # input
@@ -329,11 +329,11 @@ Now, use the `subplots` function to generate a scientific figure as follows:
 
 * Check all the boxes for creating a scientific figure
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 fig, ax = plt.subplots(2, figsize=(10, 5), sharex=True)
 fig.suptitle("Saturation Vapour Pressure and Mixing Ratio as Functions of Temperature", fontsize=16)
