@@ -61,7 +61,7 @@ design = np.concatenate(matdata["design"]).flatten() # 1-6 which type of drifter
 tzone = np.concatenate(matdata["tzone"]).flatten() # time zone
 mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
 
-# create a new array datetime
+# create a new array datetime to replace messy mtime
 datetime = np.empty_like(mtime, dtype="O")
 for m in range(len(mtime)):
     timestamp = np.empty(len(mtime[m]), dtype="O")
@@ -69,8 +69,25 @@ for m in range(len(mtime)):
         timestamp[n] = e211.mdate_to_datetime(mtime[m][n,0])
     datetime[m] = timestamp
 
-lon = matdata["lon"]  # drifter lons
-lat = matdata["lat"] # drifter lats
+lon_in = matdata["lon"]  # drifter lons
+
+# create new variable lons containing restructured longitudes
+lons = np.empty_like(lon_in, dtype="O")
+for m in range(len(lon_in)):
+    lon = np.empty(len(lon_in[m]))
+    for n in range(len(lon_in[m])):
+        lon[n] = lon_in[m][n]
+    lons[m] = lon
+
+lat_in = matdata["lat"] # drifter lats
+
+# same treatment for lats
+lats = np.empty_like(lat_in, dtype="O")
+for m in range(len(lat_in)):
+    lat = np.empty(len(lat_in[m]))
+    for n in range(len(lat_in[m])):
+        lat[n] = lat_in[m][n]
+    lats[m] = lat
 
 comment = np.concatenate(matdata["comment"]).flatten()  # metadata
 at_sea = matdata["atSea"]  # status codes for working/landed drifters
@@ -123,15 +140,7 @@ vars_dict = {}
 ```
 
 ```python
-datetime = np.empty_like(mtime, dtype="O")
-for m in range(len(mtime)):
-    #print("*****************************************************************")
-    timestamp = np.empty(len(mtime[m]), dtype="O")
-    for n in range(len(mtime[m].flatten())):
-        timestamp[n] = e211.mdate_to_datetime(mtime[m][n,0])
-    datetime[m] = timestamp    
 
-datetime[100]
 ```
 
 ```python
