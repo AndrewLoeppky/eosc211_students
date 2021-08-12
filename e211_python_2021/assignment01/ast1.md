@@ -257,9 +257,9 @@ Finally, add to the plot a text line that states how many tracks fall into each 
 
 ```python
 data = np.load("drifter_data.npy", allow_pickle=True)
-basemap = loadmat("BCcoastline.mat")
+basemap = loadmat("SouthVI.mat")
 
-basemap["k"]
+basemap["SouthVI"][0]
 ```
 
 ```python
