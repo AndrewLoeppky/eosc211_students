@@ -19,6 +19,11 @@ jupyter:
 
 logistics, partner collaboration, due dates
 
+LG's:
+
+* manipulate datetime objects, timedeltas
+* use dictionaries to access complex datasets
+
 ### notes for andrew:
 
 part 1: I can use if elif else, loops, numpy arrays, logical indexing, annotate, subplots, type casting
@@ -49,18 +54,23 @@ from matplotlib import pyplot as plt
 ```
 
 ```python
-## pythonify the dataset. (clean it up by hand...) ##
+## Hide this cell in library ##
 
 # import the whole dataset
 matdata = loadmat("Drifter_dataset.mat")
 matdata = matdata["D"].flatten()
 
+##################################################################################
+# modify each element one by one, they all have slightly different shapes/dtypes #
+##################################################################################
+
 drifter_id = np.concatenate(matdata["id"]).flatten() # drifter ID 
+
 design = np.concatenate(matdata["design"]).flatten() # 1-6 which type of drifter
 
 tzone = np.concatenate(matdata["tzone"]).flatten() # time zone
-mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
 
+mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
 # create a new array datetime to replace messy mtime
 datetime = np.empty_like(mtime, dtype="O")
 for m in range(len(mtime)):
@@ -70,7 +80,6 @@ for m in range(len(mtime)):
     datetime[m] = timestamp
 
 lon_in = matdata["lon"]  # drifter lons
-
 # create new variable lons containing restructured longitudes
 lons = np.empty_like(lon_in, dtype="O")
 for m in range(len(lon_in)):
@@ -80,7 +89,6 @@ for m in range(len(lon_in)):
     lons[m] = lon
 
 lat_in = matdata["lat"] # drifter lats
-
 # same treatment for lats
 lats = np.empty_like(lat_in, dtype="O")
 for m in range(len(lat_in)):
@@ -90,8 +98,17 @@ for m in range(len(lat_in)):
     lats[m] = lat
 
 comment = np.concatenate(matdata["comment"]).flatten()  # metadata
-at_sea = matdata["atSea"]  # status codes for working/landed drifters
 
+at_sea_in = matdata["atSea"]  # status codes for working/landed drifters
+
+# at_sea treatment echoes lats and lons
+at_sea = np.empty_like(at_sea_in, dtype="O")
+for m in range(len(at_sea_in)):
+    sea = np.empty(len(at_sea_in[m]))
+    for n in range(len(at_sea_in[m])):
+        sea[n] = at_sea_in[m][n]
+    at_sea[m] = sea
+    
 ends_on_land = matdata["endsOnLand"].flatten() # change from 1/0 logic to Python booleans
 ends_on_land[ends_on_land == 1] = True
 ends_on_land[ends_on_land == 0] = False
@@ -100,51 +117,77 @@ found_on_land = matdata["foundOnLand"].flatten() # use booleans not 1/0
 found_on_land[found_on_land == 1] = True
 found_on_land[found_on_land == 0] = False
 
-launchdate = np.concatenate(matdata["launchDate"]).flatten()
-enddate = np.concatenate(matdata["endDate"]).flatten()  # neither is this
+# convert data containing dates to datetime objs
+launchdate_in = np.concatenate(matdata["launchDate"]).flatten()
+launchdate = np.empty(len(launchdate_in), dtype='O')
+for i, ld in enumerate(launchdate_in):
+    launchdate[i] = e211.mdate_to_datetime(ld)
+        
+enddate_in = np.concatenate(matdata["endDate"]).flatten()  
+enddate = np.empty(len(enddate_in), dtype = "O")
+for i, ed in enumerate(enddate_in):
+    enddate[i] = e211.mdate_to_datetime(ed)
 
-lifetime = np.concatenate(matdata["lifeTime"]).flatten()  # decimal days from launchDate to endDate
+lifetime_in = np.concatenate(matdata["lifeTime"]).flatten()  # decimal days from launchDate to endDate
+lifetime = enddate - launchdate # ignore the original data and do datetime arithmetic. Get students to do this?
 
 refloated = matdata["refloated"] # change to py logical
 refloated[refloated == 1] == True
 refloated[refloated == 0] == False
 
-first_ground_date = matdata["firstGrndDate"] # - float: matlab time for first grounding
-                                             #- matlab time of first of a string of atSea~=1, unless
-                                             # the last point in the record has atSea==1 and
-                                             # endsOnLand==1 in which case it is the time of the last
-                                             # point.
-
-first_lifetime = matdata["firstLifeTime"]    # - float: decimal days from launch to first grounding
-                                             # - 0 if endsOnLand==0 & refloated==0
+first_ground_date_in = matdata["firstGrndDate"] 
+first_ground_date = np.empty(len(first_ground_date_in), dtype='O') 
+for i, fgd in enumerate(first_ground_date_in):
+    if fgd == 0:
+        first_ground_date[i] = enddate[i]
+    else:
+        first_ground_date[i] = e211.mdate_to_datetime(fgd[0,0])
     
-vars_dict = {}
-'''{"drifter_id":drifter_id, # 1
-            "design":design, # 1
-            "tzone":tzone, # 1
-            "mtime":mtime, # n
-            "lon":lon, # n
-            "lon":lat, # n
-            "comment":comment, # 1
-            "at_sea":at_sea, # n
-            "ends_on_land":ends_on_land, # 1
-            "found_on_land":found_on_land, # 1
-            "launchdate":launchdate, # 1
-            "enddate":enddate, # 1
-            "lifetime":lifetime, # 1
-            "refloated":refloated, # 1
-            "first_ground_date":first_ground_date, # 1
-            "first_lifetime":first_lifetime} # 1
-'''
-# save as JSON
+                             # - float: matlab time for first grounding
+                             #- matlab time of first of a string of atSea~=1, unless
+                             # the last point in the record has atSea==1 and
+                             # endsOnLand==1 in which case it is the time of the last
+                             # point.
+
+first_lifetime_in = matdata["firstLifeTime"]
+first_lifetime = first_ground_date - launchdate # make students do this?
+
+# new datastructure: Each drifter is a dictionary with all vars above as keys, values are either arrays or numbers
+# save an array containing all the drifter "objects" (actually dictionaries...) array full of dictionaries full 
+# of arrays! 
+master_dataset = np.empty(len(drifter_id), dtype='O')
+for i, data in enumerate(master_dataset):
+     master_dataset[i] =  {"drifter_id":drifter_id[i], 
+             "design":design[i], 
+             "tzone":tzone[i], 
+             "datetime":datetime[i], 
+             "lons":lons[i], 
+             "lats":lats[i], 
+             "comment":comment[i], 
+             "at_sea":at_sea[i], 
+             "ends_on_land":ends_on_land[i], 
+             "found_on_land":found_on_land[i], 
+             "launchdate":launchdate[i], 
+             "enddate":enddate[i], 
+             "lifetime":lifetime[i], 
+             "refloated":refloated[i],
+             "first_ground_date":first_ground_date[i],
+             "first_lifetime":first_lifetime[i]} 
 ```
 
 ```python
-
+# save as a npy file
+#np.save("drifter_data.npy", master_dataset)
 ```
 
 ```python
+data = np.
+```
 
+```python
+fig, ax = plt.subplots()
+for n, data in enumerate(master_dataset):
+    ax.plot(master_dataset[n]["lons"], master_dataset[n]["lats"])
 ```
 
 ```python
