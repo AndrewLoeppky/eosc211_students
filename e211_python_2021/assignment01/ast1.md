@@ -41,9 +41,9 @@ Over the past few years, the [ODL drifters project](www.drifters.eoas.ubc.ca) ha
 
 † We think that very little goes around the northern tip of Vancouver Island because there is only a narrow channel separating it from the mainland there
 
-## Part 1: Summary Plot
+## Part 0: Scrub the Matlab Data
 
-text
+The following cell is just for dev
 
 ```python
 ## get data (put this in the library when complete)
@@ -173,21 +173,93 @@ for i, data in enumerate(master_dataset):
              "refloated":refloated[i],
              "first_ground_date":first_ground_date[i],
              "first_lifetime":first_lifetime[i]} 
-```
-
-```python
+        
 # save as a npy file
-#np.save("drifter_data.npy", master_dataset)
+#np.save("drifter_data.npy", master_dataset)        
+```
+
+## Part 1: Summary Plot
+
+The `drifter_data.npy` file contains all of the data from 153 drifters. The `.npy` extension is a file format specific to numpy arrays. Each element of the array contains a *dictionary* with the following **key:value** pairs:
+
+```
+             "drifter_id":        <integer> a unique identifier (e.g., labelled # on drifter body) 
+             "design":            <integer> drifter design code (1-6)
+             "tzone":             <str> Time zone
+             "datetime":          <datetime object> the dates associated with each reported lat/lon position
+             "lons":              <float64> longitude in decimal degrees
+             "lats":              <float64> latitude in decimal degrees
+             "comment":           <str> metadata
+             "at_sea":            <int> flag for each point, classifying it as:
+                                  1 - good - at sea, freely floating (valid)
+                                  2 - bad  - at sea but trapped in rocky intertidal
+                                             (floating but not free)
+                                  3 - bad  - on land (grounded, test data, etc.)
+                                  4 - bad - at sea (large GPS error, on ship, etc.)
+             "ends_on_land":      <boolean> if the drifter ends by grounding or not
+                                  True - grounded at or just after last at_sea==1 point
+                                  False - track ends at sea
+             "found_on_land":     <boolean> If the drifter was found by a human (True) on land
+                                  or if it was never recovered (False)
+             "launchdate":        <datetime object> the date the drifter was launched 
+                                  format = (Year, Month, Day, Hour, Minute, Second, Microsecond)
+             "enddate":           <datetime object> the date the drifter went offline
+             "lifetime":          <timedelta object> the length of the drifter's life
+             "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
+                                  transmitting with at_sea == 1
+             "first_ground_date": <datetime obj> date of first status code != 1
+             "first_lifetime":    <timedelta object> length of time passed between launch and first 
+                                  status code != 1
+```
+
+Note that since all the drifters have different lifetimes, the dataset associated with each drifter will be a different length. Keep this in mind when using loops and indexing to access data.
+
+  tracks that all start in the vicinity
+of Sand Heads, at the mouth of the Fraser River. These include tracks where the drifter never touches land
+and eventually dies at sea (can be identified by firstLifeTime==0), and tracks where the drifter grounds (in44
+this case firstLifeTime>0 gives the time interval at which this occurs). For times between launchDate and45
+firstGroundDate (or endDate if the drifter doesn’t ground), points with atSea==1 are valid points; if any46
+atSea~=1 then the corresponding mtime,lat and lon points are not valid for various reasons. Sometimes47
+grounded drifters refloat after some time ashore and drift further, but we will ignore any data that were acquired48
+after a grounding.49
+First, write code to show all the drift tracks up until either the point of first grounding, or the end of the track if the50
+EOSC 211-2020 Assignment #1: Ocean Drift 3
+drifter does not ground. The track lines should be coloured to indicate the location of the track endpoint:51
+• Tracks that exit the northern Strait (i.e. with end point west of 125.19◦W, north of 50.0◦N) should be green.52
+• Tracks that leave the southern Strait (roughly, with end points south of about 48.78◦N latitude, but note that53
+one track that completely leaves the Strait this way ends up north of this latitude and you should account for54
+this) should be red.55
+• Tracks that end within the Strait of Georgia should be light blue.56
+As well as showing all the tracks, you should also label the starting and end points:57
+• Label the track starting points with dark blue markers (these should all be near the mouth of the Fraser58
+River).59
+• Label track end points at time of first grounding (if they ground) with green markers.60
+• Label track end points if the drifter never grounds with red markers.61
+You should use if statements and logical operators to determine into which category a given track belongs.62
+Finally, add to the plot a text line that states how many tracks fall into each category - something like63
+100 tracks ground64
+21 tracks leave the SoG to the south65
+2 tracks leave the SoG to the north66
+(or whatever the numbers are)67
+To hand in Part 1, provide the code and the plot. It should look something like Figure 1 (with the added text). Also68
+hand in the partner.m file on Connect.69
+Note - READ THE REST OF THE ASSIGNMENT so you can see what you have to do for the next part while70
+answering this part. Also, the Handy Tips at the end will be helpf
+
+```python
+data = np.load("drifter_data.npy", allow_pickle=True)
+basemap = loadmat("BCcoastline.mat")
 ```
 
 ```python
-data = np.
+basemap["ncst"].shape
 ```
 
 ```python
 fig, ax = plt.subplots()
-for n, data in enumerate(master_dataset):
-    ax.plot(master_dataset[n]["lons"], master_dataset[n]["lats"])
+ax.(basemap)
+#for n, data in enumerate(master_dataset):
+#    ax.plot(master_dataset[n]["lons"], master_dataset[n]["lats"])
 ```
 
 ```python
