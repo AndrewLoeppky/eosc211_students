@@ -304,10 +304,39 @@ ax.set_ylabel("Latitude (deg)")
 ax.set_title("Summary Plot of Drifter Tracks in the Straight of Georgia");
 ```
 
+## Part 2: Statistics
+
+Now we want to get some summary statistics.
+1. First, make a histogram plot showing the time to grounding, for all drifters that ground. Calculate the mean
+   and standard deviation of this time, and add this to the plot.
+
+2. Second, plot the drifter latitude (a proxy for the distance up-Strait or down-Strait of the deployment location)
+   as a function of time. Use the same line colours and end point markers for grounded and at-Sea end points
+   that you used in Part 1.
+
+    Now, add a thick line that gives the *median* drifter latitude, every half-day, from the deployment time to
+    15 days after deployment. That is, at 0.5 days after deployment, find the latitude of all drifters still afloat and
+    alive, and take the median. Repeat for 1 day after deployment, 1.5 days after, and so on.
+    Also, find the MEDIAN ABSOLUTE DEVIATION (or MAD, see mad to calculate this) of the latitudes, i.e.
+    
+    $$
+    MAD(X) ≡median(|X −median(X)|)\tag{1}
+    $$
+    
+    and plot the median $±MAD$ as well.
+    Note that the median and the MAD are somewhat similar to the mean and standard deviation, but are less sensitive to outliers.
+    
+3. Finally, answer the questions
+
+   (a) Are the drifters moving seaward (on average)?
+   
+   (b) How long does it take for a drifter to move from the Fraser River to the Pacific?
+
+
 ```python
 
 ```
 
 ```python
-
+drifters[0]["lifetime"]
 ```
