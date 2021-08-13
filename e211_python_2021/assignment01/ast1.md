@@ -23,6 +23,7 @@ LG's:
 
 * manipulate datetime objects, timedeltas
 * use dictionaries to access complex datasets
+* recycle old code for new purposes (use the map from lab 3!)
 
 ### notes for andrew:
 
@@ -41,12 +42,7 @@ Over the past few years, the [ODL drifters project](www.drifters.eoas.ubc.ca) ha
 
 † We think that very little goes around the northern tip of Vancouver Island because there is only a narrow channel separating it from the mainland there
 
-## Part 0: Scrub the Matlab Data
-
-The following cell is just for dev
-
 ```python
-## get data (put this in the library when complete)
 import numpy as np
 from scipy.io import loadmat
 from e211_lib import e211
@@ -54,128 +50,11 @@ from matplotlib import pyplot as plt
 ```
 
 ```python
-## Hide this cell in library ##
+# There is a function in the library to convert the original .mat file to the new format
+data = e211.clean_a1_data("Drifter_dataset.mat")
 
-# import the whole dataset
-matdata = loadmat("Drifter_dataset.mat")
-matdata = matdata["D"].flatten()
-
-##################################################################################
-# modify each element one by one, they all have slightly different shapes/dtypes #
-##################################################################################
-
-drifter_id = np.concatenate(matdata["id"]).flatten() # drifter ID 
-
-design = np.concatenate(matdata["design"]).flatten() # 1-6 which type of drifter
-
-tzone = np.concatenate(matdata["tzone"]).flatten() # time zone
-
-mtime = matdata["mtime"]  # time in matlab ordinal (decimal days since jan1/0000)
-# create a new array datetime to replace messy mtime
-datetime = np.empty_like(mtime, dtype="O")
-for m in range(len(mtime)):
-    timestamp = np.empty(len(mtime[m]), dtype="O")
-    for n in range(len(mtime[m].flatten())):
-        timestamp[n] = e211.mdate_to_datetime(mtime[m][n,0])
-    datetime[m] = timestamp
-
-lon_in = matdata["lon"]  # drifter lons
-# create new variable lons containing restructured longitudes
-lons = np.empty_like(lon_in, dtype="O")
-for m in range(len(lon_in)):
-    lon = np.empty(len(lon_in[m]))
-    for n in range(len(lon_in[m])):
-        lon[n] = lon_in[m][n]
-    lons[m] = lon
-
-lat_in = matdata["lat"] # drifter lats
-# same treatment for lats
-lats = np.empty_like(lat_in, dtype="O")
-for m in range(len(lat_in)):
-    lat = np.empty(len(lat_in[m]))
-    for n in range(len(lat_in[m])):
-        lat[n] = lat_in[m][n]
-    lats[m] = lat
-
-comment = np.concatenate(matdata["comment"]).flatten()  # metadata
-
-at_sea_in = matdata["atSea"]  # status codes for working/landed drifters
-
-# at_sea treatment echoes lats and lons
-at_sea = np.empty_like(at_sea_in, dtype="O")
-for m in range(len(at_sea_in)):
-    sea = np.empty(len(at_sea_in[m]))
-    for n in range(len(at_sea_in[m])):
-        sea[n] = at_sea_in[m][n]
-    at_sea[m] = sea
-    
-ends_on_land = matdata["endsOnLand"].flatten() # change from 1/0 logic to Python booleans
-ends_on_land[ends_on_land == 1] = True
-ends_on_land[ends_on_land == 0] = False
-
-found_on_land = matdata["foundOnLand"].flatten() # use booleans not 1/0
-found_on_land[found_on_land == 1] = True
-found_on_land[found_on_land == 0] = False
-
-# convert data containing dates to datetime objs
-launchdate_in = np.concatenate(matdata["launchDate"]).flatten()
-launchdate = np.empty(len(launchdate_in), dtype='O')
-for i, ld in enumerate(launchdate_in):
-    launchdate[i] = e211.mdate_to_datetime(ld)
-        
-enddate_in = np.concatenate(matdata["endDate"]).flatten()  
-enddate = np.empty(len(enddate_in), dtype = "O")
-for i, ed in enumerate(enddate_in):
-    enddate[i] = e211.mdate_to_datetime(ed)
-
-lifetime_in = np.concatenate(matdata["lifeTime"]).flatten()  # decimal days from launchDate to endDate
-lifetime = enddate - launchdate # ignore the original data and do datetime arithmetic. Get students to do this?
-
-refloated = matdata["refloated"] # change to py logical
-refloated[refloated == 1] == True
-refloated[refloated == 0] == False
-
-first_ground_date_in = matdata["firstGrndDate"] 
-first_ground_date = np.empty(len(first_ground_date_in), dtype='O') 
-for i, fgd in enumerate(first_ground_date_in):
-    if fgd == 0:
-        first_ground_date[i] = enddate[i]
-    else:
-        first_ground_date[i] = e211.mdate_to_datetime(fgd[0,0])
-    
-                             # - float: matlab time for first grounding
-                             #- matlab time of first of a string of atSea~=1, unless
-                             # the last point in the record has atSea==1 and
-                             # endsOnLand==1 in which case it is the time of the last
-                             # point.
-
-first_lifetime_in = matdata["firstLifeTime"]
-first_lifetime = first_ground_date - launchdate # make students do this?
-
-# new datastructure: Each drifter is a dictionary with all vars above as keys, values are either arrays or numbers
-# save an array containing all the drifter "objects" (actually dictionaries...) array full of dictionaries full 
-# of arrays! 
-master_dataset = np.empty(len(drifter_id), dtype='O')
-for i, data in enumerate(master_dataset):
-     master_dataset[i] =  {"drifter_id":drifter_id[i], 
-             "design":design[i], 
-             "tzone":tzone[i], 
-             "datetime":datetime[i], 
-             "lons":lons[i], 
-             "lats":lats[i], 
-             "comment":comment[i], 
-             "at_sea":at_sea[i], 
-             "ends_on_land":ends_on_land[i], 
-             "found_on_land":found_on_land[i], 
-             "launchdate":launchdate[i], 
-             "enddate":enddate[i], 
-             "lifetime":lifetime[i], 
-             "refloated":refloated[i],
-             "first_ground_date":first_ground_date[i],
-             "first_lifetime":first_lifetime[i]} 
-        
-# save as a npy file
-#np.save("drifter_data.npy", master_dataset)        
+# or load the .npy file with
+data = np.load("drifter_data.npy", allow_pickle=True)
 ```
 
 <!-- #region -->
@@ -208,7 +87,8 @@ The `drifter_data.npy` file contains all of the data from 153 drifters. The `.np
              "lifetime":          <timedelta object> the length of the drifter's life
              "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
                                   transmitting with at_sea == 1
-             "first_ground_date": <datetime obj> date of first status code != 1
+             "first_ground_date": <datetime obj> date of first status code != 1. If the drifter 
+                                  never grounded, this is equal to "enddate"
              "first_lifetime":    <timedelta object> length of time passed between launch and first 
                                   status code != 1
 ```
@@ -253,42 +133,175 @@ Finally, add to the plot a text line that states how many tracks fall into each 
 ```
 
 (or whatever the numbers are) To hand in Part 1, provide the code and the plot. It should look something like Figure 1 (with the added text). Note - READ THE REST OF THE ASSIGNMENT so you can see what you have to do for the next part while answering this part. Also, the Handy Tips at the end will be helpful.
+
+#### Step 1: Acquire all the data 
+
+Several possible avenues here...
 <!-- #endregion -->
 
 ```python
-data = np.load("drifter_data.npy", allow_pickle=True)
-basemap = loadmat("SouthVI.mat")
-
-basemap["SouthVI"][0]
+drifters = np.load("drifter_data.npy", allow_pickle=True)
+basemap_in = loadmat("BCcoastline.mat")
 ```
 
 ```python
-basemap["ncst"].shape
-baselon = basemap["ncst"][:,0]
-baselat = basemap["ncst"][:,1]
-
-contour = basemap["k"].shape
-
-contour
-```
-
-```python
+# plot the drifters
 fig, ax = plt.subplots()
-ax.contourf(baselon, baselat)
-#for n, data in enumerate(master_dataset):
-#    ax.plot(master_dataset[n]["lons"], master_dataset[n]["lats"])
-```
-
-```python
+for dat in data:
+    ax.plot(dat["lons"], dat["lats"])
 
 ```
 
 ```python
+# the original basemap from matlab.. this is hard to parse with matplotlib
+basemap = {"k":basemap_in["k"].flatten(),
+           "lons":basemap_in["ncst"][:,0],
+           "lats":basemap_in["ncst"][:,1]}
 
+plt.plot(basemap["lons"], basemap["lats"])
 ```
 
 ```python
+# recycle the basemap from lab 3! good teachable
+# this is line for line the lab 3 tutorial section
 
+raw_bathdata = e211.load_mat("Bathyfile.mat")
+bathdata_fixed = raw_bathdata[::-1]
+
+latlen = np.shape(bathdata_fixed)[0] # assign the height and width of the image to new variables
+lonlen = np.shape(bathdata_fixed)[1]
+
+lats = np.linspace(47, 60, latlen) # create arrays for lat and lon
+lons = np.linspace(-150, -110, lonlen)
+
+bath_zoomed = bathdata_fixed[0:150,500:900]
+lats_zoomed = lats[0:150]
+lons_zoomed = lons[500:900] # make sure the slices match between the coordinates and the original data
+
+# plot the basemap and the drifters together (first pass)
+plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed)
+for dr in drifters:
+    plt.plot(dr["lons"], dr["lats"])
+```
+
+```python
+# readjust the map size to clearly show the drifters, and use conditional sampling
+# to make our map only show land and sea rather than all elevetions -- less clutter
+lats = np.linspace(47, 60, latlen)  # create arrays for lat and lon
+lons = np.linspace(-150, -110, lonlen)
+
+xmin = 690
+xmax = 850
+
+ymin = 10
+ymax = 120
+
+bath_zoomed = bathdata_fixed[ymin:ymax, xmin:xmax]
+lats_zoomed = lats[ymin:ymax]
+lons_zoomed = lons[xmin:xmax]
+
+# recolor the map
+#bath_zoomed[bath_zoomed <= 0] = -1000
+#bath_zoomed[bath_zoomed > 50] = 1000
+
+fig, ax = plt.subplots(figsize=(8,8))
+plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed) #, cmap="binary")
+for dr in drifters:
+    plt.plot(dr["lons"], dr["lats"])
+```
+
+good start, fix this later on
+
+#### Step 2: Use conditional sampling
+
+Use conditional sampling to trim the drifter tracks and choose colors according to the criteria specified above
+
+```python
+# how to conditionally sample a dictionary for a single element
+my_drifter = drifters[0]
+print("before conditional sampling:")
+print(len(my_drifter["lats"]))
+print("after conditional sampling:")
+print(len(my_drifter["lats"][my_drifter["datetime"] < my_drifter["first_ground_date"]]))
+```
+
+```python
+# show all the drift tracks up until either the point of first grounding, 
+# or the end of the track if the drifter does not ground.
+for dr in drifters:
+    dr["lats"] = dr["lats"][dr["datetime"] < dr["first_ground_date"]]
+    dr["lons"] = dr["lons"][dr["datetime"] < dr["first_ground_date"]]
+    dr["datetime"] = dr["datetime"][dr["datetime"] < dr["first_ground_date"]]    
+```
+
+```python
+# Add to the plot a text line that states how many tracks fall into each category
+north_count = 0
+south_count = 0
+sog_count = 0
+```
+
+```python
+# Do the plot
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.contourf(lons_zoomed, lats_zoomed, bath_zoomed)  # , cmap="binary")
+for dr in drifters:
+    # Tracks that exit the northern Strait (i.e. with end point west of 125.19◦W, north of 50.0◦N) should be GREEN
+    if dr["lons"][-1] < -125.19 and dr["lats"][-1] > 50.0:
+        ax.plot(dr["lons"], dr["lats"], color="green", label="exit north")
+        north_count += 1
+
+    # Tracks that leave the southern Strait (roughly, with end points south of about 48.78◦N latitude, but note that
+    # one track that completely leaves the Strait this way ends up north of this latitude and you should account for
+    # this) should be RED.
+    elif dr["lats"][-1] < 48.78:
+        ax.plot(dr["lons"], dr["lats"], color="red", label="exit south")
+        south_count += 1
+
+    # Tracks that end within the Strait of Georgia should be LIGHT BLUE.
+    else:
+        ax.plot(dr["lons"], dr["lats"], color="lightblue", label="SoG")
+        sog_count += 1
+
+    # Label the track starting points with dark blue markers
+    # (these should all be near the mouth of the Fraser River).
+    ax.scatter(
+        dr["lons"][0],
+        dr["lats"][0],
+        color="blue",
+        marker="o",
+        label="starting point",
+        zorder=3,
+    )
+
+    # Label track end points at time of first grounding (if they ground) with green markers.
+    # Label track end points if the drifter never grounds with red markers.
+    if dr["first_ground_date"] == dr["enddate"]:  # never grounds
+        ax.scatter(
+            dr["lons"][-1],
+            dr["lats"][-1],
+            color="red",
+            marker="o",
+            label="ends at sea",
+            zorder=3,
+        )
+    else:
+        ax.scatter(
+            dr["lons"][-1],
+            dr["lats"][-1],
+            color="green",
+            marker="o",
+            label="ends on land",
+            zorder=3,
+        )
+
+#ax.legend() # generates 153 * 6 legend entries. debug!
+text = f"{sog_count} tracks ground\n{north_count} tracks leave the SoG to the \
+North\n{south_count} tracks leave the SoG to the South"
+ax.annotate(text, (-125,47.5), fontsize="large")
+ax.set_xlabel("Longitude (deg)")
+ax.set_ylabel("Latitude (deg)")
+ax.set_title("Summary Plot of Drifter Tracks in the Straight of Georgia");
 ```
 
 ```python
