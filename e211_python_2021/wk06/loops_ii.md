@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.2'
-      jupytext_version: 1.5.1
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Loops II
@@ -25,16 +24,17 @@ jupyter:
 
 **Write Python code to solve the following problems.**
 
++++
 
 ## Question 1
 
 **Display the numbers of the series 2 4 6 8 10 12 …100 to the screen one by one.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 import numpy as np
 for num in np.arange(2,101,2):
@@ -45,7 +45,7 @@ for num in np.arange(2,101,2):
 
 You are given the matrix $A$ which is size 10x20. The following code loops through each element $A_{ij}$ and calculates $i \cdot j \cdot A_{ij}$. Modify this code to store successive calculations in successive elements of a new variable `B` which will be size 1x200.
 
-```python
+```{code-cell} ipython3
 # modify this code
 A = np.ones([10,20])
 
@@ -55,7 +55,7 @@ for i in np.arange(0,10):
         print(i,j)
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 B = np.empty(200)
 k = 0 # create an index variable to loop over the elements of B
@@ -74,7 +74,7 @@ print(B) # this question gets modified by pythons counting from 0 convention ins
 
 **b.	3 times the value of the corresponding element in `x` if the latter is odd**
 
-```python
+```{code-cell} ipython3
 x = [1, 12, 53, 34, 61, 16, 17, 38, 20]
 y = np.empty_like(x)
 for i in range(len(x)):
@@ -89,13 +89,13 @@ print(y)
 
 **Given a user’s input of some integer num, calculate the factorial of the input. Definition: n! = n(n-1)(n-2)...(3)(2)(1)**
 
-```python
+```{code-cell} ipython3
 # assigns user input to a variable `num`
 num = int(input('Enter an integer: '))
 # add your code here
 ```
 
-```python
+```{code-cell} ipython3
 # assigns user input to a variable `num`
 num = int(input('Enter an integer: '))
 # andrew's soln
@@ -111,11 +111,11 @@ print(fac)
 Modify the above factorial calculation to return an error message if num is negative or is not an integer. 
 To exit and raise an error, include `raise Exception('Error message here')`, or  `raise TypeError('Error message here')
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 num = int(input('Enter an integer: '))
 print(type(num))
@@ -123,6 +123,6 @@ print(type(num))
 # my original solution already does this, if the input can't be cast from str to int then it raises a ValueError
 ```
 
-```python
+```{code-cell} ipython3
 
 ```

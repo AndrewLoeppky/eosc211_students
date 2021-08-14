@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Dictionaries, F String Literals
@@ -22,8 +21,7 @@ jupyter:
 **Learning Objectives:**  
 1. ?
 
-
-```python
+```{code-cell} ipython3
 # placeholder results (not the actual survey)
 transport = {
     "car": [14, 2, 3, 4, 2, 15, 30],
@@ -41,11 +39,11 @@ transport = {
 
 **A) The median commuting time for people who drive**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 import numpy as np
 
@@ -55,11 +53,11 @@ print(f"The median commute time for people who drive is {drivemed} minutes")
 
 **B) The number of people who ride bikes to UBC** 
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 cyclists = len(transport["bike"])
 
@@ -68,4 +66,4 @@ print(f"There are {cyclists} cyclists in EOSC211 this semester.")
 
 ## Question 2
 
-!!!! no direct translation from matlab. formatted print statements are way less complicated in python. 
+!!!! no direct translation from matlab. formatted print statements are way less complicated in python.

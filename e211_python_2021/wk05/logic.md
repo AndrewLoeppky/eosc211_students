@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.2'
-      jupytext_version: 1.5.1
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Logic
@@ -24,16 +23,17 @@ jupyter:
 
 **Write either Python or pseudo code to solve the following problems (change cells to 'markdown' if writing pseudo code)**
 
++++
 
 ## Question 1
 
 **Assume you have two variables `X` and `Y`, which each hold a single number. Assign the smallest of the two numbers to the variable `sml`.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 x = 1
 y = 2
@@ -47,11 +47,11 @@ else:
 ## Question 2
 **Modify your code, so that SML contains `None` if the values `X` and `Y` are the same.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 if x < y:
     sml = x
@@ -65,11 +65,11 @@ else:
 
 **Modify your code to put the smallest of the numbers in a 3-element list `X=[a, b, c]` into the variable SML.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 x = [14, 21, 1]
 sml = min(x)
@@ -82,11 +82,11 @@ Given two arbitrary values LON1 and LON2 in the range -360 to +360, write a sele
 
 **Does it work? - Test your code with pairs of numbers like (5,5), (5,-355), (5,355),(-5,355),(0,0),(360,360),(0,360), etc**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 lon1 = 355
 lon2 = -5

@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.3
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Lab Week 9
@@ -39,12 +38,12 @@ Pivot learning goals and use this week to talk about dictionaries?
 
 Current version does roughly what the old matlab code did, using pure functions
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from matplotlib import pyplot as plt
 ```
 
-```python
+```{code-cell} ipython3
 # get the datafile
 the_file = np.genfromtxt("lab9_old/mgsva_MJJ.csv",delimiter=",")
 
@@ -67,7 +66,7 @@ var_dict = {"lats":the_file[:,1],
             #"v_dev":the_file[:,6]}
 ```
 
-```python
+```{code-cell} ipython3
 def move_to_grid(lats, lons, u_vel, v_vel):
     """
     function to create 2D arrays out of FORTRAN formatted csv data
@@ -117,7 +116,7 @@ def move_to_grid(lats, lons, u_vel, v_vel):
     return lon_0, lat_0, u, v
 ```
 
-```python
+```{code-cell} ipython3
 def mean2d(in_map, winlen):
     """
     Takes a 2D running mean of an input np array
@@ -202,7 +201,7 @@ def mean2d(in_map, winlen):
         return do_mean(in_map, winlen)
 ```
 
-```python
+```{code-cell} ipython3
 def mask_nth(in_map, n):
     """
     returns a 2d array with all values np.nan except points on a grid of n x n spacing
@@ -226,7 +225,7 @@ $$
 m = \sqrt{u^2 + v^2}
 $$
 
-```python
+```{code-cell} ipython3
 #lons, lats, u, v = move_to_grid(lats, lons, u_vel, v_vel)  # the standard way
 lons, lats, u, v = move_to_grid(**var_dict)  # the honking great way
 
@@ -242,10 +241,9 @@ m_filt = mean2d(m, filter_width)
 # apply mask to make nicely spaced arrows
 u_masked = mask_nth(u_filt, filter_width)
 v_masked = mask_nth(v_filt, filter_width)
-
 ```
 
-```python
+```{code-cell} ipython3
 # do the plot
 fig, ax = plt.subplots(figsize=(10,7))
 
@@ -254,7 +252,7 @@ ax.quiver(u_masked, v_masked, pivot="middle", scale=15)
 ax.set_title("The World")
 ```
 
-```python
+```{code-cell} ipython3
 # splatting and doublesplatting tutorial snippet
 
 my_list = [3,4]
@@ -273,6 +271,6 @@ print("double splat from a dictionary")
 print_vars(**my_dict)
 ```
 
-```python
+```{code-cell} ipython3
 
 ```

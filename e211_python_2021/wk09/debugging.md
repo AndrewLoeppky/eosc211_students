@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.3
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Debugging
@@ -22,12 +21,13 @@ jupyter:
 **Learning Objectives:**  
 ??
 
++++
 
 ## Question 1
 
 **Decide what the code fragment is trying to do, and how to fix the error so it performs the required task.**
 
-```python
+```{code-cell} ipython3
 import numpy as np
 A = np.random.rand(10,5) # creates a 10x5 matrix containing random numbers
 
@@ -39,7 +39,7 @@ def rowsum():
         rowsum = rowsum + A[:,k]
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 def rowsum(arr):
@@ -63,8 +63,7 @@ for k=1:length(X),
   Y(k)=std(X(max(1,k-3)):X(min(length(X),k+3)));
 end;
 
-
-```python
+```{code-cell} ipython3
 x = np.random.rand(10)
 y = np.empty_like(x)
 # debug this code
@@ -74,17 +73,19 @@ for k in range(len(x)):
 
 **A) What do you think this code is trying to do (be specific). Write down the steps in words**
 
++++
 
 your answer here
 
++++
 
 **B) Fix the code to perform the intended operation**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 #
 # this is supposed to call the function np.std (calculate the standard deviation) for x[k-3:k+3],
@@ -103,19 +104,21 @@ y
 
 **Below is a list of common types of errors. Define them in your own words**
 
++++
 
 **A) Off-by-one error**:
 
++++
 
 **B) Fencepost error:**
 
++++
 
 ## Question 4
 
 **What do you see on the screen when you run this code (after fixing the error)?**
 
-
-```python
+```{code-cell} ipython3
 x = 5
 y = 3
 for j in np.arange(0,5):
@@ -124,11 +127,11 @@ for j in np.arange(0,5):
         x +=4
 ```
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 x = 5
 y = 4

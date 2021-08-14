@@ -6,9 +6,9 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.3
+      jupytext_version: 1.10.3
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
@@ -33,7 +33,7 @@ jupyter:
 
 
 
-##  New Syllabus Brainstorming ###################
+##  New Syllabus Brainstorming 
 
 HARD SKILLS:
 
@@ -82,7 +82,7 @@ BIG PRINCIPLES:
  12| vectorization practice, file IO (csv) | DNE
  13| review, linear algebra | DNE
  
-#### things that arent in e211 that should be(?):
+## things that arent in e211 that should be(?):
 
 * formal discussion of objects
 * pandas

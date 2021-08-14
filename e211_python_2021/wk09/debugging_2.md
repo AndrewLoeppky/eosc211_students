@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.3
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Debugging II
@@ -22,6 +21,7 @@ jupyter:
 **Learning Objectives:**  
 ??
 
++++
 
 ## Question 1
 
@@ -33,7 +33,7 @@ runs=[3 0 2 0 0 ...]
 
 **Here is some code we have started to write to calculate runs in this way. However, there are 5 small bugs in this code - find and fix them.**
 
-```python
+```{code-cell} ipython3
 import numpy as np
 # debug this code
 
@@ -63,10 +63,9 @@ def runlength(spd, minspd, maxspd):
     if isrun:
         runs[runlen]=runs[runlen]+1
     
-
 ```
 
-```python
+```{code-cell} ipython3
 import numpy as np
 
 # andrew's soln
@@ -118,8 +117,7 @@ while k=1:N
 end;
 rbar = rbar-sumr;
 
-
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 def mean_run_len(spd, minspd, maxspd):
@@ -132,5 +130,4 @@ def mean_run_len(spd, minspd, maxspd):
         k += 1
 
     rbar = rbar-sumr
-
 ```

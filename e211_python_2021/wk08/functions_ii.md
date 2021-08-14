@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Functions II
@@ -23,13 +22,13 @@ jupyter:
 1. Implement functions in your code
 2. Understand the difference between a *fruitful* function (one that returns a variable) and void functions (one that performs an action but does not return anything
 
-
++++
 
 ## Question 1
 
 **We have two input arrays, `x` which is distance and `tpro` which is elevation in kilometers (say, along a survey line). Both have shape (99,). Use a *loop* and an *if statement* to write out a new variable `tlow` that contains only the values in `tpro` when the elevation is less than -1.8km and `nan` otherwise.**
 
-```python
+```{code-cell} ipython3
 import numpy as np
 
 x = np.linspace(0, 1000, 100)  # km along the survey line
@@ -38,7 +37,7 @@ tpro = 2 * np.sin(x)  # get some real topographical data here instead?
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 tlow = np.array([])
 for i in tpro:
@@ -54,11 +53,11 @@ print(tlow)
 
 **Finally, call your function with tpro as the input data and a cutoff of 1.8km**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def select_elev(in_data, cutoff):
     """
@@ -78,11 +77,11 @@ select_elev(tpro, -1.8)
 
 **Modify your function to return a *tuple* containing the elevations below `cutoff`, and the *indexes* of where those elements are found; ie `(tlow, tlow_ind)`.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def select_elev2(in_data, cutoff):
     """
@@ -105,11 +104,11 @@ low, ind
 
 **Finally, I need not have used a loop and an “if” statement in the function.  How would I rewrite the body of the function in Exercise 2 to use logical indexing?  Note that the function call and function definition line don’t need to be changed.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def select_elev3(in_data, cutoff):
     """
@@ -121,6 +120,6 @@ def select_elev3(in_data, cutoff):
 select_elev3(tpro, -1.8)
 ```
 
-```python
+```{code-cell} ipython3
 
 ```
