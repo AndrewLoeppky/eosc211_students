@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Practice with loops, if, strings,  file IO, logical indexing
@@ -23,7 +22,8 @@ jupyter:
 1. Solve problems with python code
 2. Choose appropriate data structures to make your code neat and efficient
 
-<!-- #region -->
++++
+
 ## Question 1
 
 **You have a set of comma-separated value (csv) files containing pairs of measurements of magnetic field strength taken 20 times per second continuously.  The data are organized such that there is one file per day for every day in the year and each file contains two columns: time in seconds and magnetic field strength in nT.  You can call these variables TIME and BMAG.  Assume that the files are named as follows mag001.csv, mag002.csv … through to the file for Dec 31st, mag365.csv**
@@ -35,6 +35,6 @@ A.	First write down a procedure/algorithm for doing this.  Don’t write full ma
 
 HINT:  Often it helps to first solve a simpler problem – e.g. what if you had a data file for one day only?  Break the problem down into pieces and see if you can write the algorithm just for this one day of data.
 
-<!-- #endregion -->
++++
 
-Cant decide how to approach this before having clear course objectives. I would do most of this with pandas (pd.read_csv('path/to/file.csv')) but this is an IO exercise. 
+Cant decide how to approach this before having clear course objectives. I would do most of this with pandas (pd.read_csv('path/to/file.csv')) but this is an IO exercise.

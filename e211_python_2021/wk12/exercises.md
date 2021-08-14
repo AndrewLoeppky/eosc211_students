@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Exercises
@@ -23,6 +22,7 @@ jupyter:
 1. Solve problems with python code
 2. Choose appropriate data structures to make your code neat and efficient
 
++++
 
 ## Question 1
 
@@ -32,16 +32,16 @@ jupyter:
 
 **Store the denominations in a dictionary `denom={'twenties', 'tens', 'fives', 'toonies'...}`, The rest of the program is up to you. There are many correct ways to solve this problem**
 
-```python
+```{code-cell} ipython3
 item_cost = 6.55  # dollars
 cash_in = 10  # dollars
 ```
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 # create a dictionary of bill names and values to loop over
@@ -67,11 +67,11 @@ print(denom)
 
 **B) Turn this into a function called `getchange` that will take as input `item_cost`, `cash_in` and return `change`. Also, make your funtion raise an error if the customer does not give enough money to cover the cost of the purchase**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def change(item_cost, cash_in):
     money = {
@@ -100,7 +100,7 @@ def change(item_cost, cash_in):
 
 **A) For  `x1=[1, 7, -8, 2, -3, -9]`, what is contained in `y2` in each case after the code runs?  Do these three snippets of code do the same thing?  Show your work.**
 
-```python
+```{code-cell} ipython3
 import numpy as np
 x1 = np.array([1, 7, -8, 2, -3, -9])
 y2 = []
@@ -110,7 +110,7 @@ for i in range(len(x1)):
 print(y2)
 ```
 
-```python
+```{code-cell} ipython3
 y2 = x1
 k = 0
 for i in range(len(x1)):
@@ -122,14 +122,15 @@ print(y2)
 
 not sure what the teachable is on this question... revisit later
 
++++
 
 **B) Write code that produces the same result as A, but use vectorization instead of loops.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 y2 = x1[x1 < 0]
 print(y2)

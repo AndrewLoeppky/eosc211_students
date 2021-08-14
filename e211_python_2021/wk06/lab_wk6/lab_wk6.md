@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.10.3
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Lab Week 6
@@ -24,13 +23,13 @@ jupyter:
 3. modularize code, separating the algorithm from input/output statements.
 4. solve a problem useful in the earth sciences
 
-```python
+```{code-cell} ipython3
 from e211_lib import e211
 import numpy as np
 from matplotlib import pyplot as plt
 ```
 
-```python
+```{code-cell} ipython3
 # load data 
 # note: time vectors are in some strange format and need to be fixed (AL)
 
@@ -41,7 +40,6 @@ vel, fly_time = e211.load_aircraft("aircraft_gps.mat")
 temp, sand_time = e211.load_temps("sand_heads.mat")
 ```
 
-<!-- #region -->
 ### Intro
 
 In this lab, we will be working with *time series data*, and apply our skills programming with loops to create a series of *filters*, which remove unwanted or erroneous features in our data. Time series are one of the most common types of data sets we expect to encounter, so we would like our filtering algorithm to work for not just one particular dataset, but *any* time series that can be read as a numpy array.
@@ -73,7 +71,7 @@ W = \frac{L-1}{2}\tag{4}
 $$
 
 
-<!-- #endregion -->
++++
 
 ## Part 1 - Creating a Running Mean Algorithm Using `for` Loops
 
@@ -90,7 +88,7 @@ Your task is to implement these equations in Python and use them to filter the t
 
 >4) Apply your filtering algorithm to each of the datasets provided and display the results with a scientific figure. Show on your plot both the raw and filtered data, and include a legend showing which is which.
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
@@ -122,11 +120,11 @@ C) The data filtered by your running median algorithm, also with a window length
 
 Your code should follow our standard *input/import, process, display* structure, and include lots of commenting to show what is happening where. In a *markdown* cell below your figure, explain which algorithm is more effective at filtering erroneous measurements out of the dataset.
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 winlen = 7  # L from equation 3
@@ -158,7 +156,7 @@ for i in range(
     # ym[i] = np.median(vel[i - window_ind : i + window_ind + 1])
 ```
 
-```python
+```{code-cell} ipython3
 # output comparing the raw data and two smoothing techniques
 fig, ax = plt.subplots(figsize=(15,5))
 ax.plot(fly_time, vel, label="raw data")

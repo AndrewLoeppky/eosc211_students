@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.3
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
 # Lab Week 11
@@ -21,12 +20,12 @@ jupyter:
 
 1. ?
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from matplotlib import pyplot as plt
 from e211_lib import e211
 ```
 
-```python
+```{code-cell} ipython3
 
 ```

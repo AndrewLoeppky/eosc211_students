@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.10.3
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Loops and Vectorization
@@ -24,13 +23,13 @@ jupyter:
 2. Get familiar with the timeit decorator
 
 
-
++++
 
 ## Question 1
 
 **Re-write the following function without a loop**
 
-```python
+```{code-cell} ipython3
 import numpy as np
 x1 = np.random.rand(1000000)
 x2 = np.empty_like(x1)
@@ -46,11 +45,11 @@ def more_than_half(x1):
     return x2
 ```
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def more_than_half(x1):
     x2 = np.zeros_like(x1)
@@ -66,7 +65,7 @@ print(x2[:5])
 
 **Which of the two code snippets perform the operation faster? We can find out using the `timeit` module! The code below shows how long it takes for a simple function to run (the @ is called a *decorator function*, more info [here](my favorite decorator tutorial)). Modify the snippet below to time your functions for question 1.**
 
-```python
+```{code-cell} ipython3
 from wk11_functions import timeit
 
 @timeit
@@ -77,11 +76,11 @@ def count_one_million():
 count_one_million()
 ```
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 
 
@@ -124,12 +123,11 @@ $$
 
 **Add a subfunction called checkRN that checks that the radius R is positive and that the number of points is at least 20 (for a reasonably smooth circle).**
 
-
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def getcirc(xc, yc, R, N):
     """
@@ -166,7 +164,7 @@ def getcirc(xc, yc, R, N):
     return x, y
 ```
 
-```python
+```{code-cell} ipython3
 # test out my function
 x, y = getcirc(1,1,10,20)
 

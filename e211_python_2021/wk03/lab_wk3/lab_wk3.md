@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.10.3
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Lab Week 3
@@ -41,7 +40,8 @@ In this lab we will apply our knowledge of *numpy arrays* to work with some real
 
 This lab is comprised of two sections: **1)** a tutorial for processing data with Python, Jupyter Notebooks, and creating a scientific figure with Matplotlib, and **2)** a set of instructions for creating your own figure which you will hand in. It is highly recommended that you work through the tutorial **before** attempting the assignment, as it covers a few concepts we have not specifically addressed in lecture yet, and which are essential for earning full marks on the lab assignment.
 
-<!-- #region -->
++++
+
 ## Section 1: Plot West Coast Bathymetry Data
 
 In this tutorial, we will import a dataset as a *numpy* array and plot it using *matplotlib.* To keep things neat and organized, we will break the process down into the following steps:
@@ -58,9 +58,8 @@ In this tutorial, we will import a dataset as a *numpy* array and plot it using 
 ### 1) Import Packages
 
 It's good practice to import all the packages you'll need (on top of Python's core *built-in functions*) in a cell near the top of your notebook. So far we know we will be dealing with *numpy arrays* and making plots, so lets import Numpy and Matplotlib. There are a few different syntaxes for importing packages, demonstrated below:
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 from e211_lib import e211 # get all the packages from the e211 library (developed specifically for this course)
 import numpy as np # get all the packages associated with numpy, and assign numpy a nickname 'np'
 import matplotlib.pyplot as plt # get just the package called 'pyplot' from the matplotlib library, nicknamed 'plt'
@@ -72,7 +71,7 @@ These are all the dependencies we will need to complete this lab. If we decide l
 
 The data we wish to analyze is stored in memory at ```path/to/data/in/container/Bathyfile.mat```. *Bathymetry* refers to information about the depth of the ocean and the height of landmasses. We can use this path (just like in last week's tutorial) to access the data. The next thing to notice is that the file ends with `.mat`, which is the file extension used with data generated in MATLAB. We will need a extra package to read this type of file into something we can analyze with a Jupyter Notebook. Lucky for us, there is something exactly like this in the **e211** library; a function which reads `.mat` files and turns them into numpy arrays!
 
-```python
+```{code-cell} ipython3
 raw_bathdata = e211.load_mat("Bathyfile.mat")
 
 # what is the data type of the new variable we just created?
@@ -81,17 +80,17 @@ type(raw_bathdata)
 
 Now that we have the data in a format we can use, let's explore! We can use built in functions to find out more things than just the data type:
 
-```python
+```{code-cell} ipython3
 np.shape(raw_bathdata) # how big is the array?
 ```
 
-```python
+```{code-cell} ipython3
 np.min(raw_bathdata) # what is the deepest point? (units are in m above/below sea level)
 ```
 
 Let's make a "quick and dirty" plot as a preliminary way to visualize our data (especially since we changed the format, it is a good idea to check if anything went awry). This is just a quick check, we will worry about making it into a proper scientific figure later on. Since this is a 2D dataset (look at the cell where we found *np.shape* of the data), we can use the `contourf()` function from matplotlib.
 
-```python
+```{code-cell} ipython3
 plt.contourf(raw_bathdata)
 ```
 
@@ -103,14 +102,14 @@ This step is also commonly referred to as "data scrubbing," and is often the lon
 
 First we need to flip our array over. We can do this using our knowledge of array slicing! Remember, the syntax for accessing elements in an array is `[start:stop:step]`. 
 
-```python
+```{code-cell} ipython3
 bathdata_fixed = raw_bathdata[::-1]# flip the array over and assign it to a new variable
 plt.contourf(bathdata_fixed) # try another quick visualization
 ```
 
 Much better! Now let's think about generating a way to label our X and Y axes with something meaningful. Currently, the labels refer to the *array index* of each point on our plot. A far more useful reference would be the latitude (on the y axis) and longitude (on the x axis). This particular image is from latitude 47$^o$ to 60$^o$ N and longitude -150$^o$ to -110 $^o$E. The following code generates arrays that with the lat and lon of each row and column in the image, then passes those into the `contourf` function, which then creates the plot with the new labels applied. Take a second to understand what is happening at each line of code. You may want to try running in a cell `help()` with the name of a built-in function for more information on how that function works.
 
-```python
+```{code-cell} ipython3
 latlen = np.shape(bathdata_fixed)[0] # assign the height and width of the image to new variables
 lonlen = np.shape(bathdata_fixed)[1]
 
@@ -123,7 +122,7 @@ plt.contourf(lons, lats, bathdata_fixed)
 
 Maybe we are only interested in the bathymetry near Vancouver Island. We can "zoom" in on a particular area, using slicing to select a section of the original array. **IMPORTANT:** We need to slice the `lats` and `lons` arrays at the same intervals *before* we try to re-create the plot, or else we will get an error.
 
-```python
+```{code-cell} ipython3
 bath_zoomed = bathdata_fixed[0:150,500:900]
 lats_zoomed = lats[0:150]
 lons_zoomed = lons[500:900] # make sure the slices match between the coordinates and the original data
@@ -135,7 +134,7 @@ plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed)
 
 If we ara satisfied with our data processing, it is now time to present our result with a scientific figure. Go through the checklist and add code to our plot until we tick all of the boxes. 
 
-```python
+```{code-cell} ipython3
 con = plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed, cmap="Blues_r") # change the colormap to something suitable
 plt.title("Bathymetry Near Vancouver Island")
 plt.xlabel("longitude (deg)")
@@ -157,7 +156,8 @@ For changing the colormap, check out the [Matplotlib Documentation](https://matp
 
 Finally, as a last step, restart the kernel and re-run the whole notebook to check for errors (click the $\blacktriangleright\blacktriangleright$ button on the toolbar). This is important, so that the next time you run your notebook (or someone else, perhaps the person marking it), you know you will get the same result that you have now.
 
-<!-- #region -->
++++
+
 ## Section 2: Mapping Chlorophyl in the Ocean
 
 In the `/lab_week3` folder, there is a dataset called `chlorophyl_apr2021.png`, which shows the concentration of chlorphyl (mg/m$^3$) in the ocean from satellite imagery, averaged over the month of April in 2021. The data originally came from 
@@ -178,11 +178,12 @@ NASA's Earth Observing System Data and Information System (EOSDIS), which can be
 5) Present your data, making sure to meet all the requirements for a scientific figure. Use a colormap other than the default.
 
 6) Final check: run your whole notebook again and check for errors using the $\blacktriangleright\blacktriangleright$ button. 
-<!-- #endregion -->
+
++++
 
 ## Lab Solution:
 
-```python
+```{code-cell} ipython3
 ##### import packages ######
 
 from e211_lib import e211
@@ -190,14 +191,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-```python
+```{code-cell} ipython3
 ##### import raw data #####
 
 chlor = e211.load_oceancolor("chlorophyl_apr2021.png")
 #plt.contourf(chlor)
 ```
 
-```python
+```{code-cell} ipython3
 ##### scrub data #####
 
 # create arrays to show latitude and longitude as the labels
@@ -221,7 +222,7 @@ lats_zoomed = lats[hmin:hmax]
 lons_zoomed = lons[wmin:wmax]
 ```
 
-```python
+```{code-cell} ipython3
 ##### make a scientific figure #####
 
 con = plt.contourf(lons_zoomed, lats_zoomed, chlor_zoomed, cmap="magma")
@@ -233,6 +234,7 @@ plt.ylabel("latitude (deg)");
 
 ## $\downarrow$$\downarrow$$\downarrow$ Extra Code Scraps Made While Writing this lab $\downarrow$$\downarrow$$\downarrow$
 
++++
 
 ## Exercise 1: Visualize some oceanographic data from the web
 
@@ -243,11 +245,11 @@ link -> data -> level 3 browser -> drop down settings to "standard", "<any>", <a
 mine is at `C:\Users\Owner\UBC_TLEF\eosc_211\e211_python_2021\wk03\lab_wk3\chlorophyl_march1999.png`
     
 
-
++++
 
 Import the packages we need (explain what each one does)
 
-```python
+```{code-cell} ipython3
 # Import the necessary libraries
 from PIL import Image
 import numpy as np
@@ -256,7 +258,7 @@ import matplotlib.pyplot as plt
 
 import our data as a .png image
 
-```python
+```{code-cell} ipython3
 # load the image
 chlordat_in = Image.open("chlorophyl_march1999.png")
 
@@ -266,7 +268,7 @@ type(chlordat_in)
 
 png is a common image format, but we would like to do more than just look at the picture. Convert to numpy so we can do analyze our data and generate a proper *scientific figure* to present our results.
 
-```python
+```{code-cell} ipython3
 chlordat_arr = np.asarray(chlordat_in)
 
 # now what is the data type?
@@ -274,18 +276,18 @@ type(chlordat_arr)
 chlordat_arr.dtype
 ```
 
-```python
+```{code-cell} ipython3
 # cool, we made it into a numpy array. What are its dimensions?
 np.shape(chlordat_arr)
 ```
 
 What are the *values* stored in our array? chlorophyl concentrations from 0 - 20 mg/m3 are mapped to integers from 255 to 0. Discuss further as in the old lab
 
-```python
+```{code-cell} ipython3
 pcm = plt.imshow(chlordat_arr,origin='upper')
 ```
 
-```python
+```{code-cell} ipython3
 # lets try plotting our array as a pcolormesh (a common way to visualize 2D datasets or images)
 pcm = plt.pcolormesh(chlordat_arr)
 ```
@@ -293,7 +295,7 @@ pcm = plt.pcolormesh(chlordat_arr)
 Okay, we seem to have the general features of our data, but something has gone awry converting from a 
 png to an array. How can we fix this given what we know about *array slicing?*
 
-```python
+```{code-cell} ipython3
 chlordat_fixed = chlordat_arr[::-1,::]  # explain what this does, or get students to come up with this
 
 # try plotting it again
@@ -302,11 +304,11 @@ pcm = plt.pcolormesh(chlordat_fixed)
 
 Looking better, but the default colours hurt to look at and it's very hard to understand what this picture actually represents. We can look at the available *parameters* ( ways we can modify the figure) for a *pcolormesh* plot by doing
 
-```python
+```{code-cell} ipython3
 help(plt.pcolormesh)
 ```
 
-```python
+```{code-cell} ipython3
 pcm = plt.pcolormesh(chlordat_fixed, cmap='magma_r') # change the colormap with a keyword argument
 plt.title("Chlorophyl Concentration March 1999"); # add a title to the figure
 ```
@@ -315,11 +317,11 @@ Here is a link to the [matplotlib documentation](https://matplotlib.org/stable/g
 
 Next: change the x and y labels to something something meaningful, like latitude and longitude.
 
-```python
+```{code-cell} ipython3
 help(plt.xticks)
 ```
 
-```python
+```{code-cell} ipython3
 # We'd like to label every 30 degrees and place them in the correct location on our image.
 # Use our skills at creating, indexing and slicing numpy arrays to create "ticks" and "labels"
 
@@ -346,7 +348,7 @@ plt.yticks(lat_ticks, lat_labels);
 
 Add a colourbar so we can interpret our data, just like the one on the oceancolor website. 
 
-```python
+```{code-cell} ipython3
 pcm = plt.pcolormesh(chlordat_fixed, cmap="magma_r")
 plt.title("Chlorophyl Concentration March 1999")  # add a title to the figure
 plt.xlabel("longitude (deg)")
@@ -361,7 +363,8 @@ cbar.ax.set_yticklabels(np.linspace(0,20,6));
 
 Go through our scientific figure checklist. This checks all the boxes. 9 lines of code to produce the plot. It might be a good idea to save this code somewhere to use as a reference for the next time you need to generate a scientific figure.
 
-<!-- #region -->
++++
+
 ## Exercise 2: Bathymetry
 
 The old lab talks about processing unscaled vs scaled data, but we just did a ton of work to rescale our labels in question 1. Whats easy in matlab is hard in python and v.v?
@@ -370,16 +373,15 @@ The old lab talks about processing unscaled vs scaled data, but we just did a to
 Same idea as #1: get data, re-format it into something we can understand and parse with python, manipulate the data however we wish, then present the result in a concise, nicely formatted way.
 
 This dataset is from old MATLAB code, which saves data using the `.mat` extension. A quick search shows that there is a python package called `loadmat` from the scipy library that will handle this file type
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 # import tools we need to process the new data type
 from scipy.io import loadmat
 
 help(loadmat)
 ```
 
-```python
+```{code-cell} ipython3
 # get data
 bathyfile = loadmat("Bathyfile.mat")
 
@@ -398,7 +400,7 @@ plt.yticks(np.arange(len(lat))[::50], np.round(lat)[::50]);
 min(lat), max(lat)
 ```
 
-```python
+```{code-cell} ipython3
 
 ```
 
@@ -406,22 +408,22 @@ min(lat), max(lat)
 
 Create a scientific figure! You will need to use
 
-```python
+```{code-cell} ipython3
 from e211_lib import e211
 ```
 
-```python
+```{code-cell} ipython3
 # load the image and do a "quick and dirty" plot
 chlor = e211.load_oceancolor("chlorophyl_march1999.png")
 plt.contourf(chlor)
 ```
 
-```python
+```{code-cell} ipython3
 # query the size of the numpy array
 chlor.shape
 ```
 
-```python
+```{code-cell} ipython3
 ## create arrays to show latitude and longitude as the labels
 num_lats = chlor.shape[0]
 num_lons = chlor.shape[1]

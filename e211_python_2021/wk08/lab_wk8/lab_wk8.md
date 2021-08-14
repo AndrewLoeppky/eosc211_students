@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.10.3
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Lab Week 8
@@ -28,7 +27,7 @@ parts of a function: definition, args, kwargs, docstring, body, return statement
 
 take code from wk6, package it in functions like so:
 
-```python
+```{code-cell} ipython3
 def check_inputs(winlen):
     """
     checks that user inputs are an odd number and corrects them if not
@@ -50,14 +49,13 @@ def running_median(data, winlen=7):
     winlen = check_inputs(winlen)
     pass
 
-
 ```
 
 both the running mean and running median functions should *call* the check_inputs function. You can use functions to call functions. Keep track of which variables are passed where. 
 
 Final hand in: for a given dataset, (something with interesting variability at widely varying timescales) make a plt.subplots(2) graph with the running mean in one frame and running median in the other. plot the data with many different sized windows, such that it would be laborious to try to copy/paste the original code from lab6
 
-```python
+```{code-cell} ipython3
 # make 8 plots with 3 lines of code!
 windows = [1,3,7,11,21,32,100,155]
 for window in windows:

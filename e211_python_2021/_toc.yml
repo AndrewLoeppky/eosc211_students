@@ -6,8 +6,8 @@ parts:
       - file: syllabus/course_goals.md
   - caption: Week 2
     chapters:
-      - file: wk02/worksheet_steps_in_problem_solving.md
-      - file: wk02/some_review_plus_built_in_functions_arrays_preview.md
+      - file: wk02/worksheet_steps_in_problem_solving.ipynb
+      - file: wk02/some_review_plus_built_in_functions_arrays_preview.ipynb
   - caption: Week 3
     chapters:
       - file: wk03/data_structures.md

@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Functions
@@ -25,7 +24,7 @@ jupyter:
 
 Reading: https://phaustin.github.io/think_jupyter/functions.html
 
-
++++
 
 ## Question 1
 
@@ -33,7 +32,7 @@ Reading: https://phaustin.github.io/think_jupyter/functions.html
 
 **create the `sqrtsum` function by editing the code below:**
 
-```python
+```{code-cell} ipython3
 # Write the function definition line:
 def a_function():
     # Write the docstring:
@@ -46,7 +45,7 @@ def a_function():
     return ans
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def sqrtsum(x1, x2):
     """
@@ -61,11 +60,11 @@ def sqrtsum(x1, x2):
 
 **In the cell below, *call* your `sqrtsum` function if you want to find the “sqrtsum” of 255 and 73.5. Assign variables `mysum` and `rootsum` to the outputs `sqrtsum`**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 mysum, rootsum = sqrtsum(255, 73.5)
 print(mysum)
@@ -76,11 +75,11 @@ print(rootsum)
 
 **Let's make our function a little more user friendly by anticipating a possible error. Modify `sqrtsum` to *raise* an exception if both of the function arguments aren't either integers or floats**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def sqrtsum(x1, x2):
     """
@@ -101,11 +100,11 @@ def sqrtsum(x1, x2):
 
 **Now change your code in (3) to be a subfunction called `checkinput()` that does the exact same thing as in (3) and is called by your main function `sqrtsum`. `checkinput` should take all the input parameters passed to `sqrtsum`.**
 
-```python
+```{code-cell} ipython3
 # your code here
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 def sqrtsum(x1, x2):
     """
@@ -131,7 +130,7 @@ def sqrtsum(x1, x2):
 
 **Continue writing the body of the function addn that takes three parameters n, summax and maxiter and adds n to itself while the sum is less than or equal to summax or if the number of iterations is less than or equal to maxiter and then returns the sum.**
 
-```python
+```{code-cell} ipython3
 def sum_n(n, summax, maxiter):
     """
     adds the n to itself until one of the
@@ -145,7 +144,7 @@ def sum_n(n, summax, maxiter):
         # your code here
 ```
 
-```python
+```{code-cell} ipython3
 def sum_n(n, summax, maxiter):
     """
     adds the n to itself until one of the
@@ -165,7 +164,7 @@ def sum_n(n, summax, maxiter):
 
 **Why doesn't this work? Debug this code**
 
-```python
+```{code-cell} ipython3
 my_num = 5.1
 y = cube_plus_one(my_num)
 
@@ -177,7 +176,7 @@ def cube_plus_one(x):
     return x ** 3 + 1
 ```
 
-```python
+```{code-cell} ipython3
 # andrew's soln
 my_num = 5.1
 
