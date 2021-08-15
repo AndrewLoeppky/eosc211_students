@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -30,6 +30,7 @@ Useful references:
 [Numpy Documentation](https://numpy.org/doc/stable/reference/generated/numpy.array.html)
 
 ```{code-cell} ipython3
+# import the numpy package - an extension of python's core built in functions
 import numpy as np
 ```
 
