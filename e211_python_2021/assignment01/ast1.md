@@ -60,36 +60,36 @@ data = np.load("drifter_data.npy", allow_pickle=True)
 
 The `drifter_data.npy` file contains all of the data from 153 drifters. The `.npy` extension is a file format specific to numpy arrays. Each element of the array contains a *dictionary* with the following **key:value** pairs:
 
-```
-             "drifter_id":        <integer> a unique identifier (e.g., labelled # on drifter body) 
-             "design":            <integer> drifter design code (1-6)
-             "tzone":             <str> Time zone
-             "datetime":          <datetime object> the dates associated with each reported lat/lon position
-             "lons":              <float64> longitude in decimal degrees
-             "lats":              <float64> latitude in decimal degrees
-             "comment":           <str> metadata
-             "at_sea":            <int> flag for each point, classifying it as:
-                                  1 - good - at sea, freely floating (valid)
-                                  2 - bad  - at sea but trapped in rocky intertidal
-                                             (floating but not free)
-                                  3 - bad  - on land (grounded, test data, etc.)
-                                  4 - bad - at sea (large GPS error, on ship, etc.)
-             "ends_on_land":      <boolean> if the drifter ends by grounding or not
-                                  True - grounded at or just after last at_sea==1 point
-                                  False - track ends at sea
-             "found_on_land":     <boolean> If the drifter was found by a human (True) on land
-                                  or if it was never recovered (False)
-             "launchdate":        <datetime object> the date the drifter was launched 
-                                  format = (Year, Month, Day, Hour, Minute, Second, Microsecond)
-             "enddate":           <datetime object> the date the drifter went offline
-             "lifetime":          <timedelta object> the length of the drifter's life
-             "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
-                                  transmitting with at_sea == 1
-             "first_ground_date": <datetime obj> date of first status code != 1. If the drifter 
-                                  never grounded, this is equal to "enddate"
-             "first_lifetime":    <timedelta object> length of time passed between launch and first 
-                                  status code != 1
-```
+
+    "drifter_id":        <integer> a unique identifier (e.g., labelled # on drifter body) 
+    "design":            <integer> drifter design code (1-6)
+    "tzone":             <str> Time zone
+    "datetime":          <datetime object> the dates associated with each reported lat/lon position
+    "lons":              <float64> longitude in decimal degrees
+    "lats":              <float64> latitude in decimal degrees
+    "comment":           <str> metadata
+    "at_sea":            <int> flag for each point, classifying it as:
+                         1 - good - at sea, freely floating (valid)
+                         2 - bad  - at sea but trapped in rocky intertidal
+                                    (floating but not free)
+                         3 - bad  - on land (grounded, test data, etc.)
+                         4 - bad - at sea (large GPS error, on ship, etc.)
+    "ends_on_land":      <boolean> if the drifter ends by grounding or not
+                         True - grounded at or just after last at_sea==1 point
+                         False - track ends at sea
+    "found_on_land":     <boolean> If the drifter was found by a human (True) on land
+                         or if it was never recovered (False)
+    "launchdate":        <datetime object> the date the drifter was launched 
+                         format = (Year, Month, Day, Hour, Minute, Second, Microsecond)
+    "enddate":           <datetime object> the date the drifter went offline
+    "lifetime":          <timedelta object> the length of the drifter's life
+    "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
+                         transmitting with at_sea == 1
+    "first_ground_date": <datetime obj> date of first status code != 1. If the drifter 
+                         never grounded, this is equal to "enddate"
+    "first_lifetime":    <timedelta object> length of time passed between launch and first 
+                         status code != 1
+
 
 Note that since all the drifters have different lifetimes, the dataset associated with each drifter will be a different length. Keep this in mind when using loops and indexing to access data, as it may cause errors.
 
@@ -154,7 +154,7 @@ basemap = {"k":basemap_in["k"].flatten(),
            "lons":basemap_in["ncst"][:,0],
            "lats":basemap_in["ncst"][:,1]}
 
-plt.plot(basemap["lons"], basemap["lats"])
+plt.plot(basemap["lons"], basemap["lats"]);
 ```
 
 ```{code-cell} ipython3

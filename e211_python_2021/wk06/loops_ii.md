@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -51,8 +51,7 @@ A = np.ones([10,20])
 
 for i in np.arange(0,10):
     for j in np.arange(0,20):
-        i * j * A[i,j]
-        print(i,j)
+        k = i * j * A[i,j]        
 ```
 
 ```{code-cell} ipython3
@@ -109,7 +108,7 @@ print(fac)
 ## Question 5
 
 Modify the above factorial calculation to return an error message if num is negative or is not an integer. 
-To exit and raise an error, include `raise Exception('Error message here')`, or  `raise TypeError('Error message here')
+To exit and raise an error, include `raise Exception('Error message here')`, or  `raise TypeError('Error message here')`
 
 ```{code-cell} ipython3
 # your code here
@@ -120,7 +119,8 @@ To exit and raise an error, include `raise Exception('Error message here')`, or 
 num = int(input('Enter an integer: '))
 print(type(num))
 
-# my original solution already does this, if the input can't be cast from str to int then it raises a ValueError
+# my original solution already does this, if the input can't be 
+# cast from str to int then it raises a ValueError
 ```
 
 ```{code-cell} ipython3

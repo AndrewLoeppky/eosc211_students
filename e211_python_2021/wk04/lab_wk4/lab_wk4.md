@@ -152,7 +152,7 @@ ax[1].plot(dens, height, color="red")
 fig.suptitle("Pressure and Density Variation with Altitude", fontsize=16)  # title for the whole figure
 ax[0].set_xlabel("Pressure (Pa)")
 ax[0].set_ylabel("Height (m)")  # because sharey=True, we only need this once
-ax[1].set_xlabel("Density (kg/m3)")
+ax[1].set_xlabel("Density (kg/m3)");
 ```
 
 Do we check all the boxes?
