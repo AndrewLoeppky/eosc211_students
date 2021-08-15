@@ -70,7 +70,6 @@ $$
 W = \frac{L-1}{2}\tag{4}
 $$
 
-
 +++
 
 ## Part 1 - Creating a Running Mean Algorithm Using `for` Loops

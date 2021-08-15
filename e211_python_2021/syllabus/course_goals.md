@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-# course syllabus
+# Course Syllabus
 
 ## Old Syllabus 
 
@@ -73,6 +73,7 @@ BIG PRINCIPLES:
  3|intro to numpy arrays, built in functions, slicing *ZOP*| matplotlib, scientific figures, [import, input, process, output], array manipulation
  4| DNE | math, code structuring, plt subplots
  5| logic, `if elif else` | plt.annotate(), f strings, type casting, user input
+ 5.5 | Assignment 1
  6| loops | filtering with running mean/median, implemented with loops (slow)
  7| MIDTERM
  8| functions | re-do lab 6 with functions

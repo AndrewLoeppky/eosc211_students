@@ -11,9 +11,16 @@ from PIL import Image
 import numpy as np
 from scipy.io import loadmat
 import datetime
+import pandas as pd
+from matplotlib import pyplot as plt
 
 
 # %%
+def show_earthquake_data():
+    df = pd.read_csv("EQCanOB_20190907_2020_0906.txt", sep="|")
+    pd.options.display.max_columns = None
+    display(df)
+
 
 # %%
 def load_temps(my_data):

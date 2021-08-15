@@ -44,8 +44,8 @@ kernelspec:
 **We want to find the largest earthquake in the Pacific Northwest region in the past year.  The data sheet gives all earthquakes in this area that have a magnitude of at least 4.0.**
 
 ```{code-cell} ipython3
-from week2_functions import show_earthquake_data
-show_earthquake_data()
+from e211_lib import e211
+e211.show_earthquake_data()
 ```
 
 source: http://www.earthquakescanada.nrcan.gc.ca/
