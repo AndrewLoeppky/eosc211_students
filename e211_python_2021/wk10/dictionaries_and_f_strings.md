@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -51,7 +51,7 @@ drivemed = np.median(transport["car"])
 print(f"The median commute time for people who drive is {drivemed} minutes")
 ```
 
-**B) The number of people who ride bikes to UBC** 
+**B) The number of people who ride bikes to UBC**
 
 ```{code-cell} ipython3
 # your code here

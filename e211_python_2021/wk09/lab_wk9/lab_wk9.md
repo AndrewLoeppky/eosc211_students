@@ -1,13 +1,12 @@
 ---
 jupytext:
-  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
     format_version: 0.13
     jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -15,6 +14,8 @@ kernelspec:
 # Lab Week 9
 
 ## EOSC 211
+
+This is just a sketch that recreates the results from the old matlab version of this lab
 
 ### Learning Objectives:
 
@@ -150,7 +151,7 @@ def mean2d(in_map, winlen):
                 # wrap around points off the right edge of the map
                 jv[jv > ncols] = jv[jv > ncols] - ncols
                 
-                # don't filter the land elements (not working.. why?)
+                # don't filter the land elements
                 if np.isnan(in_map[iv,jv]):
                     out_map[iv,jv] = np.nan
                 else:              
@@ -249,7 +250,7 @@ fig, ax = plt.subplots(figsize=(10,7))
 
 ax.contourf(m_filt,cmap="magma")
 ax.quiver(u_masked, v_masked, pivot="middle", scale=15)
-ax.set_title("The World")
+ax.set_title("The World");
 ```
 
 ```{code-cell} ipython3

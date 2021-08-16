@@ -26,7 +26,7 @@ kernelspec:
 
 ## Question 1
 
-**We have two input arrays, `x` which is distance and `tpro` which is elevation in kilometers (say, along a survey line). Both have shape (99,). Use a *loop* and an *if statement* to write out a new variable `tlow` that contains only the values in `tpro` when the elevation is less than -1.8km and `nan` otherwise.**
+**We have two input arrays, `x` which is distance and `tpro` which is elevation in kilometers (say, along a survey line). Both have shape (99,). Use a *loop* and an *if statement* to write out a new variable `tlow` that contains only the values in `tpro` when the elevation is less than -1.8km.**
 
 ```{code-cell} ipython3
 import numpy as np

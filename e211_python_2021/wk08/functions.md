@@ -20,7 +20,6 @@ kernelspec:
 
 **Learning Objectives:**  
 1. Implement functions in your code
-2. Understand the difference between a *fruitful* function (one that returns a variable) and void functions (one that performs an action but does not return anything
 
 Reading: https://phaustin.github.io/think_jupyter/functions.html
 
@@ -141,7 +140,7 @@ def sum_n(n, summax, maxiter):
     counter = 0
     sumn = n
     while sumn <= (summax):
-        # your code here
+        pass # your code here
 ```
 
 ```{code-cell} ipython3
