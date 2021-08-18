@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -37,6 +37,8 @@ def rowsum():
     rowsum = 0
     for k in range(len(A)):
         rowsum = rowsum + A[:,k]
+        
+rowsum(A)
 ```
 
 ```{code-cell} ipython3
@@ -57,11 +59,6 @@ rowsum(A)
 ## Question 2
 
 **This code is supposed to create a *running standard deviation*. Does it? If it doesn't, state why. If not, what is the problem?**
-
-X=rand(1,10)
-for k=1:length(X),
-  Y(k)=std(X(max(1,k-3)):X(min(length(X),k+3)));
-end;
 
 ```{code-cell} ipython3
 x = np.random.rand(10)

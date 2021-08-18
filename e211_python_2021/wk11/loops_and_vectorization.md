@@ -22,7 +22,6 @@ kernelspec:
 1. Make code more efficient and cleaner by using vector operations instead of loops
 2. Get familiar with the timeit decorator
 
-
 +++
 
 ## Question 1
@@ -39,9 +38,9 @@ def more_than_half(x1):
     x2 = np.empty_like(x1)
     for i in range(len(x1)):
         if x1[i] > 0.5:
-            x2[i] = 1
+            x2[i] = True
         else:
-            x2[i] = 0
+            x2[i] = False
     return x2
 ```
 
@@ -66,9 +65,10 @@ print(x2[:5])
 **Which of the two code snippets perform the operation faster? We can find out using the `timeit` module! The code below shows how long it takes for a simple function to run (the @ is called a *decorator function*, more info [here](my favorite decorator tutorial)). Modify the snippet below to time your functions for question 1.**
 
 ```{code-cell} ipython3
-from wk11_functions import timeit
+#from wk11_functions import timeit
+from e211_lib import e211
 
-@timeit
+@e211.timeit
 def count_one_million():
     for i in range(1000000):
         x = i
@@ -84,7 +84,7 @@ count_one_million()
 # andrew's soln
 
 
-@timeit
+@e211.timeit
 def loop(x1):  ## just copy and paste the function body
     x2 = np.empty_like(x1)
     for i in range(len(x1)):
@@ -95,15 +95,15 @@ def loop(x1):  ## just copy and paste the function body
     return x2
 
 
-@timeit
+@e211.timeit
 def vector(x1):
     x2 = np.zeros_like(x1)
     x2[np.where(x1 > 0.5)] = 1
     return x2
 
 
-print(f"Loop:{loop(x1)}")
-print(f"Vector:{vector(x1)}")
+print(f"Loop: {loop(x1)}")
+print(f"Vector: {vector(x1)}")
 ```
 
 ## Question 3
@@ -169,5 +169,5 @@ def getcirc(xc, yc, R, N):
 x, y = getcirc(1,1,10,20)
 
 from matplotlib import pyplot as plt
-plt.plot(x,y)
+plt.plot(x,y);
 ```

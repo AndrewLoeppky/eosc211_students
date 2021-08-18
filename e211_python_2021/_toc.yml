@@ -21,6 +21,9 @@ parts:
       - file: wk05/logic.md
       - file: wk05/complicated_logic.md
       - file: wk05/lab_wk5/lab_wk5.md
+  - caption: Assignment 1
+    chapters:
+      - file: assignment01/ast1.md
   - caption: Week 6
     chapters:
       - file: wk06/loops.md

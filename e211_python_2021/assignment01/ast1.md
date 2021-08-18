@@ -1,16 +1,15 @@
 ---
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.11.2
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
 ---
 
 # Assignment 1
@@ -42,14 +41,14 @@ Over the past few years, the [ODL drifters project](www.drifters.eoas.ubc.ca) ha
 
 † We think that very little goes around the northern tip of Vancouver Island because there is only a narrow channel separating it from the mainland there
 
-```python
+```{code-cell} ipython3
 import numpy as np
 from scipy.io import loadmat
 from e211_lib import e211
 from matplotlib import pyplot as plt
 ```
 
-```python
+```{code-cell} ipython3
 # There is a function in the library to convert the original .mat file to the new format
 data = e211.clean_a1_data("Drifter_dataset.mat")
 
@@ -57,41 +56,40 @@ data = e211.clean_a1_data("Drifter_dataset.mat")
 data = np.load("drifter_data.npy", allow_pickle=True)
 ```
 
-<!-- #region -->
 ## Part 1: Summary Plot
 
 The `drifter_data.npy` file contains all of the data from 153 drifters. The `.npy` extension is a file format specific to numpy arrays. Each element of the array contains a *dictionary* with the following **key:value** pairs:
 
-```
-             "drifter_id":        <integer> a unique identifier (e.g., labelled # on drifter body) 
-             "design":            <integer> drifter design code (1-6)
-             "tzone":             <str> Time zone
-             "datetime":          <datetime object> the dates associated with each reported lat/lon position
-             "lons":              <float64> longitude in decimal degrees
-             "lats":              <float64> latitude in decimal degrees
-             "comment":           <str> metadata
-             "at_sea":            <int> flag for each point, classifying it as:
-                                  1 - good - at sea, freely floating (valid)
-                                  2 - bad  - at sea but trapped in rocky intertidal
-                                             (floating but not free)
-                                  3 - bad  - on land (grounded, test data, etc.)
-                                  4 - bad - at sea (large GPS error, on ship, etc.)
-             "ends_on_land":      <boolean> if the drifter ends by grounding or not
-                                  True - grounded at or just after last at_sea==1 point
-                                  False - track ends at sea
-             "found_on_land":     <boolean> If the drifter was found by a human (True) on land
-                                  or if it was never recovered (False)
-             "launchdate":        <datetime object> the date the drifter was launched 
-                                  format = (Year, Month, Day, Hour, Minute, Second, Microsecond)
-             "enddate":           <datetime object> the date the drifter went offline
-             "lifetime":          <timedelta object> the length of the drifter's life
-             "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
-                                  transmitting with at_sea == 1
-             "first_ground_date": <datetime obj> date of first status code != 1. If the drifter 
-                                  never grounded, this is equal to "enddate"
-             "first_lifetime":    <timedelta object> length of time passed between launch and first 
-                                  status code != 1
-```
+
+    "drifter_id":        <integer> a unique identifier (e.g., labelled # on drifter body) 
+    "design":            <integer> drifter design code (1-6)
+    "tzone":             <str> Time zone
+    "datetime":          <datetime object> the dates associated with each reported lat/lon position
+    "lons":              <float64> longitude in decimal degrees
+    "lats":              <float64> latitude in decimal degrees
+    "comment":           <str> metadata
+    "at_sea":            <int> flag for each point, classifying it as:
+                         1 - good - at sea, freely floating (valid)
+                         2 - bad  - at sea but trapped in rocky intertidal
+                                    (floating but not free)
+                         3 - bad  - on land (grounded, test data, etc.)
+                         4 - bad - at sea (large GPS error, on ship, etc.)
+    "ends_on_land":      <boolean> if the drifter ends by grounding or not
+                         True - grounded at or just after last at_sea==1 point
+                         False - track ends at sea
+    "found_on_land":     <boolean> If the drifter was found by a human (True) on land
+                         or if it was never recovered (False)
+    "launchdate":        <datetime object> the date the drifter was launched 
+                         format = (Year, Month, Day, Hour, Minute, Second, Microsecond)
+    "enddate":           <datetime object> the date the drifter went offline
+    "lifetime":          <timedelta object> the length of the drifter's life
+    "refloated":         <boolean> if the drifter went to at_sea != 1 and then resumed 
+                         transmitting with at_sea == 1
+    "first_ground_date": <datetime obj> date of first status code != 1. If the drifter 
+                         never grounded, this is equal to "enddate"
+    "first_lifetime":    <timedelta object> length of time passed between launch and first 
+                         status code != 1
+
 
 Note that since all the drifters have different lifetimes, the dataset associated with each drifter will be a different length. Keep this in mind when using loops and indexing to access data, as it may cause errors.
 
@@ -137,31 +135,29 @@ Finally, add to the plot a text line that states how many tracks fall into each 
 #### Step 1: Acquire all the data 
 
 Several possible avenues here...
-<!-- #endregion -->
 
-```python
+```{code-cell} ipython3
 drifters = np.load("drifter_data.npy", allow_pickle=True)
 basemap_in = loadmat("BCcoastline.mat")
 ```
 
-```python
+```{code-cell} ipython3
 # plot the drifters
 fig, ax = plt.subplots()
 for dat in data:
     ax.plot(dat["lons"], dat["lats"])
-
 ```
 
-```python
+```{code-cell} ipython3
 # the original basemap from matlab.. this is hard to parse with matplotlib
 basemap = {"k":basemap_in["k"].flatten(),
            "lons":basemap_in["ncst"][:,0],
            "lats":basemap_in["ncst"][:,1]}
 
-plt.plot(basemap["lons"], basemap["lats"])
+plt.plot(basemap["lons"], basemap["lats"]);
 ```
 
-```python
+```{code-cell} ipython3
 # recycle the basemap from lab 3! good teachable
 # this is line for line the lab 3 tutorial section
 
@@ -184,7 +180,7 @@ for dr in drifters:
     plt.plot(dr["lons"], dr["lats"])
 ```
 
-```python
+```{code-cell} ipython3
 # readjust the map size to clearly show the drifters, and use conditional sampling
 # to make our map only show land and sea rather than all elevetions -- less clutter
 lats = np.linspace(47, 60, latlen)  # create arrays for lat and lon
@@ -216,7 +212,7 @@ good start, fix this later on
 
 Use conditional sampling to trim the drifter tracks and choose colors according to the criteria specified above
 
-```python
+```{code-cell} ipython3
 # how to conditionally sample a dictionary for a single element
 my_drifter = drifters[0]
 print("before conditional sampling:")
@@ -225,7 +221,7 @@ print("after conditional sampling:")
 print(len(my_drifter["lats"][my_drifter["datetime"] < my_drifter["first_ground_date"]]))
 ```
 
-```python
+```{code-cell} ipython3
 # show all the drift tracks up until either the point of first grounding, 
 # or the end of the track if the drifter does not ground.
 for dr in drifters:
@@ -234,14 +230,14 @@ for dr in drifters:
     dr["datetime"] = dr["datetime"][dr["datetime"] < dr["first_ground_date"]]    
 ```
 
-```python
+```{code-cell} ipython3
 # Add to the plot a text line that states how many tracks fall into each category
 north_count = 0
 south_count = 0
 sog_count = 0
 ```
 
-```python
+```{code-cell} ipython3
 # Do the plot
 fig, ax = plt.subplots(figsize=(8, 8))
 ax.contourf(lons_zoomed, lats_zoomed, bath_zoomed)  # , cmap="binary")
@@ -332,11 +328,10 @@ Now we want to get some summary statistics.
    
    (b) How long does it take for a drifter to move from the Fraser River to the Pacific?
 
-
-```python
+```{code-cell} ipython3
 
 ```
 
-```python
+```{code-cell} ipython3
 drifters[0]["lifetime"]
 ```

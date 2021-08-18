@@ -91,7 +91,7 @@ np.min(raw_bathdata) # what is the deepest point? (units are in m above/below se
 Let's make a "quick and dirty" plot as a preliminary way to visualize our data (especially since we changed the format, it is a good idea to check if anything went awry). This is just a quick check, we will worry about making it into a proper scientific figure later on. Since this is a 2D dataset (look at the cell where we found *np.shape* of the data), we can use the `contourf()` function from matplotlib.
 
 ```{code-cell} ipython3
-plt.contourf(raw_bathdata)
+plt.contourf(raw_bathdata);
 ```
 
 We have successfully imported the .mat data as an array, but something is clearly wrong. This is supposed to be geographical information of BC and the Pacific Ocean. Can you recognize Vancouver Island? the Gulf of Alaska? The Rocky Mountains? What has happened here and how might we fix it?
@@ -100,11 +100,11 @@ We have successfully imported the .mat data as an array, but something is clearl
 
 This step is also commonly referred to as "data scrubbing," and is often the longest step (about 80% of our time, according to [a source](https://www.datascienceatthecommandline.com/1e/chapter-1-introduction.html)) while working with a dataset. At this stage we can change the format, get rid of erroneous or extraneous data, combine/compare datasets, add labels to things, but it is important not to *alter* our data in a way that will compromise its *integrity*, which might lead us to make false conclusions from our information. 
 
-First we need to flip our array over. We can do this using our knowledge of array slicing! Remember, the syntax for accessing elements in an array is `[start:stop:step]`. 
+First we need to flip our array over. We can do this using our knowledge of array slicing! Remember, the syntax for accessing elements in an array is `[start:stop:step]`.
 
 ```{code-cell} ipython3
 bathdata_fixed = raw_bathdata[::-1]# flip the array over and assign it to a new variable
-plt.contourf(bathdata_fixed) # try another quick visualization
+plt.contourf(bathdata_fixed); # try another quick visualization
 ```
 
 Much better! Now let's think about generating a way to label our X and Y axes with something meaningful. Currently, the labels refer to the *array index* of each point on our plot. A far more useful reference would be the latitude (on the y axis) and longitude (on the x axis). This particular image is from latitude 47$^o$ to 60$^o$ N and longitude -150$^o$ to -110 $^o$E. The following code generates arrays that with the lat and lon of each row and column in the image, then passes those into the `contourf` function, which then creates the plot with the new labels applied. Take a second to understand what is happening at each line of code. You may want to try running in a cell `help()` with the name of a built-in function for more information on how that function works.
@@ -117,7 +117,7 @@ lats = np.linspace(47, 60, latlen) # create arrays for lat and lon
 lons = np.linspace(-150, -110, lonlen)
 
 # plot it again!
-plt.contourf(lons, lats, bathdata_fixed)
+plt.contourf(lons, lats, bathdata_fixed);
 ```
 
 Maybe we are only interested in the bathymetry near Vancouver Island. We can "zoom" in on a particular area, using slicing to select a section of the original array. **IMPORTANT:** We need to slice the `lats` and `lons` arrays at the same intervals *before* we try to re-create the plot, or else we will get an error.
@@ -127,12 +127,12 @@ bath_zoomed = bathdata_fixed[0:150,500:900]
 lats_zoomed = lats[0:150]
 lons_zoomed = lons[500:900] # make sure the slices match between the coordinates and the original data
 
-plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed)
+plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed);
 ```
 
 ### Display the Results
 
-If we ara satisfied with our data processing, it is now time to present our result with a scientific figure. Go through the checklist and add code to our plot until we tick all of the boxes. 
+If we ara satisfied with our data processing, it is now time to present our result with a scientific figure. Go through the checklist and add code to our plot until we tick all of the boxes.
 
 ```{code-cell} ipython3
 con = plt.contourf(lons_zoomed, lats_zoomed, bath_zoomed, cmap="Blues_r") # change the colormap to something suitable
@@ -177,7 +177,7 @@ NASA's Earth Observing System Data and Information System (EOSDIS), which can be
 
 5) Present your data, making sure to meet all the requirements for a scientific figure. Use a colormap other than the default.
 
-6) Final check: run your whole notebook again and check for errors using the $\blacktriangleright\blacktriangleright$ button. 
+6) Final check: run your whole notebook again and check for errors using the $\blacktriangleright\blacktriangleright$ button.
 
 +++
 
@@ -243,7 +243,6 @@ get data from here https://oceancolor.gsfc.nasa.gov
 link -> data -> level 3 browser -> drop down settings to "standard", "<any>", <any>", "monthly", "9km" -> right click -> save image as -> name it something sensible and save in working directory
     
 mine is at `C:\Users\Owner\UBC_TLEF\eosc_211\e211_python_2021\wk03\lab_wk3\chlorophyl_march1999.png`
-    
 
 +++
 
@@ -346,7 +345,7 @@ plt.xticks(lon_ticks, lon_labels)
 plt.yticks(lat_ticks, lat_labels);
 ```
 
-Add a colourbar so we can interpret our data, just like the one on the oceancolor website. 
+Add a colourbar so we can interpret our data, just like the one on the oceancolor website.
 
 ```{code-cell} ipython3
 pcm = plt.pcolormesh(chlordat_fixed, cmap="magma_r")

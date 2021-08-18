@@ -2,14 +2,14 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: py:percent,md
+#     formats: py:percent,ipynb,md:myst
 #     text_representation:
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.10.3
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -31,7 +31,7 @@
 #
 
 # %% [markdown]
-# ## Part 1: The plt.annotate() Function and Formatted Text (Tutorial)
+# ## Part 1: The `plt.annotate()` Function and Formatted Text (Tutorial)
 #
 # This lab will focus on applying some of the new concepts we have learned to work with data very similar to what we have seen before. This week's dataset is a *digital elevation model* (DEM) and your challenge is to write a program for the analysis of topographic slopes. Usually we don’t have slopes, instead elevation data are stored in a Digital Elevation Model (DEM), which is basically a large array containing elevation above sea level over a grid of points. You already saw a DEM in the lab for Week 3, though we didn’t call it by that name. The program you write let a "user" pick a point on a plot of the DEM, then calculate the slope at that point, and use formatted text to tell you whether that point is east-facing, west-facing, or relatively flat. Your code will have to take into account that the world is round ifyou select a point on the edge of the DEM. A useful way of writing this kind of program is to proceed in a few steps:
 #
@@ -59,7 +59,7 @@ lats = np.linspace(-89.5, 89.5, topo.shape[0])
 lons = np.linspace(0.5, 359.5, topo.shape[1])
 
 # see if our labels correctly match the plot
-plt.contourf(lons, lats, topo)
+plt.contourf(lons, lats, topo);
 
 # %% [markdown]
 # Does everything look alright with our preliminary data visualization? If so, let's continue on to the *data processing* phase.

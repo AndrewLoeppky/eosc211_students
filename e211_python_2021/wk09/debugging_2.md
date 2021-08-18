@@ -25,7 +25,7 @@ kernelspec:
 
 ## Question 1
 
-**We have a record of speeds for a moving object (say, a drifter). We  want to see how long the object moves at a constant speed. In particular, we want to write code which will measure the length of time that the speed is less than maxspd and greater than minspd (this is called a “run”). For example if the speeds are stored in an array: `spd = np.array([5 1 5 5 5 10 5 1 5 5 5 1 2 2 5])` with `minspd=4` and `maxspd=6`, then we have 3 runs of length 1 and 2 runs of length 3, with no other runs. We would want to store this information in another variable in which the i$^{th}$ value was the number of runs of length i, i.e.:
+**We have a record of speeds for a moving object (say, a drifter). We  want to see how long the object moves at a constant speed. In particular, we want to write code which will measure the length of time that the speed is less than `maxspd` and greater than `minspd` (call this a “run”). For example, if the speeds are stored in an array: `spd = np.array([5 1 5 5 5 10 5 1 5 5 5 1 2 2 5])` with `minspd=4` and `maxspd=6`, then we have 3 runs of length 1 and 2 runs of length 3, with no other runs. We would want to store this information in another variable in which the i$^{th}$ value was the number of runs of length i, i.e.:**
 
 ```
 runs=[3 0 2 0 0 ...]
@@ -48,10 +48,10 @@ def runlength(spd, minspd, maxspd):
     Outputs
     runs: an array in which runs[i] is the number of runs of i points.
     """
-    N=len(minspd)
-    runs=np.zeros(N)
-    runlen=0
-    isrun=0
+    N = len(minspd)
+    runs = np.zeros(N)
+    runlen = 0
+    isrun = 0
     for i in range(N)
         if spd[k] >= minspd and spd[k] <= maxspd:
             isrun=True
@@ -84,7 +84,7 @@ def runlength(spd, minspd, maxspd):
     runs = np.zeros(N)
     runlen = 0
     isrun = False  # this should be a boolean, not an integer
-    for k in range(N):  # use a consistent index variable, 'i' or 'k', dont forget the colon
+    for k in range(N):  # use a consistent index variable, 'i' or 'k', don't forget the colon
         if spd[k] >= minspd and spd[k] <= maxspd:
             isrun = True
             runlen = runlen + 1
@@ -94,7 +94,7 @@ def runlength(spd, minspd, maxspd):
             isrun = False
     if isrun:
         runs[runlen] = runs[runlen] + 1
-    return runs  # make it a fruitful function with a return statement
+    return runs  # the function needs a return statement
 
 
 spd = np.array([5, 1, 5, 5, 5, 10, 5, 1, 5, 5, 5, 1, 2, 2, 5])
@@ -107,27 +107,20 @@ runlength(spd, minspd, maxspd)
 
 ## Question 2
 
-**Now, to calculate the mean runlength, we have 3 runs of length 1 and 2 of length 3, so the mean is (3*1 + 2*3)/(3 + 2). This piece of code is supposed to compute the mean runlength, but it doesn’t work. Fix the 3 small bugs.**
-
-sumr=0;
-rbar=0;
-while k=1:N
-   rbar = rbar*k + runs(k);
-   sumr = sumr   + runs(k);
-end;
-rbar = rbar-sumr;
+**Now, to calculate the mean runlength, we have 3 runs of length 1 and 2 of length 3, so the mean is $(3*1 + 2*3)/(3 + 2)$. This piece of code is supposed to compute the mean runlength, but it doesn’t work. Fix the 3 small bugs.**
 
 ```{code-cell} ipython3
-# andrew's soln
+# andrew's soln (incomplete)
 
 def mean_run_len(spd, minspd, maxspd):
     sumr=0
     rbar=0
     k = 0 # initialize k
-    while k is in range(N): # change loop structure
+    while k in range(N): # change loop structure
         rbar = rbar*k + runs(k)
         sumr = sumr   + runs(k)
         k += 1
 
     rbar = rbar-sumr
+    return rbar
 ```

@@ -11,9 +11,16 @@ from PIL import Image
 import numpy as np
 from scipy.io import loadmat
 import datetime
+import pandas as pd
+from matplotlib import pyplot as plt
 
 
 # %%
+def show_earthquake_data():
+    df = pd.read_csv("EQCanOB_20190907_2020_0906.txt", sep="|")
+    pd.options.display.max_columns = None
+    display(df)
+
 
 # %%
 def load_temps(my_data):
@@ -241,3 +248,22 @@ def clean_a1_data(dataset, save=False):
         np.save("drifter_data.npy", master_dataset)
 
     return master_dataset
+
+
+# %%
+def timeit(method):
+    """
+    https://www.laurivan.com/braindump-use-a-decorator-to-time-your-python-function/
+    """
+    import time
+    
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        elapsed = te - ts
+
+        # print(f'time to generate plot: {elapsed}s')
+        return f"time to run function: {elapsed} sec"
+
+    return timed
