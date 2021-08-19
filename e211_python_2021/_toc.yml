@@ -16,40 +16,40 @@ parts:
   - caption: Week 4
     chapters:
       - file: wk04/lab_wk4/lab_wk4.md
-  - caption: Week 5
-    chapters:
-      - file: wk05/logic.md
-      - file: wk05/complicated_logic.md
-      - file: wk05/lab_wk5/lab_wk5.md
-  - caption: Assignment 1
-    chapters:
-      - file: assignment01/ast1.md
-  - caption: Week 6
-    chapters:
-      - file: wk06/loops.md
-      - file: wk06/loops_ii.md
-      - file: wk06/lab_wk6/lab_wk6.md
-  - caption: Week 7
-    chapters:
-      - file: wk07/midterm_review.ipynb
-  - caption: Week 8
-    chapters:
-      - file: wk08/functions.md
-      - file: wk08/functions_ii.md
-      - file: wk08/lab_wk8/lab_wk8.md
-  - caption: Week 9
-    chapters:
-      - file: wk09/debugging.md
-      - file: wk09/debugging_2.md
-      - file: wk09/lab_wk9/lab_wk9.md
-  - caption: Week 10
-    chapters:
-      - file: wk10/dictionaries_and_f_strings.md
-  - caption: Week 11
-    chapters:
-      - file: wk11/loops_and_vectorization.ipynb
-      - file: wk11/lab_wk11/lab_wk11.md
-  - caption: Week 12
-    chapters:
-      - file: wk12/file_io_practice.md
-      - file: wk12/exercises.md
+  # - caption: Week 5
+  #   chapters:
+  #     - file: wk05/logic.md
+  #     - file: wk05/complicated_logic.md
+  #     - file: wk05/lab_wk5/lab_wk5.md
+  # - caption: Assignment 1
+  #   chapters:
+  #     - file: assignment01/ast1.md
+  # - caption: Week 6
+  #   chapters:
+  #     - file: wk06/loops.md
+  #     - file: wk06/loops_ii.md
+  #     - file: wk06/lab_wk6/lab_wk6.md
+  # - caption: Week 7
+  #   chapters:
+  #     - file: wk07/midterm_review.ipynb
+  # - caption: Week 8
+  #   chapters:
+  #     - file: wk08/functions.md
+  #     - file: wk08/functions_ii.md
+  #     - file: wk08/lab_wk8/lab_wk8.md
+  # - caption: Week 9
+  #   chapters:
+  #     - file: wk09/debugging.md
+  #     - file: wk09/debugging_2.md
+  #     - file: wk09/lab_wk9/lab_wk9.md
+  # - caption: Week 10
+  #   chapters:
+  #     - file: wk10/dictionaries_and_f_strings.md
+  # - caption: Week 11
+  #   chapters:
+  #     - file: wk11/loops_and_vectorization.ipynb
+  #     - file: wk11/lab_wk11/lab_wk11.md
+  # - caption: Week 12
+  #   chapters:
+  #     - file: wk12/file_io_practice.md
+  #     - file: wk12/exercises.md
