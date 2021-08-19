@@ -1,20 +1,19 @@
-name: e211
+name: mainsite
 channels:
   - eoas_ubc
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
-  - click
-  - jupyter
   - git
-  - markdown-it-py<1.1
-  - jupytext
-  - pillow
+  - python=3.8
   - pip
-  - scipy
-  - matplotlib
-  - dateparser
+  - ghp-import
+  - jupytext
+  - jupyter-book
   - conda-lock
   - mamba
-# conda-lock -f environment.yml -p linux-64
+  - scipy
+  - matplotlib
+  - numpy
+  - pandas
+# conda-lock --file environment.yml -p win-64
