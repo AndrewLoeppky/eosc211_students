@@ -74,7 +74,7 @@ launch_buttons:
   colab_url: "" # The URL of Google Colab (https://colab.research.google.com)
 
 repository:
-  url: https://github.com/AndrewLoeppky/eosc211/ # The URL to your book's repository
+  url: https://github.com/AndrewLoeppky/eosc211_students # The URL to your book's repository
   path_to_book: "e211_python_2021" # A path to your book's folder, relative to the repository root.
   branch: fall21_live # Which branch of the repository should be used when creating links
 
